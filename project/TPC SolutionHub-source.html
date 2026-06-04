@@ -1,0 +1,2150 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPC SolutionHub — Tchad Petroleum Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tpc.css">
+<link rel="stylesheet" href="tpc-v2.css">
+<link rel="stylesheet" href="tpc-v3.css">
+<link rel="stylesheet" href="tpc-cash.css">
+<link rel="stylesheet" href="tpc-expense.css">
+<link rel="stylesheet" href="tpc-escort.css">
+</head>
+<body>
+
+<template id="__bundler_thumbnail" data-bg-color="#F4F5F7">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#F4F5F7"/>
+    <rect x="0" y="0" width="1200" height="44" fill="#0B0E12"/>
+    <circle cx="36" cy="22" r="4" fill="#079455"/>
+    <text x="56" y="27" font-family="ui-monospace,monospace" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">TPC · OPS</text>
+    <pattern id="hz" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(-45)">
+      <rect width="7" height="14" fill="#FFB81C"/>
+      <rect x="7" width="7" height="14" fill="#0B0E12"/>
+    </pattern>
+    <rect x="1080" y="0" width="120" height="44" fill="url(#hz)"/>
+    <rect x="56" y="80" width="44" height="44" rx="6" fill="#0B0E12"/>
+    <rect x="56" y="80" width="44" height="14" fill="#FFB81C"/>
+    <rect x="56" y="94" width="44" height="15" fill="#C8102E"/>
+    <text x="64" y="108" font-family="ui-monospace,monospace" font-size="13" font-weight="700" fill="#fff">TPC</text>
+    <text x="120" y="100" font-family="system-ui,sans-serif" font-size="22" font-weight="600" fill="#101828">SolutionHub</text>
+    <text x="120" y="118" font-family="ui-monospace,monospace" font-size="10" fill="#667085" letter-spacing="1">TCHAD PETROLEUM</text>
+    <rect x="56" y="160" width="1088" height="180" rx="12" fill="#fff" stroke="#E4E7EC"/>
+    <text x="84" y="210" font-family="system-ui,sans-serif" font-size="26" font-weight="600" fill="#101828">Good afternoon, Cherif.</text>
+    <text x="84" y="246" font-family="system-ui,sans-serif" font-size="18" fill="#475467">You have 3 chemical requests awaiting your decision.</text>
+    <circle cx="980" cy="250" r="48" fill="none" stroke="#E4E7EC" stroke-width="10"/>
+    <circle cx="980" cy="250" r="48" fill="none" stroke="#079455" stroke-width="10" stroke-dasharray="240 60" transform="rotate(-90 980 250)"/>
+    <text x="980" y="258" font-family="ui-monospace,monospace" font-size="22" font-weight="700" fill="#101828" text-anchor="middle">42</text>
+    <g font-family="ui-monospace,monospace" fill="#101828">
+      <rect x="56"  y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="56"  y="368" width="32" height="3" fill="#C8102E"/>
+      <text x="80" y="408" font-size="12" fill="#475467">Pending</text>
+      <text x="80" y="450" font-size="38" font-weight="700">12</text>
+      <rect x="332" y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="332" y="368" width="32" height="3" fill="#079455"/>
+      <text x="356" y="408" font-size="12" fill="#475467">Approved</text>
+      <text x="356" y="450" font-size="38" font-weight="700">47</text>
+      <rect x="608" y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="608" y="368" width="32" height="3" fill="#DC6803"/>
+      <text x="632" y="408" font-size="12" fill="#475467">Cycle</text>
+      <text x="632" y="450" font-size="38" font-weight="700">3.2d</text>
+      <rect x="884" y="368" width="260" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="884" y="368" width="32" height="3" fill="#175CD3"/>
+      <text x="908" y="408" font-size="12" fill="#475467">SLA</text>
+      <text x="908" y="450" font-size="38" font-weight="700">92%</text>
+    </g>
+    <rect x="56" y="730" width="362" height="3" fill="#FFB81C"/>
+    <rect x="420" y="730" width="362" height="3" fill="#C8102E"/>
+    <rect x="784" y="730" width="360" height="3" fill="#0B0E12"/>
+    <text x="56" y="760" font-family="ui-monospace,monospace" font-size="11" fill="#667085" letter-spacing="2">LOADING TPC SOLUTIONHUB · INDUSTRIAL CALM</text>
+  </svg>
+</template>
+
+<!-- OPS STATUS STRIP -->
+<div class="ops-strip">
+  <div class="ops-strip-brand">
+    <span class="live-pulse"></span>
+    <span>TPC · OPS</span>
+  </div>
+  <div class="ops-strip-metrics">
+    <div class="ops-metric"><span class="ops-label">Sites online</span><span class="ops-val up">6 / 6</span></div>
+    <div class="ops-metric"><span class="ops-label">Active requests</span><span class="ops-val">42</span></div>
+    <div class="ops-metric"><span class="ops-label">SLA</span><span class="ops-val up">92%</span></div>
+    <div class="ops-metric"><span class="ops-label">Breached</span><span class="ops-val danger">2</span></div>
+    <div class="ops-metric"><span class="ops-label">Incidents · 7d</span><span class="ops-val">0</span></div>
+    <div class="ops-metric"><span class="ops-label">Azure SQL</span><span class="ops-val up">● healthy</span></div>
+  </div>
+  <div class="ops-strip-right">
+    <div class="ops-time" id="ops-clock"><strong>—</strong></div>
+    <div class="ops-hazard-band"></div>
+  </div>
+</div>
+
+<div class="app" data-nav="expanded">
+
+  <!-- ================== SIDEBAR ================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-mark v3"><span>TPC</span></div>
+      <div class="brand-text">
+        <div class="brand-name">SolutionHub</div>
+        <div class="brand-sub">TCHAD PETROLEUM</div>
+      </div>
+    </div>
+
+    <nav class="nav-area">
+      <div class="nav-label" data-t="nav.platform">Platform</div>
+      <div class="nav-item active" data-page="dashboard" id="nav-dashboard">
+        <span class="nav-icon" data-icon="layout-grid"></span>
+        <span data-t="nav.dashboard">Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="requests" id="nav-requests">
+        <span class="nav-icon" data-icon="inbox"></span>
+        <span data-t="nav.requests">My Requests</span>
+        <span class="nav-badge">3</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.solutions">Solutions</div>
+      <div class="nav-item" data-page="chemical" id="nav-chemical">
+        <span class="nav-icon" data-icon="flask"></span>
+        <span data-t="nav.chemical">Safety Data</span>
+      </div>
+      <div class="nav-item" data-page="master-sheet" id="nav-master">
+        <span class="nav-icon" data-icon="database"></span>
+        <span>Master Sheet</span>
+      </div>
+      <div class="nav-item" data-page="cash" id="nav-cash">
+        <span class="nav-icon" data-icon="wallet"></span>
+        <span data-t="nav.cash">Cash Advance</span>
+        <span class="nav-badge">5</span>
+      </div>
+      <div class="nav-item" data-page="expense" id="nav-expense">
+        <span class="nav-icon" data-icon="receipt"></span>
+        <span data-t="nav.expense">Daily Expense</span>
+      </div>
+      <div class="nav-item" data-page="escort" id="nav-escort">
+        <span class="nav-icon" data-icon="shield-check"></span>
+        <span data-t="nav.security">Security Escort</span>
+        <span class="nav-badge" style="background:var(--danger)">1</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.admin">Administration</div>
+      <div class="nav-item" data-page="approvals" id="nav-approvals">
+        <span class="nav-icon" data-icon="check-square"></span>
+        <span data-t="nav.approvals">Approvals</span>
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item" data-page="users" id="nav-users">
+        <span class="nav-icon" data-icon="users"></span>
+        <span data-t="nav.users">Users</span>
+      </div>
+      <div class="nav-item" data-page="settings" id="nav-settings">
+        <span class="nav-icon" data-icon="settings"></span>
+        <span data-t="nav.settings">Settings</span>
+      </div>
+    </nav>
+
+    <div class="role-switcher">
+      <div class="role-switcher-label" data-t="role.label">Demo role</div>
+      <select id="role-select" class="role-select">
+        <option value="ga">Global Admin · Cherif Hassan</option>
+        <option value="admin">Admin · Cherif Hassan</option>
+        <option value="she">HSE Reviewer · Mariam Deby</option>
+        <option value="sm">Store Manager · Fatima Moussa</option>
+        <option value="user">Field User · Ahmed Mahamat</option>
+      </select>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="live-dot"></span>
+      <span data-t="live">Live · Synced</span>
+    </div>
+  </aside>
+
+  <!-- ================== MAIN ================== -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" data-icon="menu"></button>
+        <div class="breadcrumb" id="breadcrumb"></div>
+      </div>
+
+      <div class="topbar-search">
+        <span data-icon="search"></span>
+        <input type="text" data-tph="topbar.search" placeholder="Search…">
+        <span class="kbd">⌘K</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="lang-btn" id="lang-btn">EN</button>
+        <button class="icon-btn" id="theme-btn" data-icon="moon" aria-label="Toggle theme"></button>
+        <button class="icon-btn" id="tweaks-btn" data-icon="sliders" aria-label="Tweaks"></button>
+        <button class="icon-btn" aria-label="Notifications" data-icon="bell"><span class="dot"></span></button>
+        <button class="user-chip">
+          <span class="avatar" id="user-avatar">CH</span>
+          <span>
+            <span class="user-chip-name" id="user-name">Cherif Hassan</span><br>
+            <span class="user-chip-role" id="user-role">Global Admin</span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- access banner (role-gated) -->
+      <div class="access-banner" id="access-banner" style="display:none">
+        <span data-icon="alert-triangle"></span>
+        Your current role has limited access. Contact your administrator.
+      </div>
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="page active" id="page-dashboard" data-screen-label="01 Dashboard">
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-content">
+            <div class="hero-greeting">Friday · 15 May 2026 · Douala</div>
+            <h1 class="hero-title">Good afternoon, Cherif.<br><span style="color:var(--text-3);font-weight:500">You have <span class="accent">3 chemical requests</span> awaiting your decision today.</span></h1>
+            <div class="hero-meta">
+              <span class="meta-chip"><span data-icon="check-circle"></span><strong>92%</strong>&nbsp;on-time SLA this month</span>
+              <span class="meta-chip"><span data-icon="clock"></span>Avg cycle <strong>3.2 days</strong></span>
+              <span class="meta-chip"><span data-icon="users"></span><strong>23</strong>&nbsp;active reviewers</span>
+            </div>
+          </div>
+          <div class="hero-aside">
+            <div class="sla-ring">
+              <div data-ring='[{"value":34,"color":"#079455"},{"value":6,"color":"#DC6803"},{"value":2,"color":"#D92D20"}]' data-ring-center="42"></div>
+              <div class="sla-legend">
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#079455"></span>On time<span class="count">34</span></div>
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#DC6803"></span>At risk<span class="count">6</span></div>
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#D92D20"></span>Breached<span class="count">2</span></div>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-val">42</div>
+              <div class="hero-stat-lbl">Active requests</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div></div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <!-- APPROVAL FLOW -->
+        <div class="flow-card" id="approval-flow">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="activity"></span>Approval flow · 34 requests in motion</div>
+            <div class="card-actions">
+              <span class="kbd-hint">Bottleneck <kbd>IH Review</kbd></span>
+              <button class="btn btn-sm btn-ghost"><span data-icon="filter"></span></button>
+            </div>
+          </div>
+          <div class="flow-body">
+            <div class="flow-stages"></div>
+            <div class="strata-divider" style="margin-top:var(--s-4)"><span class="s1"></span><span class="s2"></span><span class="s3"></span></div>
+          </div>
+        </div>
+
+        <!-- YOUR QUEUE -->
+        <div class="queue-card">
+          <div class="queue-head">
+            <div class="queue-head-left">
+              <h2 data-t="queue.title">Your queue</h2>
+              <p data-t="queue.sub">Items waiting on you today</p>
+            </div>
+            <button class="btn btn-sm" data-page="approvals"><span data-t="queue.viewall">View all</span><span data-icon="arrow-right"></span></button>
+          </div>
+          <div class="queue-list">
+            <div class="queue-row" data-req="CHM-154">
+              <div class="queue-pill"><span data-icon="alert-triangle"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Methanol — IH hazard classification needed</div>
+                <div class="queue-sub"><span class="mono">#CHM-154</span> · PS3-Belabo · Ibrahim Saleh</div>
+              </div>
+              <div class="badge badge-danger"><span data-icon="clock"></span>4 days overdue</div>
+              <div class="queue-age urgent">SLA breached</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-156">
+              <div class="queue-pill warning"><span data-icon="clock"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Acetone — SHE review pending</div>
+                <div class="queue-sub"><span class="mono">#CHM-156</span> · Douala · Ahmed Mahamat</div>
+              </div>
+              <div class="badge badge-warning"><span data-icon="clock"></span>Due tomorrow</div>
+              <div class="queue-age due">2d 4h left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-page="approvals">
+              <div class="queue-pill info"><span data-icon="leaf"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Hydraulic Fluid ISO 46 — EMP environmental review</div>
+                <div class="queue-sub"><span class="mono">#CHM-152</span> · PS2-Dompta · Cherif Hassan</div>
+              </div>
+              <div class="badge badge-info"><span data-icon="leaf"></span>Environmental</div>
+              <div class="queue-age">5d left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-155">
+              <div class="queue-pill success"><span data-icon="check"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Diesel — Final sign-off ready</div>
+                <div class="queue-sub"><span class="mono">#CHM-155</span> · PS2-Dompta · Fatima Moussa</div>
+              </div>
+              <div class="badge badge-success"><span data-icon="check"></span>Ready to approve</div>
+              <div class="queue-age">Today</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPIs with sparklines -->
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label" data-t="stats.pending">Pending requests</span>
+              <span class="kpi-delta down">+3</span>
+            </div>
+            <div class="kpi-value">12</div>
+            <div data-sparkline="8,10,7,9,11,13,12" data-spark-cls="spark-accent"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label" data-t="stats.approved">Approved this month</span>
+              <span class="kpi-delta up">+18%</span>
+            </div>
+            <div class="kpi-value">47</div>
+            <div data-sparkline="32,38,35,40,42,45,47" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Avg cycle time</span>
+              <span class="kpi-delta up">-12%</span>
+            </div>
+            <div class="kpi-value">3.2<span style="font-size:14px;color:var(--text-3);font-weight:500"> days</span></div>
+            <div data-sparkline="4.1,3.8,4.0,3.6,3.4,3.3,3.2" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">SLA performance</span>
+              <span class="kpi-delta up">+4pt</span>
+            </div>
+            <div class="kpi-value">92<span style="font-size:14px;color:var(--text-3);font-weight:500">%</span></div>
+            <div data-sparkline="84,86,88,87,90,91,92" data-spark-cls="spark-up"></div>
+          </div>
+        </div>
+
+        <!-- SITE ACTIVITY + NEWS -->
+        <div class="split-row">
+          <div class="site-map-card" id="site-map">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="map-pin"></span>Site activity</div>
+              <div class="card-actions">
+                <span class="badge badge-neutral mono">6 sites</span>
+                <button class="btn btn-sm btn-ghost"><span data-icon="filter"></span></button>
+              </div>
+            </div>
+            <div class="site-map-body">
+              <div class="site-map-canvas"></div>
+              <div class="site-list"></div>
+            </div>
+          </div>
+
+          <!-- News -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="megaphone"></span><span data-t="news.title">News & announcements</span></div>
+              <button class="btn btn-sm btn-ghost"><span data-t="news.viewall">Archive</span></button>
+            </div>
+            <div class="card-body flush">
+              <div class="news-list">
+                <article class="news-item">
+                  <div class="news-date"><span class="day">15</span>MAY</div>
+                  <div>
+                    <div class="news-title">HSE quarterly audit — preparation kicks off Monday</div>
+                    <div class="news-excerpt">All site supervisors must complete chemical reconciliation by 22 May. Master Sheet exports now include audit columns.</div>
+                  </div>
+                  <div class="news-cat">HSE</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">12</span>MAY</div>
+                  <div>
+                    <div class="news-title">New manufacturer added: Brenntag Chad</div>
+                    <div class="news-excerpt">Local supplier now available in the Manufacturer database for all PS2 / PS3 / Kribi requests.</div>
+                  </div>
+                  <div class="news-cat">PROCUREMENT</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">09</span>MAY</div>
+                  <div>
+                    <div class="news-title">Cash Advance module — closed beta starts in July</div>
+                    <div class="news-excerpt">Field managers in Douala and PS2 will be onboarded first. Sign up via the Settings page if interested.</div>
+                  </div>
+                  <div class="news-cat">PRODUCT</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">06</span>MAY</div>
+                  <div>
+                    <div class="news-title">Scheduled maintenance — Azure SQL · Sunday 22:00 UTC</div>
+                    <div class="news-excerpt">Expect ~20 min of read-only access. Submissions queued during the window will sync automatically.</div>
+                  </div>
+                  <div class="news-cat">SYSTEM</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUTIONS -->
+        <div class="section-title">Solutions</div>
+        <div class="solutions-grid" style="margin-bottom:var(--s-7)">
+          <div class="sol-card" data-page="chemical">
+            <div class="sol-head">
+              <div class="sol-icon-box red"><span data-icon="flask"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Safety Data Management</div>
+              <div class="sol-desc">Chemical inventory, SDS, PPE and multi-level HSE approval workflows.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">145 chemicals · 12 pending</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="cash">
+            <div class="sol-head">
+              <div class="sol-icon-box yellow"><span data-icon="wallet"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Cash Advance</div>
+              <div class="sol-desc">Request and track cash advances with line-manager approval and receipt reconciliation.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">12 active · 1 overdue</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="expense">
+            <div class="sol-head">
+              <div class="sol-icon-box blue"><span data-icon="receipt"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Daily Expense</div>
+              <div class="sol-desc">Capture daily expenses by category, attach receipts, route to line manager for reimbursement.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">13 entries · May 2026</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="escort">
+            <div class="sol-head">
+              <div class="sol-icon-box green"><span data-icon="shield-check"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Security Escort (E85)</div>
+              <div class="sol-desc">Plan and track armed-escort convoys between TPC sites with risk assessment and routing.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">1 in transit · 3 planned</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS + ACTIVITY STREAM -->
+        <div class="split-row">
+          <div class="activity-card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="activity"></span>Live activity</div>
+              <div class="card-actions">
+                <span class="kbd-hint" style="color:var(--success)"><span class="live-dot" style="width:6px;height:6px;display:inline-block"></span> Streaming</span>
+              </div>
+            </div>
+            <div class="activity-list" id="activity-stream"></div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="sparkles"></span><span data-t="quick.title">Quick actions</span></div>
+              <span class="kbd-hint"><kbd>⌘</kbd><kbd>K</kbd></span>
+            </div>
+            <div class="card-body flush quick-actions">
+              <button class="quick-action" data-page="new-chemical">
+                <span data-icon="flask"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">New chemical</span>
+                  <span class="quick-action-sub">Submit for HSE approval</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="chemical">
+                <span data-icon="map-pin"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Add to my site</span>
+                  <span class="quick-action-sub">Existing chemical, new location</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="master-sheet">
+                <span data-icon="database"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Master Sheet</span>
+                  <span class="quick-action-sub">Full TPC chemical inventory</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="approvals">
+                <span data-icon="check-square"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Review queue</span>
+                  <span class="quick-action-sub">2 items waiting on you</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ CHEMICAL HUB ============ -->
+      <section class="page" id="page-chemical" data-screen-label="02 Safety Data Management">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.chemical.title">Safety Data Management</h1>
+            <p class="page-subtitle" data-t="page.chemical.sub">Chemical inventory, SDS, PPE and HSE approvals · 7 modules</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span><span data-t="btn.filter">Filter</span></button>
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.chemicals">Active chemicals</div><div class="stat-icon" data-icon="flask"></div></div>
+            <div class="stat-value">145</div>
+            <div class="stat-meta up"><span data-icon="trending-up"></span>+6 this month</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.pending">Pending</div><div class="stat-icon" data-icon="clock"></div></div>
+            <div class="stat-value">12</div>
+            <div class="stat-meta warn"><span data-icon="alert-triangle"></span>3 urgent</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.manufacturers">Manufacturers</div><div class="stat-icon" data-icon="building"></div></div>
+            <div class="stat-value">8</div>
+            <div class="stat-meta">Active suppliers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.storage">Storage locations</div><div class="stat-icon" data-icon="map-pin"></div></div>
+            <div class="stat-value">24</div>
+            <div class="stat-meta">Across 6 sites</div>
+          </div>
+        </div>
+
+        <div class="section-title">Modules</div>
+        <div class="modules-grid">
+          <button class="mod-card" data-page="new-chemical">
+            <div class="sol-icon-box red"><span data-icon="plus"></span></div>
+            <div class="mod-name">New chemical</div>
+            <div class="mod-desc">Submit a new chemical with full HSE approval workflow.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box blue"><span data-icon="map-pin"></span></div>
+            <div class="mod-name">Add to my site</div>
+            <div class="mod-desc">Request an approved chemical for your specific TPC site.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="master-sheet">
+            <div class="sol-icon-box"><span data-icon="database"></span></div>
+            <div class="mod-name">Master Sheet</div>
+            <div class="mod-desc">Browse and manage the complete TPC chemical inventory.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box"><span data-icon="archive"></span></div>
+            <div class="mod-name">Storage</div>
+            <div class="mod-desc">Manage storage locations by area of use across all sites.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box"><span data-icon="building"></span></div>
+            <div class="mod-name">Manufacturers</div>
+            <div class="mod-desc">Add, edit, or remove chemical manufacturers and contacts.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box yellow"><span data-icon="hard-hat"></span></div>
+            <div class="mod-name">PPE</div>
+            <div class="mod-desc">Manage personal protective equipment lists by chemical.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box"><span data-icon="book"></span></div>
+            <div class="mod-name">User guide</div>
+            <div class="mod-desc">Step-by-step documentation for every module.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="history"></span>Recent chemical requests</div>
+            <div class="card-actions">
+              <button class="btn btn-sm"><span data-icon="filter"></span>Filter</button>
+            </div>
+          </div>
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Manufacturer</th><th>Site</th><th>Stage</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="id-cell">#CHM-156</td><td>Acetone</td><td>Sigma-Aldrich</td><td>Douala</td><td>SHE Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-155</td><td>Diesel</td><td>TotalEnergies</td><td>PS2-Dompta</td><td>Final Approval</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-154</td><td>Methanol</td><td>Brenntag Chad</td><td>PS3-Belabo</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-152</td><td>Hydraulic Fluid ISO 46</td><td>Castrol Industrial</td><td>PS2-Dompta</td><td>EMP Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-150</td><td>Sodium Hypochlorite</td><td>Brenntag Chad</td><td>PRS-Kribi</td><td>OI Safety</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CASH ADVANCE HUB ============ -->
+      <section class="page" id="page-cash" data-screen-label="04 Cash Advance">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Cash Advance</h1>
+            <p class="page-subtitle">Request, track and reconcile cash advances · TPC Treasury</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="my-advances"><span data-icon="list"></span>My advances</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-cash"><span data-icon="plus"></span>New advance</button>
+          </div>
+        </div>
+
+        <!-- Cash Hero -->
+        <div class="cash-hero">
+          <div class="cash-hero-cell">
+            <div class="cash-hero-label"><span data-icon="wallet"></span>Outstanding balance</div>
+            <div class="cash-hero-amount"><span class="num" id="cash-outstanding">0</span><span class="ccy">FCFA</span></div>
+            <div class="cash-hero-sub"><span data-icon="clock"></span>Across 4 active advances · TPC-wide</div>
+          </div>
+          <div class="cash-hero-cell danger">
+            <div class="cash-hero-label"><span data-icon="alert-triangle"></span>Overdue reconciliation</div>
+            <div class="cash-hero-amount"><span class="num" id="cash-overdue">0</span><span class="ccy">FCFA</span></div>
+            <div class="cash-hero-sub danger"><span data-icon="alert-triangle"></span>1 advance past 14-day deadline</div>
+          </div>
+          <div class="cash-hero-cell success">
+            <div class="cash-hero-label"><span data-icon="check-circle"></span>Reconciled rate</div>
+            <div class="cash-hero-amount"><span class="num"><span id="cash-recon-pct">0</span></span><span class="ccy">% · LAST 30D</span></div>
+            <div class="cash-hero-sub"><span data-icon="trending-up"></span>Target ≥ 80% · within compliance</div>
+          </div>
+        </div>
+
+        <!-- Reconciliation callout -->
+        <div class="recon-callout">
+          <div class="recon-callout-icon" data-icon="alert-triangle"></div>
+          <div class="recon-callout-text">
+            <strong>Action required — 1 advance is overdue for reconciliation</strong>
+            <span class="mono">#CA-2026-0138</span> · Oumar Cheikh · Emergency repair float FSO · 2 400 000 FCFA. Submit receipts to clear this advance before 18 May.
+          </div>
+          <button class="btn btn-primary" data-page="reconciliation"><span data-icon="check-square"></span>Reconcile now</button>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Disbursed · 30d</span>
+              <span class="kpi-delta up">+22%</span>
+            </div>
+            <div class="kpi-value"><span id="cash-month">0</span><span style="font-size:14px;color:var(--text-3);font-weight:500"> FCFA</span></div>
+            <div data-sparkline="2.1,2.4,2.0,2.8,3.1,3.6,3.8" data-spark-cls="spark-accent"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Avg cycle (request → disbursement)</span>
+              <span class="kpi-delta up">-1.2d</span>
+            </div>
+            <div class="kpi-value">2.4<span style="font-size:14px;color:var(--text-3);font-weight:500"> days</span></div>
+            <div data-sparkline="4.0,3.6,3.4,3.0,2.8,2.5,2.4" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Mobile money share</span>
+              <span class="kpi-delta up">+8pt</span>
+            </div>
+            <div class="kpi-value">63<span style="font-size:14px;color:var(--text-3);font-weight:500">%</span></div>
+            <div data-sparkline="42,48,52,55,58,60,63" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Compliance score</span>
+              <span class="kpi-delta flat">±0</span>
+            </div>
+            <div class="kpi-value">A−</div>
+            <div data-sparkline="80,82,85,87,86,87,87" data-spark-cls="spark-flat"></div>
+          </div>
+        </div>
+
+        <!-- Active advances -->
+        <div style="margin-bottom:var(--s-7)">
+          <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+            <span>Active advances · Across TPC</span>
+            <button class="btn btn-sm btn-ghost" data-page="my-advances">View all<span data-icon="arrow-right"></span></button>
+          </div>
+          <div class="advances-grid" id="cash-advances-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ NEW CASH ADVANCE FORM ============ -->
+      <section class="page" id="page-new-cash" data-screen-label="05 New Cash Advance">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">New cash advance</h1>
+            <p class="page-subtitle">Submit a cash advance request for approval and disbursement</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="cash"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+
+            <!-- Section 1: Amount + Purpose -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Amount &amp; purpose</div>
+                <div class="form-section-sub">Currency: XAF (Franc CFA)</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Amount requested <span class="req">*</span></label>
+                    <div class="amount-input-row">
+                      <input type="text" id="cash-amount" placeholder="0" value="1 850 000">
+                      <span class="ccy-tag">FCFA</span>
+                    </div>
+                    <div class="amount-presets">
+                      <button class="amount-preset" data-amt="200000">200 000</button>
+                      <button class="amount-preset" data-amt="500000">500 000</button>
+                      <button class="amount-preset" data-amt="1000000">1 000 000</button>
+                      <button class="amount-preset" data-amt="2000000">2 000 000</button>
+                      <button class="amount-preset" data-amt="5000000">5 000 000</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group full">
+                    <label>Purpose <span class="req">*</span></label>
+                    <div class="purpose-grid">
+                      <button type="button" class="purpose-opt selected"><span data-icon="map-pin"></span><span>Mission</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="calendar"></span><span>Per diem</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="alert-triangle"></span><span>Emergency</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="receipt"></span><span>Procurement</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="flask"></span><span>Fuel</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="more"></span><span>Other</span></button>
+                    </div>
+                  </div>
+
+                  <div class="form-group full">
+                    <label>Justification <span class="req">*</span></label>
+                    <textarea class="textarea" placeholder="Describe the mission, project context and how the funds will be used…">5-day inspection mission to PS3-Belabo for quarterly pump maintenance and HSE walkthrough. Covers per diem for 2 technicians, fuel for round trip, on-site lodging, and minor procurement of spare seals/gaskets.</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Mission / Project -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Mission &amp; project</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid cols-3">
+                  <div class="form-group">
+                    <label>Site <span class="req">*</span></label>
+                    <select class="select">
+                      <option>PS3-Belabo</option>
+                      <option>Douala HQ</option>
+                      <option>PS2-Dompta</option>
+                      <option>PRS-Kribi</option>
+                      <option>FSO</option>
+                      <option>Warehouse</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Project code <span class="req">*</span></label>
+                    <select class="select">
+                      <option>PRJ-INF-22 — Infrastructure Q2</option>
+                      <option>PRJ-HSE-04 — HSE Quarterly Audit</option>
+                      <option>PRJ-OPS-11 — Operations FSO 2026</option>
+                      <option>PRJ-INS-Q2 — Inspections Q2</option>
+                      <option>PRJ-PRC-09 — Procurement Kribi</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Duration (days) <span class="req">*</span></label>
+                    <input class="input" id="cash-days" type="number" value="9" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Start date</label>
+                    <input class="input" type="date" value="2026-05-18">
+                  </div>
+                  <div class="form-group">
+                    <label>End date</label>
+                    <input class="input" type="date" value="2026-05-26">
+                  </div>
+                  <div class="form-group">
+                    <label>Travel mode</label>
+                    <select class="select"><option>Land — TPC vehicle</option><option>Land — Hired</option><option>Air — Domestic</option><option>Air — International</option></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Disbursement method -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Disbursement method</div>
+                <div class="form-section-sub">How you want to receive the funds</div>
+              </div>
+              <div class="form-section-body">
+                <div class="method-grid">
+                  <button type="button" class="method-opt selected">
+                    <span class="method-opt-icon" data-icon="send"></span>
+                    <div>
+                      <div class="method-opt-name">Airtel Money</div>
+                      <div class="method-opt-sub">+235 6X XX XX XX · Instant</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="send"></span>
+                    <div>
+                      <div class="method-opt-name">Orange Money</div>
+                      <div class="method-opt-sub">+235 6X XX XX XX · Instant</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="database"></span>
+                    <div>
+                      <div class="method-opt-name">Bank transfer</div>
+                      <div class="method-opt-sub">BCC · Ecobank · 1-2d</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="wallet"></span>
+                    <div>
+                      <div class="method-opt-name">Cash counter</div>
+                      <div class="method-opt-sub">Treasury · Douala HQ only</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="globe"></span>
+                    <div>
+                      <div class="method-opt-name">Other</div>
+                      <div class="method-opt-sub">Specify in notes</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Approvers -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">4</div>
+                <div class="form-section-title">Approval chain</div>
+                <div class="form-section-sub">Auto-suggested based on project + amount</div>
+              </div>
+              <div class="form-section-body">
+                <table class="rev-table">
+                  <thead><tr><th>Stage</th><th>Primary approver</th><th>Backup</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="rev-stage">Line manager</div><span class="rev-stage-sub">Operational sign-off</span></td>
+                      <td><select class="rev-select-inline"><option>Cherif Hassan — Operations Lead</option></select></td>
+                      <td><select class="rev-select-inline"><option>Mariam Deby — HSE Manager</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Budget controller</div><span class="rev-stage-sub">PRJ-INF-22 fund check</span></td>
+                      <td><select class="rev-select-inline"><option>Aisha Koné — Budget Controller</option></select></td>
+                      <td><select class="rev-select-inline"><option>Brahim Youssouf — Deputy Controller</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Finance head</div><span class="rev-stage-sub">Final approval over 1M FCFA</span></td>
+                      <td><select class="rev-select-inline"><option>Hassan Ibrahim — CFO</option></select></td>
+                      <td><select class="rev-select-inline"><option>Nadia Al-Farsi — Deputy CFO</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Treasury disbursement</div><span class="rev-stage-sub">Releases funds via chosen method</span></td>
+                      <td><select class="rev-select-inline"><option>Treasury Team · Douala</option></select></td>
+                      <td><select class="rev-select-inline"><option>Treasury Team · Backup</option></select></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <div class="form-progress" style="display:flex;align-items:center;gap:var(--s-3);font-size:12px;color:var(--text-3);flex:1">
+                  <span>SLA target</span>
+                  <span class="mono" style="color:var(--text)">2.4 days</span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span>Estimated disbursement</span>
+                  <span class="mono" style="color:var(--text)">17 May 2026</span>
+                </div>
+                <button class="btn" data-page="cash"><span data-t="btn.back">Back</span></button>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="cash-form-submit">Submit request<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active">
+                  <div class="wf-node">1</div>
+                  <div class="wf-content"><div class="wf-title">Submission</div><div class="wf-sub">You are here</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">2</div>
+                  <div class="wf-content"><div class="wf-title">Line manager</div><div class="wf-sub">Operational sign-off</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">3</div>
+                  <div class="wf-content"><div class="wf-title">Budget controller</div><div class="wf-sub">Fund availability</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">4</div>
+                  <div class="wf-content"><div class="wf-title">Finance head</div><div class="wf-sub">Required &gt; 1M FCFA</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">5</div>
+                  <div class="wf-content"><div class="wf-title">Disbursement</div><div class="wf-sub">Funds released</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">6</div>
+                  <div class="wf-content"><div class="wf-title">Reconciliation</div><div class="wf-sub">Submit receipts ≤ 14d</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Breakdown</div>
+              <div class="summary-body">
+                <div class="breakdown">
+                  <div class="breakdown-row"><span class="lbl">Total advance</span><span class="val" id="bk-total">—</span></div>
+                  <div class="breakdown-row"><span class="lbl">Duration</span><span class="val" id="bk-days">—</span> days</div>
+                  <div class="breakdown-row total"><span class="lbl">Per day</span><span class="val" id="bk-daily">—</span></div>
+                </div>
+                <div style="font-size:11px;color:var(--text-4);margin-top:8px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.5px">
+                  PRJ-INF-22 · Budget rem. <strong style="color:var(--text-2)">8.4M FCFA</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Compliance reminder</div>
+              <div class="summary-body" style="gap:8px">
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  All receipts must be submitted within <strong>14 days</strong> of disbursement. Surplus funds returned to TPC Treasury within 7 days of mission end.
+                </div>
+                <div style="font-size:11px;color:var(--accent);font-family:var(--font-mono);display:flex;align-items:center;gap:4px;cursor:pointer">
+                  <span data-icon="book" style="width:14px;display:inline-flex"></span>
+                  <span>TPC-FIN-08 · Cash advance policy</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MY ADVANCES ============ -->
+      <section class="page" id="page-my-advances" data-screen-label="06 My Advances">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">My advances</h1>
+            <p class="page-subtitle">Track all cash advances you have submitted across TPC</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-cash"><span data-icon="plus"></span>New advance</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:var(--s-5)">
+          <div class="ms-toolbar">
+            <div class="ms-search">
+              <span data-icon="search"></span>
+              <input type="text" placeholder="Search by ID, requester, project…">
+            </div>
+            <button class="ms-chip-filter active" data-adv-filter="all">All</button>
+            <button class="ms-chip-filter" data-adv-filter="active">Active</button>
+            <button class="ms-chip-filter" data-adv-filter="overdue">Overdue</button>
+            <button class="ms-chip-filter" data-adv-filter="reconciling">Reconciling</button>
+            <button class="ms-chip-filter" data-adv-filter="reconciled">Reconciled</button>
+          </div>
+        </div>
+
+        <div class="advances-grid" id="my-advances-list"></div>
+      </section>
+
+      <!-- ============ RECONCILIATION ============ -->
+      <section class="page" id="page-reconciliation" data-screen-label="07 Reconciliation">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Reconcile advance <span class="mono" style="font-size:14px;color:var(--text-3);font-weight:500">#CA-2026-0142</span></h1>
+            <p class="page-subtitle">Submit receipts to clear your cash advance · Mission PS3-Belabo · Pump maintenance</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="my-advances"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Receipts &amp; expenses</div>
+                <div class="form-section-sub">Itemize each receipt — attach a photo or PDF below</div>
+              </div>
+              <div class="form-section-body">
+                <div id="receipt-list"></div>
+                <button class="btn btn-sm" id="receipt-add" style="margin-top:8px"><span data-icon="plus"></span>Add receipt line</button>
+
+                <div class="recon-totals" style="margin-top:var(--s-5)">
+                  <div class="cell">
+                    <div class="l">Advance disbursed</div>
+                    <div class="v"><span id="rec-advance">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                  <div class="cell">
+                    <div class="l">Receipts total</div>
+                    <div class="v"><span id="rec-receipts">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                  <div class="cell" id="rec-delta-cell">
+                    <div class="l">Settled</div>
+                    <div class="v"><span id="rec-delta">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Reconciliation deadline: <strong class="mono" style="color:var(--warning)">28 May 2026 · 13 days remaining</strong></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary">Submit reconciliation<span data-icon="send"></span></button>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Supporting documents</div>
+                <div class="form-section-sub">Optional · scanned receipts, mission report</div>
+              </div>
+              <div class="form-section-body">
+                <div class="file-drop">
+                  <div data-icon="paperclip"></div>
+                  <div class="file-drop-title">Drag &amp; drop scans, or click to browse</div>
+                  <div class="file-drop-hint">PDF · JPG · PNG · MAX 10MB EACH</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Advance details</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Advance ID</span><span class="summary-val mono">#CA-2026-0142</span></div>
+                <div class="summary-row"><span class="summary-label">Amount</span><span class="summary-val mono">1 850 000 FCFA</span></div>
+                <div class="summary-row"><span class="summary-label">Disbursed</span><span class="summary-val">14 May 2026</span></div>
+                <div class="summary-row"><span class="summary-label">Method</span><span class="summary-val">Airtel Money</span></div>
+                <div class="summary-row"><span class="summary-label">Project</span><span class="summary-val mono">PRJ-INF-22</span></div>
+                <div class="summary-row"><span class="summary-label">Site</span><span class="summary-val">PS3-Belabo</span></div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Recon policy</div>
+              <div class="summary-body" style="gap:8px">
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  <strong>Deficit:</strong> any unspent funds must be returned to TPC Treasury within 7 days of mission end.
+                </div>
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  <strong>Surplus:</strong> documented overspend ≤ 10% may be reimbursed by TPC with line-manager approval.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ DAILY EXPENSE HUB ============ -->
+      <section class="page" id="page-expense" data-screen-label="08 Daily Expense">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Daily Expense</h1>
+            <p class="page-subtitle">Capture, categorize and submit daily expenses for reimbursement</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export · May 2026</button>
+            <button class="btn btn-primary" data-page="new-expense"><span data-icon="plus"></span>New expense</button>
+          </div>
+        </div>
+
+        <!-- Reimburse strip -->
+        <div class="reimb-strip">
+          <div class="reimb-cell">
+            <span class="l">Submitted</span>
+            <span class="v"><span id="ex-submitted">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Awaiting manager review</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Approved</span>
+            <span class="v"><span id="ex-approved">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Approved, pending reimbursement</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Reimbursed · 30d</span>
+            <span class="v"><span id="ex-reimbursed">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Paid out to your account</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Total · May</span>
+            <span class="v"><span id="ex-total">0</span><span class="ccy">FCFA</span></span>
+            <span class="s"><span id="ex-count">0</span> expenses captured</span>
+          </div>
+        </div>
+
+        <!-- Month chart -->
+        <div class="month-chart-card" id="month-chart">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="activity"></span>Last 14 days · By category</div>
+            <div class="card-actions">
+              <button class="ms-chip-filter active">14d</button>
+              <button class="ms-chip-filter">30d</button>
+              <button class="ms-chip-filter">90d</button>
+            </div>
+          </div>
+          <div class="month-chart-body">
+            <div class="month-bars"></div>
+            <div class="month-axis"></div>
+            <div class="month-legend"></div>
+          </div>
+        </div>
+
+        <!-- Recent expenses -->
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Recent expenses</span>
+          <div class="card-actions" style="display:flex;gap:4px">
+            <button class="ms-chip-filter active" data-exp-filter="all">All</button>
+            <button class="ms-chip-filter" data-exp-filter="draft">Draft</button>
+            <button class="ms-chip-filter" data-exp-filter="submitted">Submitted</button>
+            <button class="ms-chip-filter" data-exp-filter="approved">Approved</button>
+            <button class="ms-chip-filter" data-exp-filter="reimbursed">Reimbursed</button>
+            <button class="ms-chip-filter" data-exp-filter="rejected">Rejected</button>
+          </div>
+        </div>
+        <div class="expense-list">
+          <div class="expense-list-head">
+            <span></span>
+            <span>Expense</span>
+            <span>Category</span>
+            <span>Date</span>
+            <span style="text-align:right">Amount</span>
+            <span>Status</span>
+          </div>
+          <div id="my-expenses-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ NEW EXPENSE FORM ============ -->
+      <section class="page" id="page-new-expense" data-screen-label="09 New Expense">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">New expense</h1>
+            <p class="page-subtitle">Capture a single expense · attach receipt · route to your manager</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="expense"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Category &amp; details</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Category <span class="req">*</span></label>
+                    <div class="cat-tile-grid">
+                      <button type="button" class="cat-tile selected">
+                        <span class="tile-bubble meals" data-icon="receipt"></span>
+                        <span class="tile-name">Meals</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble transport" data-icon="send"></span>
+                        <span class="tile-name">Transport</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble fuel" data-icon="flask"></span>
+                        <span class="tile-name">Fuel</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble lodging" data-icon="building"></span>
+                        <span class="tile-name">Lodging</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble comms" data-icon="send"></span>
+                        <span class="tile-name">Comms</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble supplies" data-icon="archive"></span>
+                        <span class="tile-name">Supplies</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble other" data-icon="more"></span>
+                        <span class="tile-name">Other</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Amount <span class="req">*</span></label>
+                    <div class="amount-input-row">
+                      <input type="text" id="exp-amount" placeholder="0">
+                      <span class="ccy-tag">FCFA</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Date <span class="req">*</span></label>
+                    <input class="input" type="date" value="2026-05-15">
+                  </div>
+                  <div class="form-group">
+                    <label>Site</label>
+                    <select class="select">
+                      <option>Douala</option>
+                      <option>PS2-Dompta</option>
+                      <option>PS3-Belabo</option>
+                      <option>PRS-Kribi</option>
+                      <option>FSO</option>
+                      <option>Warehouse</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Project code</label>
+                    <select class="select">
+                      <option>PRJ-INF-22</option>
+                      <option>PRJ-HSE-04</option>
+                      <option>PRJ-OPS-11</option>
+                      <option>PRJ-INS-Q2</option>
+                      <option>PRJ-PRC-09</option>
+                    </select>
+                  </div>
+                  <div class="form-group full">
+                    <label>Description <span class="req">*</span></label>
+                    <input class="input" placeholder="e.g. Taxi from airport to HQ for vendor meeting">
+                  </div>
+                  <div class="form-group full">
+                    <label>Receipt <span class="req">*</span></label>
+                    <div class="file-drop">
+                      <div data-icon="paperclip"></div>
+                      <div class="file-drop-title">Snap a photo or drop a PDF</div>
+                      <div class="file-drop-hint">JPG · PNG · PDF · MAX 5MB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Routes to <strong style="color:var(--text)">Cherif Hassan</strong> · Line manager · SLA <span class="mono">1 day</span></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="exp-submit">Submit expense<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Tips for fast approval</div>
+              <div class="summary-body" style="font-size:12px;color:var(--text-2);gap:8px;line-height:1.5">
+                <div>📷 Snap the receipt clearly — all 4 corners, total visible.</div>
+                <div>🏷️ Use the right category — it auto-routes for VAT recovery.</div>
+                <div>🗓️ Submit within 30 days. Older expenses need manager exception.</div>
+                <div>💼 Tie to the project code so it bills correctly.</div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Per-diem reference</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Douala</span><span class="summary-val mono">25 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">PS-sites</span><span class="summary-val mono">30 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">FSO</span><span class="summary-val mono">35 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">N'Djamena</span><span class="summary-val mono">40 000 FCFA / day</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ SECURITY ESCORT HUB ============ -->
+      <section class="page" id="page-escort" data-screen-label="10 Security Escort">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Security Escort <span class="mono" style="font-size:14px;color:var(--text-3);font-weight:500">· E85</span></h1>
+            <p class="page-subtitle">Plan and track armed-escort convoys between TPC sites · risk-classified routing</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="map-pin"></span>Routes</button>
+            <button class="btn btn-primary" data-page="new-escort"><span data-icon="plus"></span>Request escort</button>
+          </div>
+        </div>
+
+        <!-- Live transit banner (#88 is in transit) -->
+        <div class="transit-banner">
+          <div class="live-marker"><span class="dot"></span>EN ROUTE</div>
+          <div class="info">
+            <div class="t1">Convoy #E85-2026-088 · Douala → FSO · ETA 17:15</div>
+            <div class="t2">2 vehicles · 4 escort · 6 personnel · Hazardous cargo (Cl. 3) · 65% of route complete</div>
+          </div>
+          <button class="btn btn-sm" data-escort="E85-2026-088"><span data-icon="eye"></span>Track</button>
+        </div>
+
+        <!-- Escort hero -->
+        <div class="escort-hero">
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="map-pin"></span>Active convoys</div>
+            <div class="v"><span id="escort-transit">0</span><span class="unit">in transit now</span></div>
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-top:4px">
+              <span id="escort-planned">0</span> planned · <span id="escort-completed">0</span> completed (last 7d)
+            </div>
+          </div>
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="activity"></span>Distance · 30d</div>
+            <div class="v smol"><span id="escort-km">0</span><span class="unit">km</span></div>
+            <div style="font-size:11px;color:var(--text-3);margin-top:4px">Across 6 sites</div>
+          </div>
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="shield-check"></span>Risk mix</div>
+            <div class="risk-dist" id="risk-dist"></div>
+            <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;color:var(--text-3);margin-top:6px;letter-spacing:0.3px">
+              <span>LOW</span><span>STD</span><span>ELEV</span><span>HIGH</span><span>RESTR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Escort list -->
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Convoys &amp; escorts</span>
+          <div class="card-actions" style="display:flex;gap:4px">
+            <button class="ms-chip-filter active" data-escort-filter="all">All</button>
+            <button class="ms-chip-filter" data-escort-filter="active">Active</button>
+            <button class="ms-chip-filter" data-escort-filter="transit">In transit</button>
+            <button class="ms-chip-filter" data-escort-filter="planning">Planning</button>
+            <button class="ms-chip-filter" data-escort-filter="completed">Completed</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--s-3)" id="my-escorts-list"></div>
+      </section>
+
+      <!-- ============ NEW ESCORT FORM ============ -->
+      <section class="page" id="page-new-escort" data-screen-label="11 New Escort Request">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Request escort</h1>
+            <p class="page-subtitle">Submit a security escort request for site-to-site convoy</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="escort"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <!-- Route -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Route</div>
+                <div class="form-section-sub">Origin → intermediate → destination</div>
+              </div>
+              <div class="form-section-body">
+                <div class="escort-route-builder">
+                  <div class="route-leg start">
+                    <div class="leg-pin">A</div>
+                    <select class="select"><option>Douala</option><option>PS2-Dompta</option><option>PS3-Belabo</option><option>PRS-Kribi</option><option>FSO</option><option>Warehouse</option><option>N'Djamena</option></select>
+                    <input class="input" type="time" value="14:30">
+                  </div>
+                  <div class="route-leg">
+                    <div class="leg-pin">+</div>
+                    <button class="btn btn-sm" style="justify-self:start"><span data-icon="plus"></span>Add intermediate stop</button>
+                    <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3)">optional</span>
+                  </div>
+                  <div class="route-leg end">
+                    <div class="leg-pin">B</div>
+                    <select class="select"><option>FSO</option><option>Douala</option><option>PS2-Dompta</option><option>PS3-Belabo</option><option>PRS-Kribi</option><option>Warehouse</option><option>N'Djamena</option></select>
+                    <input class="input" type="time" value="17:15">
+                  </div>
+                </div>
+                <div style="margin-top:var(--s-4);display:flex;gap:var(--s-3);font-family:var(--font-mono);font-size:11px;color:var(--text-3);align-items:center">
+                  <span><span data-icon="activity" style="display:inline-flex;width:13px"></span> Est. distance <strong style="color:var(--text)">78 km</strong></span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span><span data-icon="clock" style="display:inline-flex;width:13px"></span> Est. duration <strong style="color:var(--text)">2h 45min</strong></span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span><span data-icon="calendar" style="display:inline-flex;width:13px"></span> Departure date
+                    <input class="input" type="date" value="2026-05-15" style="padding:4px 8px;font-size:12px;display:inline-block;width:auto;margin-left:4px">
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Risk classification</div>
+                <div class="form-section-sub">Security Coordinator may upgrade</div>
+              </div>
+              <div class="form-section-body">
+                <div class="risk-picker">
+                  <button type="button" class="risk-tile r1">
+                    <span class="swatch"></span>
+                    <span class="label">Low</span>
+                  </button>
+                  <button type="button" class="risk-tile r2">
+                    <span class="swatch"></span>
+                    <span class="label">Standard</span>
+                  </button>
+                  <button type="button" class="risk-tile r3">
+                    <span class="swatch"></span>
+                    <span class="label">Elevated</span>
+                  </button>
+                  <button type="button" class="risk-tile r4 selected">
+                    <span class="swatch"></span>
+                    <span class="label">High</span>
+                  </button>
+                  <button type="button" class="risk-tile r5">
+                    <span class="swatch"></span>
+                    <span class="label">Restricted</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cargo + Team -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Cargo &amp; personnel</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Cargo description <span class="req">*</span></label>
+                    <input class="input" placeholder="What's being transported?" value="Spare pump parts (mechanical) + 2 technicians">
+                  </div>
+                  <div class="form-group">
+                    <label>Cargo class</label>
+                    <select class="select">
+                      <option>Standard equipment</option>
+                      <option>Hazardous (Chemical Cl. 3 — Flammable)</option>
+                      <option>Hazardous (Chemical Cl. 8 — Corrosive)</option>
+                      <option>Cash / Valuables</option>
+                      <option>Documents</option>
+                      <option>Personnel only</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Vehicles required</label>
+                    <input class="input" type="number" value="2" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Escort team size</label>
+                    <input class="input" type="number" value="4" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Total personnel</label>
+                    <input class="input" type="number" value="6" min="1">
+                  </div>
+                  <div class="form-group full">
+                    <label>Justification</label>
+                    <textarea class="textarea" placeholder="Why is the escort needed? Mission context, route conditions, time constraints…">Urgent spare parts delivery to FSO offshore platform. Route crosses populated areas. Cargo includes flammable chemicals (Class 3) requiring HSE-compliant escort per TPC-SEC-04.</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Routes to <strong style="color:var(--text)">Security Coordinator · Oumar Cheikh</strong> · SLA <span class="mono">4 hours</span></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="escort-submit">Submit request<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Route preview</div>
+              <div style="padding:var(--s-3)">
+                <div class="escort-mini-map" style="background:transparent;border:none;padding:0">
+                  <div class="map-canvas" style="height:160px">
+                    <svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">
+                      <path class="country" d="M 30 8 L 55 4 L 76 10 L 86 22 L 88 36 L 80 50 L 70 58 L 65 70 L 50 78 L 42 84 L 30 80 L 20 70 L 22 56 L 18 42 L 26 24 Z" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="0.8"/>
+                      <path d="M 12 78 L 4 72" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 2" fill="none"/>
+                      <circle cx="12" cy="78" r="3" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"/>
+                      <circle cx="4" cy="72" r="3.5" fill="var(--text)" stroke="var(--surface)" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="map-stats" style="margin-top:var(--s-2)">
+                    <span>Douala → FSO</span>
+                    <span><strong>78</strong> km</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Risk advisory</div>
+              <div class="summary-body" style="font-size:12px;color:var(--text-2);line-height:1.5;gap:8px">
+                <div><strong style="color:var(--danger)">High risk</strong> requires armed escort team, mandatory comms check-ins every 30 min, and pre-approval from Security Coordinator.</div>
+                <div>Live tracking via GPS will be enabled. Status posted to Live Activity stream.</div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Approval chain</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">1. Security Coordinator</span><span class="summary-val">Oumar Cheikh</span></div>
+                <div class="summary-row"><span class="summary-label">2. Site Manager (origin)</span><span class="summary-val">Cherif Hassan</span></div>
+                <div class="summary-row"><span class="summary-label">3. Site Manager (dest.)</span><span class="summary-val">FSO Lead</span></div>
+                <div class="summary-row"><span class="summary-label">4. Route planner</span><span class="summary-val">Auto-assigned</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MASTER SHEET ============ -->
+      <section class="page" id="page-master-sheet" data-screen-label="03 Master Sheet">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Master Sheet</h1>
+            <p class="page-subtitle">Complete TPC chemical inventory · 145 entries · GHS hazard classification</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export CSV</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New chemical</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ms-toolbar">
+            <div class="ms-search">
+              <span data-icon="search"></span>
+              <input type="text" placeholder="Search by name, CAS, manufacturer…">
+            </div>
+            <button class="ms-chip-filter active">All sites</button>
+            <button class="ms-chip-filter">Douala</button>
+            <button class="ms-chip-filter">PS2-Dompta</button>
+            <button class="ms-chip-filter">PS3-Belabo</button>
+            <button class="ms-chip-filter">PRS-Kribi</button>
+            <button class="ms-chip-filter">FSO</button>
+            <span style="width:1px;height:20px;background:var(--border);margin:0 4px"></span>
+            <button class="ms-chip-filter">All hazards</button>
+            <button class="ms-chip-filter">Flammable</button>
+            <button class="ms-chip-filter">Toxic</button>
+            <button class="ms-chip-filter">Corrosive</button>
+          </div>
+          <div class="card-body flush table-wrap" id="ms-inventory">
+            <table class="ms-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Chemical</th>
+                  <th>GHS</th>
+                  <th>Class</th>
+                  <th>Manufacturer</th>
+                  <th>Site</th>
+                  <th>Stock</th>
+                  <th>PPE</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NEW CHEMICAL FORM ============ -->
+      <section class="page" id="page-new-chemical" data-screen-label="03 New Chemical">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.newchem.title">New chemical request</h1>
+            <p class="page-subtitle" data-t="page.newchem.sub">Submit a new chemical for HSE review and approval</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="chemical"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <!-- MAIN FORM -->
+          <div class="form-main">
+
+            <!-- Section 1: Chemical Info -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Chemical information</div>
+                <div class="form-section-sub">Required for submission</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Chemical name <span class="req">*</span></label>
+                    <input class="input" id="chem-name" data-summary data-required placeholder="e.g. Acetone, Hydraulic Fluid ISO 46…">
+                  </div>
+                  <div class="form-group">
+                    <label>Bar code <span class="hint">— auto-assigned</span></label>
+                    <input class="input" placeholder="Generated after approval" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Intended use <span class="req">*</span></label>
+                    <select class="select" id="chem-use" data-summary data-required>
+                      <option value="">Select Intended Use</option>
+                      <option value="Permanently Use">Permanently Use</option>
+                      <option value="First Use">First Use</option>
+                      <option value="Trial Basis &lt; 60">Trial Basis &lt; 60</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Handling method <span class="req">*</span></label>
+                    <select class="select" id="handling-method" data-summary data-required>
+                      <option value="">Select Handling Method</option>
+                      <option value="Enclosed System">Enclosed System</option>
+                      <option value="Open System">Open System</option>
+                      <option value="Manual Handling">Manual Handling</option>
+                      <option value="Spraying">Spraying</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Where used <span class="req">*</span></label>
+                    <select class="select">
+                      <option value="">Select…</option>
+                      <option>Indoor</option>
+                      <option>Outdoor</option>
+                      <option>Both Indoor &amp; Outdoor</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Expected quantity per task</label>
+                    <input class="input" placeholder="e.g. 5L per task, 20kg/week…">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Hazards & PPE -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Hazard classification &amp; PPE</div>
+                <div class="form-section-sub">Select GHS pictograms — PPE auto-suggested</div>
+              </div>
+              <div class="form-section-body">
+                <div class="hazard-picker" id="hazard-picker"></div>
+                <div class="ppe-strip" id="ppe-strip" style="display:none"></div>
+              </div>
+            </div>
+
+            <!-- Section 3: Manufacturer -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Manufacturer</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Manufacturer name <span class="req">*</span></label>
+                    <select class="select" id="mfr-select" data-summary data-required>
+                      <option value="">Select manufacturer…</option>
+                      <option value="sigma">Sigma-Aldrich</option>
+                      <option value="total">TotalEnergies</option>
+                      <option value="brenntag">Brenntag Chad</option>
+                      <option value="shell">Shell Chemicals</option>
+                      <option value="castrol">Castrol Industrial</option>
+                      <option value="new">+ Add new manufacturer…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="input" id="mfr-email" type="email" placeholder="From manufacturer database" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Phone</label>
+                    <input class="input" id="mfr-phone" placeholder="From manufacturer database" readonly>
+                  </div>
+                  <div class="form-group full">
+                    <label>Address</label>
+                    <input class="input" id="mfr-addr" placeholder="From manufacturer database" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: SDS & Storage -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">4</div>
+                <div class="form-section-title">SDS &amp; storage location</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Area of use (site) <span class="req">*</span></label>
+                    <select class="select" id="aou-select" data-summary data-required>
+                      <option value="">Select site…</option>
+                      <option value="douala">Douala</option>
+                      <option value="ps2">PS2-Dompta</option>
+                      <option value="ps3">PS3-Belabo</option>
+                      <option value="prs">PRS-Kribi</option>
+                      <option value="fso">FSO</option>
+                      <option value="warehouse">Warehouse</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Storage location <span class="req">*</span></label>
+                    <select class="select" id="storage-select">
+                      <option value="">Select area of use first…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>eSDS last revision date</label>
+                    <input class="input" type="date">
+                  </div>
+                  <div class="form-group">
+                    <label>Area of use — if other</label>
+                    <input class="input" placeholder="Specify if 'Other' selected">
+                  </div>
+                  <div class="form-group full">
+                    <label>eSDS attachment <span class="req">*</span></label>
+                    <div class="file-drop">
+                      <div data-icon="paperclip"></div>
+                      <div class="file-drop-title">Drag &amp; drop your eSDS, or click to browse</div>
+                      <div class="file-drop-hint">PDF · DOC · DOCX · MAX 10MB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5: Reviewers -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">5</div>
+                <div class="form-section-title">Approval reviewers</div>
+                <div class="form-section-sub">Primary &amp; backup per stage</div>
+              </div>
+              <div class="form-section-body">
+                <table class="rev-table">
+                  <thead><tr><th>Stage</th><th>Primary reviewer</th><th>Backup</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="rev-stage">IH Review</div><span class="rev-stage-sub">Hazard classification</span></td>
+                      <td><select class="rev-select-inline"><option>Hassan Ibrahim</option><option>Mariam Deby</option></select></td>
+                      <td><select class="rev-select-inline"><option>Mariam Deby</option><option>Hassan Ibrahim</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">OI Safety</div><span class="rev-stage-sub">Assigns required PPE</span></td>
+                      <td><select class="rev-select-inline"><option>Oumar Cheikh</option><option>Aisha Koné</option></select></td>
+                      <td><select class="rev-select-inline"><option>Aisha Koné</option><option>Oumar Cheikh</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">EMP Review</div><span class="rev-stage-sub">Environmental assessment</span></td>
+                      <td><select class="rev-select-inline"><option>Nadia Al-Farsi</option><option>Brahim Youssouf</option></select></td>
+                      <td><select class="rev-select-inline"><option>Brahim Youssouf</option><option>Nadia Al-Farsi</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Final Approval</div><span class="rev-stage-sub">Site supervisor sign-off</span></td>
+                      <td><select class="rev-select-inline"><option>Site Supervisor — Douala</option><option>Site Supervisor — PS2</option></select></td>
+                      <td><select class="rev-select-inline"><option>Deputy Supervisor</option></select></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <div class="form-progress" style="display:flex;align-items:center;gap:var(--s-3);font-size:12px;color:var(--text-3);flex:1">
+                  <span>Completion</span>
+                  <span class="progress-track" style="width:140px;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden">
+                    <span class="progress-fill" style="display:block;height:100%;background:var(--accent);border-radius:2px;width:0;transition:width 0.3s"></span>
+                  </span>
+                  <span class="progress-val mono" style="font-weight:600;color:var(--text)">0%</span>
+                </div>
+                <button class="btn" data-page="chemical"><span data-icon="arrow-right" style="transform:rotate(180deg)"></span><span data-t="btn.back">Back</span></button>
+                <button class="btn" id="form-draft"><span data-t="btn.savedraft">Save draft</span></button>
+                <button class="btn btn-primary" id="form-submit"><span data-t="btn.submit">Submit request</span><span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active">
+                  <div class="wf-node">1</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Submission</div>
+                    <div class="wf-sub">You are here</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">2</div>
+                  <div class="wf-content">
+                    <div class="wf-title">IH Review</div>
+                    <div class="wf-sub">Hazard classification</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">3</div>
+                  <div class="wf-content">
+                    <div class="wf-title">OI Safety</div>
+                    <div class="wf-sub">Assigns PPE</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">4</div>
+                  <div class="wf-content">
+                    <div class="wf-title">EMP Review</div>
+                    <div class="wf-sub">Environmental</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">5</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Final Approval</div>
+                    <div class="wf-sub">Site supervisor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Request summary</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Chemical</span><span class="summary-val empty" id="sum-name">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Intended use</span><span class="summary-val empty" id="sum-use">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Manufacturer</span><span class="summary-val empty" id="sum-mfr">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Site</span><span class="summary-val empty" id="sum-site">Not set</span></div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Need help?</div>
+              <div class="summary-body" style="gap:6px">
+                <div class="summary-row" style="cursor:pointer;color:var(--accent)"><span data-icon="book" style="display:inline-flex;width:14px"></span><span>Open user guide</span></div>
+                <div class="summary-row" style="cursor:pointer;color:var(--text-2)"><span data-icon="help" style="display:inline-flex;width:14px"></span><span>Contact HSE coordinator</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MY REQUESTS ============ -->
+      <section class="page" id="page-requests" data-screen-label="04 My Requests">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.requests.title">My requests</h1>
+            <p class="page-subtitle" data-t="page.requests.sub">Track all requests you have submitted</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New request</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Type</th><th>Title</th><th>Submitted</th><th>Current stage</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr data-req="CHM-155"><td class="id-cell">#TPC-2026-156</td><td>New chemical</td><td>Acetone</td><td class="mono">14 May 2026</td><td>SHE Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-153</td><td>New chemical</td><td>Hydraulic Fluid ISO 46</td><td class="mono">11 May 2026</td><td>—</td><td><span class="badge badge-danger badge-dot">Rejected</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-148</td><td>Add to site</td><td>Diesel — PS2-Dompta</td><td class="mono">05 May 2026</td><td>—</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-142</td><td>New chemical</td><td>Sodium Hypochlorite</td><td class="mono">28 Apr 2026</td><td>—</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-138</td><td>Add to site</td><td>Methanol — PS3-Belabo</td><td class="mono">22 Apr 2026</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ APPROVALS ============ -->
+      <section class="page" id="page-approvals" data-screen-label="05 Approvals">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.approvals.title">Pending approvals</h1>
+            <p class="page-subtitle" data-t="page.approvals.sub">Items awaiting your review and decision</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Submitted by</th><th>Site</th><th>Stage</th><th>Waiting</th><th style="text-align:right">Action</th></tr></thead>
+              <tbody>
+                <tr data-req="CHM-156">
+                  <td class="id-cell">#CHM-156</td>
+                  <td>Acetone</td>
+                  <td>Ahmed Mahamat</td>
+                  <td>Douala</td>
+                  <td>SHE Review</td>
+                  <td><span class="badge badge-warning"><span data-icon="clock"></span>2 days</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-156"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-156"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+                <tr data-req="CHM-154">
+                  <td class="id-cell">#CHM-154</td>
+                  <td>Methanol</td>
+                  <td>Ibrahim Saleh</td>
+                  <td>PS3-Belabo</td>
+                  <td>IH Review</td>
+                  <td><span class="badge badge-danger"><span data-icon="alert-triangle"></span>4 days · SLA breached</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-154"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-154"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+                <tr>
+                  <td class="id-cell">#CHM-152</td>
+                  <td>Hydraulic Fluid ISO 46</td>
+                  <td>Cherif Hassan</td>
+                  <td>PS2-Dompta</td>
+                  <td>EMP Review</td>
+                  <td><span class="badge badge-neutral"><span data-icon="clock"></span>5h ago</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-152"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-152"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ USERS ============ -->
+      <section class="page" id="page-users" data-screen-label="06 Users">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.users.title">User management</h1>
+            <p class="page-subtitle" data-t="page.users.sub">Roles, permissions and team members</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary"><span data-icon="plus"></span>Invite user</button>
+          </div>
+        </div>
+
+        <div class="users-grid">
+          <div class="user-card"><div class="user-av">CH</div><div class="user-info"><div class="u-name">Cherif Hassan</div><div class="u-role">Global Admin</div><div class="u-email">cherif.hassan@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">AM</div><div class="user-info"><div class="u-name">Ahmed Mahamat</div><div class="u-role">Field User · Douala</div><div class="u-email">ahmed.mahamat@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">FM</div><div class="user-info"><div class="u-name">Fatima Moussa</div><div class="u-role">Store Manager · PS2-Dompta</div><div class="u-email">fatima.moussa@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">IS</div><div class="user-info"><div class="u-name">Ibrahim Saleh</div><div class="u-role">IT Technician · PS3-Belabo</div><div class="u-email">ibrahim.saleh@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">MD</div><div class="user-info"><div class="u-name">Mariam Deby</div><div class="u-role">HSE Reviewer · Douala</div><div class="u-email">mariam.deby@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">OC</div><div class="user-info"><div class="u-name">Oumar Cheikh</div><div class="u-role">OI Safety · PS2-Dompta</div><div class="u-email">oumar.cheikh@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="page" id="page-settings" data-screen-label="07 Settings">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.settings.title">System settings</h1>
+            <p class="page-subtitle" data-t="page.settings.sub">Azure integration, SSO, data sources</p>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <div class="form-section-num"><span data-icon="cloud" style="width:14px;height:14px"></span></div>
+            <div class="form-section-title">Azure configuration</div>
+            <span class="badge badge-success badge-dot" style="margin-left:auto">Connected</span>
+          </div>
+          <div class="form-section-body">
+            <div class="form-grid">
+              <div class="form-group"><label>Azure tenant ID</label><input class="input" value="9b8f7c-1a2d-4e5f-8a9b-c3d4e5f6a7b8" readonly></div>
+              <div class="form-group"><label>Azure SQL server</label><input class="input" value="tpc-sqlserver.database.windows.net" readonly></div>
+              <div class="form-group"><label>Organization domain</label><input class="input" value="tpc-tchad.td"></div>
+              <div class="form-group"><label>SSO provider</label><select class="select"><option>Microsoft Entra ID (Azure AD)</option></select></div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn">Test connection</button>
+            <button class="btn btn-primary">Save configuration</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- TWEAKS PANEL -->
+<div class="tweaks-panel" id="tweaks-panel">
+  <div class="tweaks-head">
+    <h3>Tweaks</h3>
+    <button class="icon-btn" onclick="document.getElementById('tweaks-panel').classList.remove('open')" data-icon="x" style="width:24px;height:24px"></button>
+  </div>
+  <div class="tweaks-body">
+    <div class="tweak-row">
+      <span class="tweak-label">Theme</span>
+      <div class="tweak-seg">
+        <button data-tweak="theme" data-val="light" class="active">Light</button>
+        <button data-tweak="theme" data-val="dark">Dark</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Density</span>
+      <div class="tweak-seg">
+        <button data-tweak="density" data-val="comfortable" class="active">Comfortable</button>
+        <button data-tweak="density" data-val="compact">Compact</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Accent</span>
+      <div class="tweak-swatches">
+        <button class="tweak-swatch active" data-tweak="accent" data-val="red" style="background:#C8102E" title="TPC Red"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="yellow" style="background:#E5A50A" title="TPC Yellow"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="neutral" style="background:#344054" title="Neutral"></button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Sidebar</span>
+      <div class="tweak-seg">
+        <button data-tweak="nav" data-val="expanded" class="active">Expanded</button>
+        <button data-tweak="nav" data-val="collapsed">Collapsed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk-backdrop" id="cmdk-backdrop">
+  <div class="cmdk" role="dialog" aria-label="Command palette">
+    <div class="cmdk-input-row">
+      <span data-icon="search"></span>
+      <input type="text" id="cmdk-input" placeholder="Jump to anything — pages, requests, people, actions…">
+      <span class="kbd-esc">ESC</span>
+    </div>
+    <div class="cmdk-results"></div>
+    <div class="cmdk-foot">
+      <span class="cmdk-foot-item"><span class="kbd">↑</span><span class="kbd">↓</span>&nbsp;navigate</span>
+      <span class="cmdk-foot-item"><span class="kbd">↵</span>&nbsp;select</span>
+      <span class="cmdk-foot-item"><span class="kbd">⌘</span><span class="kbd">K</span>&nbsp;close</span>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-id">#CHM-000</div>
+      <h2 class="drawer-title">Request title</h2>
+    </div>
+    <button class="drawer-close" data-icon="x" aria-label="Close"></button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <div id="dw-hazards" class="drawer-hazard"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Details</h3>
+      <div class="drawer-kv">
+        <div><div class="k">Submitted by</div><div class="v" id="dw-by">—</div></div>
+        <div><div class="k">Site</div><div class="v" id="dw-site">—</div></div>
+        <div><div class="k">Submitted</div><div class="v" id="dw-date">—</div></div>
+        <div><div class="k">Manufacturer</div><div class="v" id="dw-mfr">—</div></div>
+        <div><div class="k">Intended use</div><div class="v" id="dw-use">—</div></div>
+        <div><div class="k">Current stage</div><div class="v" id="dw-stage">—</div></div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Required PPE</h3>
+      <div id="dw-ppe" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Approval timeline</h3>
+      <div class="timeline" id="dw-timeline"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Add comment</h3>
+      <div class="comment-input">
+        <textarea placeholder="Note for the next reviewer…"></textarea>
+        <button class="btn btn-primary btn-sm"><span data-icon="send"></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <button class="btn"><span data-icon="paperclip"></span>View eSDS</button>
+    <button class="btn btn-danger"><span data-icon="x"></span>Reject</button>
+    <button class="btn btn-primary"><span data-icon="check"></span>Approve</button>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span data-icon="check-circle"></span>
+  <span class="toast-msg"></span>
+</div>
+
+<script src="tpc-icons.js"></script>
+<script src="tpc-ghs.js"></script>
+<script src="tpc-app.js"></script>
+<script src="tpc-v2.js"></script>
+<script src="tpc-v3.js"></script>
+<script src="tpc-cash.js"></script>
+<script src="tpc-expense.js"></script>
+<script src="tpc-escort.js"></script>
+</body>
+</html>

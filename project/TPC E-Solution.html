@@ -1,0 +1,3008 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPC E-Solution — Tchad Petroleum Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Sora:wght@400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tpc.css">
+<link rel="stylesheet" href="tpc-v2.css">
+<link rel="stylesheet" href="tpc-v3.css">
+<link rel="stylesheet" href="tpc-cash.css">
+<link rel="stylesheet" href="tpc-expense.css">
+<link rel="stylesheet" href="tpc-escort.css">
+<link rel="stylesheet" href="tpc-v4.css">
+<link rel="stylesheet" href="tpc-v5.css">
+<link rel="stylesheet" href="tpc-v6.css">
+<style>
+/* ── Sidebar position fix (ops-strip removed) ───── */
+.sidebar { top: 0 !important; height: 100vh !important; }
+/* ── Sidebar branding ───────────────────────────── */
+.brand-logo {
+  height: 44px;
+  width: 44px;
+  object-fit: contain;
+  flex-shrink: 0;
+  display: block;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 1px 5px rgba(0,0,0,.12);
+}
+/* ── User profile dropdown ──────────────────────── */
+.user-profile-wrap {
+  position: relative;
+}
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: 210px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.14);
+  padding: var(--s-2) 0;
+  display: none;
+  z-index: 300;
+}
+.user-dropdown.open { display: block; }
+.user-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--s-3);
+  padding: var(--s-2) var(--s-4);
+  font-size: 13px;
+  color: var(--text);
+  cursor: pointer;
+  border-radius: 6px;
+  margin: 0 var(--s-1);
+  transition: background 0.12s;
+}
+.user-dropdown-item:hover { background: var(--surface-2); }
+.user-dropdown-item > span:first-child {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  flex-shrink: 0;
+  color: var(--text-3);
+}
+.user-dropdown-signout { color: var(--danger); }
+.user-dropdown-signout > span:first-child { color: var(--danger); }
+.user-dropdown-sep {
+  height: 1px;
+  background: var(--border);
+  margin: var(--s-2) 0;
+}
+/* ── Collapsible nav group ───────────────────────── */
+.nav-group-children {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+.nav-group.expanded .nav-group-children {
+  max-height: 320px; /* enough for 5 children */
+}
+/* Indent child items */
+.nav-group-children .nav-item {
+  padding-left: 2.75rem;
+  font-size: 13px;
+}
+/* Chevron arrow */
+.nav-chevron {
+  margin-left: auto;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  width: 14px;
+  height: 14px;
+  color: var(--text-4);
+  transition: transform 0.2s ease;
+  pointer-events: none;
+}
+.nav-group.expanded .nav-chevron {
+  transform: rotate(90deg);
+}
+/* Parent text should fill the row so chevron stays right */
+.nav-group-parent > span:not(.nav-icon):not(.nav-chevron):not(.nav-badge) {
+  flex: 1;
+}
+/* In icon-only sidebar, hide children entirely */
+[data-nav="collapsed"] .nav-group-children {
+  display: none;
+}
+/* ── Sidebar header ─────────────────────────────── */
+.sidebar-header {
+  height: auto !important;
+  min-height: 68px;
+  flex-shrink: 0;
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  padding: 12px 16px !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+.brand-name {
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  color: var(--text) !important;
+  white-space: nowrap;
+}
+[data-nav="collapsed"] .brand-logo {
+  width: 32px;
+  height: 32px;
+}
+/* ── Module list cards (Safety Data home) ────────── */
+.mod-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.mod-list-card {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.mod-list-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 2px 14px rgba(0,0,0,.07);
+}
+.mod-list-body { flex: 1; min-width: 0; }
+.mod-list-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 3px;
+}
+.mod-list-desc {
+  font-size: 13px;
+  color: var(--text-3);
+  line-height: 1.45;
+  margin-bottom: 7px;
+}
+.mod-list-meta {
+  font-size: 12px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--accent);
+}
+.mod-list-chevron {
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--text-4);
+}
+/* ── Splash screen ──────────────────────────────── */
+#splash-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #FDFCFA;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.55s ease;
+}
+#splash-screen.splash-out {
+  opacity: 0;
+  pointer-events: none;
+}
+.splash-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: splashIn 0.45s ease both;
+}
+@keyframes splashIn {
+  from { opacity: 0; transform: scale(0.92) translateY(8px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+.splash-logo-img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+.splash-logo-fallback {
+  width: 90px;
+  height: 90px;
+  background: #0B0E12;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  overflow: hidden;
+  flex-direction: column;
+}
+.splash-logo-fallback .fb-y { height: 33%; width: 100%; background: #FFB81C; }
+.splash-logo-fallback .fb-r { height: 34%; width: 100%; background: #C8102E; }
+.splash-logo-fallback .fb-d { height: 33%; width: 100%; background: #0B0E12; display: flex; align-items: center; justify-content: center; }
+.splash-title {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: #101828;
+  letter-spacing: -0.2px;
+  margin-bottom: 4px;
+  animation: splashIn 0.4s ease 0.15s both;
+}
+.splash-org {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #98A2B3;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+  animation: splashIn 0.4s ease 0.25s both;
+}
+.splash-track {
+  width: 180px;
+  height: 2px;
+  background: #E4E7EC;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 14px;
+  animation: splashIn 0.3s ease 0.35s both;
+}
+.splash-bar {
+  height: 100%;
+  background: #C8102E;
+  border-radius: 2px;
+  width: 0;
+  animation: splashProgress 2.3s cubic-bezier(.4,0,.2,1) 0.35s forwards;
+}
+@keyframes splashProgress {
+  0%   { width: 0%; }
+  25%  { width: 32%; }
+  55%  { width: 61%; }
+  85%  { width: 87%; }
+  100% { width: 100%; }
+}
+.splash-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #B0B8C8;
+  letter-spacing: 0.3px;
+  min-height: 18px;
+  animation: splashIn 0.3s ease 0.45s both;
+  transition: opacity 0.2s;
+}
+</style>
+</head>
+<body>
+
+<div id="splash-screen">
+  <div class="splash-inner">
+    <img src="uploads/tpc-logo.jpg" class="splash-logo-img" alt="TPC"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="splash-logo-fallback" style="display:none">
+      <div class="fb-y"></div>
+      <div class="fb-r"></div>
+      <div class="fb-d"><span>TPC</span></div>
+    </div>
+    <div class="splash-title">TPC eSolutions</div>
+    <div class="splash-org">Tchad Petroleum Company</div>
+    <div class="splash-track"><div class="splash-bar"></div></div>
+    <div class="splash-status" id="splash-status">Loading workspace...</div>
+  </div>
+</div>
+<script>
+(function () {
+  var msgs = ['Loading workspace...', 'Preparing modules...', 'Checking permissions...'];
+  var idx = 0;
+  var el = document.getElementById('splash-status');
+  var tick = setInterval(function () {
+    if (el && ++idx < msgs.length) {
+      el.style.opacity = '0';
+      setTimeout(function () {
+        if (el) { el.textContent = msgs[idx]; el.style.opacity = '1'; }
+      }, 150);
+    }
+  }, 750);
+  setTimeout(function () {
+    clearInterval(tick);
+    var s = document.getElementById('splash-screen');
+    if (!s) return;
+    s.classList.add('splash-out');
+    setTimeout(function () { if (s && s.parentNode) s.parentNode.removeChild(s); }, 600);
+  }, 2500);
+}());
+</script>
+
+
+<template id="__bundler_thumbnail" data-bg-color="#FDFCFA">
+  <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+    <rect width="1200" height="800" fill="#FDFCFA"/>
+    <rect x="0" y="0" width="1200" height="44" fill="#0B0E12"/>
+    <circle cx="36" cy="22" r="4" fill="#079455"/>
+    <text x="56" y="27" font-family="ui-monospace,monospace" font-size="11" font-weight="700" fill="#fff" letter-spacing="1">TPC · OPS</text>
+    <pattern id="hz" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(-45)">
+      <rect width="7" height="14" fill="#FFB81C"/>
+      <rect x="7" width="7" height="14" fill="#0B0E12"/>
+    </pattern>
+    <rect x="1080" y="0" width="120" height="44" fill="url(#hz)"/>
+    <rect x="56" y="80" width="44" height="44" rx="6" fill="#0B0E12"/>
+    <rect x="56" y="80" width="44" height="14" fill="#FFB81C"/>
+    <rect x="56" y="94" width="44" height="15" fill="#C8102E"/>
+    <text x="64" y="108" font-family="ui-monospace,monospace" font-size="13" font-weight="700" fill="#fff">TPC</text>
+    <text x="120" y="100" font-family="system-ui,sans-serif" font-size="22" font-weight="600" fill="#101828">E-Solution</text>
+    <text x="120" y="118" font-family="ui-monospace,monospace" font-size="10" fill="#667085" letter-spacing="1">TCHAD PETROLEUM</text>
+    <rect x="56" y="160" width="1088" height="180" rx="12" fill="#fff" stroke="#E4E7EC"/>
+    <text x="84" y="210" font-family="system-ui,sans-serif" font-size="26" font-weight="600" fill="#101828">Good afternoon, Cherif.</text>
+    <text x="84" y="246" font-family="system-ui,sans-serif" font-size="18" fill="#475467">You have 5 requests awaiting your decision today.</text>
+    <circle cx="980" cy="250" r="48" fill="none" stroke="#E4E7EC" stroke-width="10"/>
+    <circle cx="980" cy="250" r="48" fill="none" stroke="#079455" stroke-width="10" stroke-dasharray="240 60" transform="rotate(-90 980 250)"/>
+    <text x="980" y="258" font-family="ui-monospace,monospace" font-size="22" font-weight="700" fill="#101828" text-anchor="middle">42</text>
+    <g font-family="ui-monospace,monospace" fill="#101828">
+      <rect x="56"  y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="56"  y="368" width="32" height="3" fill="#C8102E"/>
+      <text x="80" y="408" font-size="12" fill="#475467">Pending</text>
+      <text x="80" y="450" font-size="38" font-weight="700">12</text>
+      <rect x="332" y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="332" y="368" width="32" height="3" fill="#079455"/>
+      <text x="356" y="408" font-size="12" fill="#475467">Complete</text>
+      <text x="356" y="450" font-size="38" font-weight="700">47</text>
+      <rect x="608" y="368" width="262" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="608" y="368" width="32" height="3" fill="#DC6803"/>
+      <text x="632" y="408" font-size="12" fill="#475467">Cycle</text>
+      <text x="632" y="450" font-size="38" font-weight="700">3.2d</text>
+      <rect x="884" y="368" width="260" height="110" rx="10" fill="#fff" stroke="#E4E7EC"/>
+      <rect x="884" y="368" width="32" height="3" fill="#175CD3"/>
+      <text x="908" y="408" font-size="12" fill="#475467">SLA</text>
+      <text x="908" y="450" font-size="38" font-weight="700">92%</text>
+    </g>
+    <rect x="56" y="730" width="362" height="3" fill="#FFB81C"/>
+    <rect x="420" y="730" width="362" height="3" fill="#C8102E"/>
+    <rect x="784" y="730" width="360" height="3" fill="#0B0E12"/>
+    <text x="56" y="760" font-family="ui-monospace,monospace" font-size="11" fill="#667085" letter-spacing="2">LOADING TPC E-SOLUTION · INDUSTRIAL CALM</text>
+  </svg>
+</template>
+
+<!-- ops-strip merged into unified topbar -->
+
+<div class="app" data-nav="expanded">
+
+  <!-- ================== SIDEBAR ================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <img src="uploads/tpc-logo.jpg" class="brand-logo" alt="TPC"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='inline-flex'">
+      <div class="brand-mark v3" style="display:none"><span>TPC</span></div>
+      <div class="brand-text">
+        <div class="brand-name">TPC eSolutions</div>
+        <div class="brand-sub">Tchad Petroleum</div>
+      </div>
+    </div>
+
+    <nav class="nav-area">
+      <div class="nav-label" data-t="nav.platform">Platform</div>
+      <div class="nav-item active" data-page="dashboard" id="nav-dashboard">
+        <span class="nav-icon" data-icon="layout-grid"></span>
+        <span data-t="nav.dashboard">Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="requests" id="nav-requests">
+        <span class="nav-icon" data-icon="inbox"></span>
+        <span data-t="nav.requests">My Requests</span>
+        <span class="nav-badge">3</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.solutions">Solutions</div>
+      <div class="nav-group" id="navg-safety">
+        <div class="nav-item nav-group-parent" data-page="safety-home" id="nav-chemical" data-group="navg-safety">
+          <span class="nav-icon" data-icon="flask"></span>
+          <span data-t="nav.chemical">Safety Data</span>
+          <span class="nav-chevron" data-icon="chevron-right"></span>
+        </div>
+        <div class="nav-group-children">
+          <div class="nav-item" data-page="master-sheet" id="nav-master">
+            <span class="nav-icon" data-icon="database"></span>
+            <span>Master Sheet</span>
+          </div>
+          <div class="nav-item" data-page="manufacturers" id="nav-manufacturers">
+            <span class="nav-icon" data-icon="building"></span>
+            <span>Manufacturers</span>
+          </div>
+          <div class="nav-item" data-page="storage" id="nav-storage">
+            <span class="nav-icon" data-icon="archive"></span>
+            <span>Storage</span>
+          </div>
+          <div class="nav-item" data-page="add-to-site" id="nav-add-to-site">
+            <span class="nav-icon" data-icon="map-pin"></span>
+            <span>Add to my site</span>
+          </div>
+          <div class="nav-item" data-page="ppe" id="nav-ppe">
+            <span class="nav-icon" data-icon="hard-hat"></span>
+            <span>PPE</span>
+          </div>
+        </div>
+      </div>
+      <div class="nav-item" data-page="cash" id="nav-cash">
+        <span class="nav-icon" data-icon="wallet"></span>
+        <span data-t="nav.cash">Cash Advance</span>
+        <span class="nav-badge">5</span>
+      </div>
+      <div class="nav-item" data-page="expense" id="nav-expense">
+        <span class="nav-icon" data-icon="receipt"></span>
+        <span data-t="nav.expense">Daily Expense</span>
+      </div>
+      <div class="nav-item" data-page="escort" id="nav-escort">
+        <span class="nav-icon" data-icon="shield-check"></span>
+        <span data-t="nav.security">Security Escort</span>
+        <span class="nav-badge" style="background:var(--danger)">1</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.admin">Administration</div>
+      <div class="nav-item" data-page="approvals" id="nav-approvals">
+        <span class="nav-icon" data-icon="check-square"></span>
+        <span data-t="nav.approvals">Approvals</span>
+        <span class="nav-badge">11</span>
+      </div>
+      <div class="nav-item" data-page="users" id="nav-users">
+        <span class="nav-icon" data-icon="users"></span>
+        <span data-t="nav.users">Users</span>
+      </div>
+      <div class="nav-item" data-page="settings" id="nav-settings">
+        <span class="nav-icon" data-icon="settings"></span>
+        <span data-t="nav.settings">Settings</span>
+      </div>
+      <div class="nav-label">Quick actions</div>
+      <div class="nav-item nav-quick" data-page="new-chemical">
+        <span class="nav-icon" data-icon="plus"></span>
+        <span>New chemical</span>
+      </div>
+      <div class="nav-item nav-quick" data-page="approvals" id="nav-quick-review">
+        <span class="nav-icon" data-icon="check-square"></span>
+        <span>Review queue</span>
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item nav-quick" data-page="master-sheet">
+        <span class="nav-icon" data-icon="database"></span>
+        <span>Master Sheet</span>
+      </div>
+    </nav>
+
+    <div class="sidebar-footer">
+      <span class="live-dot"></span>
+      <span data-t="live">Live · Synced</span>
+    </div>
+  </aside>
+
+  <!-- ================== MAIN ================== -->
+  <main class="main">
+
+    <!-- TOPBAR — unified 56px bar -->
+    <header class="topbar topbar-merged">
+      <div class="topbar-left">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" data-icon="menu"></button>
+        <div class="breadcrumb" id="breadcrumb"></div>
+      </div>
+
+      <div class="topbar-pills" aria-label="Live operations status">
+        <span class="ops-pill">
+          <span class="ops-pill-lbl">ITEMS</span>
+          <span class="ops-pill-val ok"><span class="live-pulse"></span>6/6</span>
+        </span>
+        <span class="ops-pill">
+          <span class="ops-pill-lbl">SLA</span>
+          <span class="ops-pill-val ok">92%</span>
+        </span>
+        <span class="ops-pill">
+          <span class="ops-pill-lbl">BREACHES</span>
+          <span class="ops-pill-val danger">2</span>
+        </span>
+        <span class="ops-pill">
+          <span class="ops-pill-lbl">INCIDENTS</span>
+          <span class="ops-pill-val ok">0</span>
+        </span>
+      </div>
+
+      <div class="topbar-right">
+        <span class="topbar-clock" id="ops-clock"><strong>—</strong></span>
+        <button class="lang-btn" id="lang-btn">EN</button>
+        <button class="icon-btn" id="theme-btn" data-icon="moon" aria-label="Toggle theme"></button>
+        <button class="icon-btn" id="notif-btn" aria-label="Notifications" data-icon="bell"><span class="dot"></span></button>
+        <div class="user-profile-wrap" id="user-profile-wrap">
+          <button class="user-chip" id="user-chip-btn">
+            <span class="avatar" id="user-avatar">CH</span>
+            <span class="user-chip-meta">
+              <span class="user-chip-name" id="user-name">Cherif Hassan</span>
+              <span class="user-chip-role" id="user-role">Global Admin</span>
+            </span>
+          </button>
+          <div class="user-dropdown" id="user-dropdown">
+            <div class="user-dropdown-item" data-page="requests">
+              <span data-icon="inbox"></span><span>My Requests</span>
+            </div>
+            <div class="user-dropdown-item">
+              <span data-icon="user"></span><span>My Profile</span>
+            </div>
+            <div class="user-dropdown-item" data-page="settings">
+              <span data-icon="settings"></span><span>Preferences</span>
+            </div>
+            <div class="user-dropdown-item" data-page="user-guide">
+              <span data-icon="help-circle"></span><span>Help</span>
+            </div>
+            <div class="user-dropdown-sep"></div>
+            <div class="user-dropdown-item user-dropdown-signout">
+              <span data-icon="log-out"></span><span>Sign Out</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- access banner (role-gated) -->
+      <div class="access-banner" id="access-banner" style="display:none">
+        <span data-icon="alert-triangle"></span>
+        Your current role has limited access. Contact your administrator.
+      </div>
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="page active" id="page-dashboard" data-screen-label="01 Dashboard">
+
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.dashboard.title">Dashboard</h1>
+            <p class="page-subtitle" data-t="page.dashboard.sub">Overview of your activity and pending actions</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-top">
+              <div class="stat-label" data-t="stats.pending">Pending requests</div>
+              <div class="stat-icon" data-icon="inbox"></div>
+            </div>
+            <div class="stat-value">12</div>
+            <div class="stat-meta warn"><span data-icon="alert-triangle"></span>3 urgent today</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top">
+              <div class="stat-label" data-t="stats.approved">Approved this month</div>
+              <div class="stat-icon" data-icon="check-circle"></div>
+            </div>
+            <div class="stat-value">47</div>
+            <div class="stat-meta up"><span data-icon="trending-up"></span>+18% vs last month</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top">
+              <div class="stat-label" data-t="stats.active">Active users</div>
+              <div class="stat-icon" data-icon="users"></div>
+            </div>
+            <div class="stat-value">23</div>
+            <div class="stat-meta up"><span data-icon="arrow-up"></span>5 new this week</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top">
+              <div class="stat-label" data-t="stats.sync">Azure sync</div>
+              <div class="stat-icon" data-icon="cloud"></div>
+            </div>
+            <div class="stat-value" style="font-size:18px;display:flex;align-items:center;gap:8px"><span class="live-dot" style="width:8px;height:8px"></span>Operational</div>
+            <div class="stat-meta">Last sync · 2 min ago</div>
+          </div>
+        </div>
+
+        <!-- SOLUTIONS -->
+        <div class="solutions-grid" style="margin-bottom:var(--s-7)">
+          <div class="sol-card" data-page="chemical">
+            <div class="sol-head">
+              <div class="sol-icon-box red"><span data-icon="flask"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Safety Data Management</div>
+              <div class="sol-desc">Chemical inventory, SDS, PPE and multi-level HSE approval workflows.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">145 chemicals · 12 pending</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="cash">
+            <div class="sol-head">
+              <div class="sol-icon-box yellow"><span data-icon="wallet"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Cash Advance</div>
+              <div class="sol-desc">Request and track cash advances with line-manager approval and receipt reconciliation.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">12 active · 1 overdue</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="expense">
+            <div class="sol-head">
+              <div class="sol-icon-box blue"><span data-icon="receipt"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Daily Expense</div>
+              <div class="sol-desc">Capture daily expenses by category, attach receipts, route to line manager for reimbursement.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">13 entries · May 2026</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card" data-page="escort">
+            <div class="sol-head">
+              <div class="sol-icon-box green"><span data-icon="shield-check"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Security Escort (E85)</div>
+              <div class="sol-desc">Plan and track armed-escort convoys between TPC sites with risk assessment and routing.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">1 in transit · 3 planned</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box slate"><span data-icon="wrench"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Jobs &amp; Maintenance Tracking</div>
+              <div class="sol-desc">Track planned and reactive maintenance jobs across TPC sites — assignments, scheduling and history.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Q3 2026</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box purple"><span data-icon="refresh-cw"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Management of Change (MOC)</div>
+              <div class="sol-desc">OIG-compliant change-management form — request, review and authorise process and equipment changes.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">OIG · Q3 2026</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box orange"><span data-icon="alert-triangle"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Risk Screening Request</div>
+              <div class="sol-desc">Submit and track risk-screening requests for new activities, contractors and projects.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Q4 2026</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box teal"><span data-icon="building"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Facilities Maintenance</div>
+              <div class="sol-desc">Manage buildings, utilities and site infrastructure — preventive schedules and work orders.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Q4 2026</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box pink"><span data-icon="users"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Employee Data Event</div>
+              <div class="sol-desc">Record and track employee lifecycle events — hires, transfers, leaves, certifications and exits.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Q1 2027</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card sol-card-soon">
+            <div class="sol-head">
+              <div class="sol-icon-box indigo"><span data-icon="scale"></span></div>
+              <div class="badge badge-neutral badge-dot">Soon</div>
+            </div>
+            <div>
+              <div class="sol-name">Operations Integrity Governance</div>
+              <div class="sol-desc">OIG framework — risk, compliance and audit oversight across all TPC operating sites and solutions.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Framework · 2027</span>
+              <span data-icon="arrow-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- NEWS -->
+        <div class="split-row">
+          <div class="card">
+            <div class="card-body flush">
+              <div class="news-list">
+                <article class="news-item">
+                  <div class="news-date"><span class="day">15</span>MAY</div>
+                  <div>
+                    <div class="news-title">Scheduled maintenance — E-Solution · Sunday 22:00 UTC</div>
+                    <div class="news-excerpt">Expect ~20 min of read-only access. Submissions queued during the window sync automatically afterwards.</div>
+                  </div>
+                  <div class="news-cat">SYSTEM</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">12</span>MAY</div>
+                  <div>
+                    <div class="news-title">MFA required for all Hub accounts — from 1 June</div>
+                    <div class="news-excerpt">Every user must sign in with Microsoft Authenticator. Setup link sent by email. Contact IT for help.</div>
+                  </div>
+                  <div class="news-cat">SECURITY</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">09</span>MAY</div>
+                  <div>
+                    <div class="news-title">Release v2.4 — Incident reporting in beta</div>
+                    <div class="news-excerpt">Use the Incident button on the dashboard to report from any solution. Routes to HSE and your line manager.</div>
+                  </div>
+                  <div class="news-cat">PRODUCT</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">06</span>MAY</div>
+                  <div>
+                    <div class="news-title">Network upgrade — N'Djamena &amp; PS1 offices</div>
+                    <div class="news-excerpt">Bandwidth increased from 10 to 50 Mbps. No action needed — faster SDS downloads and map sync from today.</div>
+                  </div>
+                  <div class="news-cat">IT</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </section>
+
+      <!-- ============ CHEMICAL HUB ============ -->
+      <section class="page" id="page-chemical" data-screen-label="02 Safety Data Management">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.chemical.title">Safety Data Management</h1>
+            <p class="page-subtitle" data-t="page.chemical.sub">Chemical inventory, SDS, PPE and HSE approvals · 7 modules</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span><span data-t="btn.filter">Filter</span></button>
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.chemicals">Active chemicals</div><div class="stat-icon" data-icon="flask"></div></div>
+            <div class="stat-value">145</div>
+            <div class="stat-meta up"><span data-icon="trending-up"></span>+6 this month</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.pending">Pending</div><div class="stat-icon" data-icon="clock"></div></div>
+            <div class="stat-value">12</div>
+            <div class="stat-meta warn"><span data-icon="alert-triangle"></span>3 urgent</div>
+          </div>
+          <div class="stat" data-page="manufacturers" style="cursor:pointer">
+            <div class="stat-top"><div class="stat-label" data-t="stats.manufacturers">Manufacturers</div><div class="stat-icon" data-icon="building"></div></div>
+            <div class="stat-value">8</div>
+            <div class="stat-meta">Active suppliers</div>
+          </div>
+          <div class="stat" data-page="storage" style="cursor:pointer">
+            <div class="stat-top"><div class="stat-label" data-t="stats.storage">Storage locations</div><div class="stat-icon" data-icon="map-pin"></div></div>
+            <div class="stat-value">17</div>
+            <div class="stat-meta">Across 2 sites</div>
+          </div>
+        </div>
+
+        <!-- KPI row — brought from Hub dashboard, sits below site stats -->
+        <div class="kpi-row" style="margin-bottom:var(--s-7)">
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Pending requests</span>
+              <span class="kpi-delta down">+3</span>
+            </div>
+            <div class="kpi-value">12</div>
+            <div data-sparkline="8,10,7,9,11,13,12" data-spark-cls="spark-accent"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Review Complete this month</span>
+              <span class="kpi-delta up">+18%</span>
+            </div>
+            <div class="kpi-value">47</div>
+            <div data-sparkline="32,38,35,40,42,45,47" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Avg cycle time</span>
+              <span class="kpi-delta up">-12%</span>
+            </div>
+            <div class="kpi-value">3.2<span style="font-size:14px;color:var(--text-3);font-weight:500"> days</span></div>
+            <div data-sparkline="4.1,3.8,4.0,3.6,3.4,3.3,3.2" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">SLA performance</span>
+              <span class="kpi-delta up">+4pt</span>
+            </div>
+            <div class="kpi-value">92<span style="font-size:14px;color:var(--text-3);font-weight:500">%</span></div>
+            <div data-sparkline="84,86,88,87,90,91,92" data-spark-cls="spark-up"></div>
+          </div>
+        </div>
+
+        <!-- Pending chemical decisions queue -->
+        <div class="queue-card" style="margin-bottom:var(--s-7)">
+          <div class="queue-head">
+            <div class="queue-head-left">
+              <h2>Your queue</h2>
+              <p>Chemical requests waiting on your decision · 4 items</p>
+            </div>
+            <button class="btn btn-sm"><span>View all</span><span data-icon="arrow-right"></span></button>
+          </div>
+          <div class="queue-list">
+            <div class="queue-row" data-req="CHM-154">
+              <div class="queue-pill"><span data-icon="alert-triangle"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Methanol — IH hazard classification needed</div>
+                <div class="queue-sub"><span class="mono">#CHM-154</span> · PS3-Belabo · Ibrahim Saleh</div>
+              </div>
+              <div class="badge badge-danger"><span data-icon="clock"></span>4 days overdue</div>
+              <div class="queue-age urgent">SLA breached</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-156">
+              <div class="queue-pill warning"><span data-icon="clock"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Acetone — SHE review pending</div>
+                <div class="queue-sub"><span class="mono">#CHM-156</span> · Douala · Ahmed Mahamat</div>
+              </div>
+              <div class="badge badge-warning"><span data-icon="clock"></span>Due tomorrow</div>
+              <div class="queue-age due">2d 4h left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-152">
+              <div class="queue-pill info"><span data-icon="leaf"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Hydraulic Fluid ISO 46 — EMP environmental review</div>
+                <div class="queue-sub"><span class="mono">#CHM-152</span> · PS2-Dompta · Cherif Hassan</div>
+              </div>
+              <div class="badge badge-info"><span data-icon="leaf"></span>Environmental</div>
+              <div class="queue-age">5d left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-155">
+              <div class="queue-pill success"><span data-icon="check"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Diesel — Final sign-off ready</div>
+                <div class="queue-sub"><span class="mono">#CHM-155</span> · PS2-Dompta · Fatima Moussa</div>
+              </div>
+              <div class="badge badge-success"><span data-icon="check"></span>Ready to approve</div>
+              <div class="queue-age">Today</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Site activity — brought from Hub dashboard -->
+        <div class="site-map-card" id="site-map" style="margin-bottom:var(--s-7)">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="map-pin"></span>Site activity · chemical storage</div>
+            <div class="card-actions">
+              <span class="badge badge-neutral mono">6 sites</span>
+              <button class="btn btn-sm btn-ghost"><span data-icon="filter"></span></button>
+            </div>
+          </div>
+          <div class="site-map-body">
+            <div class="site-map-canvas"></div>
+            <div class="site-list"></div>
+          </div>
+        </div>
+
+        <!-- Live activity — brought from Hub dashboard -->
+        <div class="activity-card" style="margin-bottom:var(--s-7)">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="activity"></span>Live activity</div>
+            <div class="card-actions">
+              <span class="kbd-hint" style="color:var(--success)"><span class="live-dot" style="width:6px;height:6px;display:inline-block"></span> Streaming</span>
+            </div>
+          </div>
+          <div class="activity-list" id="activity-stream"></div>
+        </div>
+
+        <!-- Modules grid removed from Safety Data dashboard -->
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="history"></span>Recent chemical requests</div>
+            <div class="card-actions">
+              <button class="btn btn-sm"><span data-icon="filter"></span>Filter</button>
+            </div>
+          </div>
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Manufacturer</th><th>Site</th><th>Stage</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="id-cell">#CHM-156</td><td>Acetone</td><td>Sigma-Aldrich</td><td>Douala</td><td>Safety Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-155</td><td>Diesel</td><td>TotalEnergies</td><td>PS2-Dompta</td><td>Review Complete</td><td><span class="badge badge-success badge-dot">Review Complete</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-154</td><td>Methanol</td><td>Brenntag Chad</td><td>PS3-Belabo</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-152</td><td>Hydraulic Fluid ISO 46</td><td>Castrol Industrial</td><td>PS2-Dompta</td><td>EMP Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-150</td><td>Sodium Hypochlorite</td><td>Brenntag Chad</td><td>PRS-Kribi</td><td>Safety Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ CASH ADVANCE HUB ============ -->
+      <section class="page" id="page-cash" data-screen-label="04 Cash Advance">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Cash Advance</h1>
+            <p class="page-subtitle">Request, track and reconcile cash advances · TPC Treasury</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="my-advances"><span data-icon="list"></span>My advances</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-cash"><span data-icon="plus"></span>New advance</button>
+          </div>
+        </div>
+
+        <!-- Cash Hero -->
+        <div class="cash-hero">
+          <div class="cash-hero-cell">
+            <div class="cash-hero-label"><span data-icon="wallet"></span>Outstanding balance</div>
+            <div class="cash-hero-amount"><span class="num" id="cash-outstanding">0</span><span class="ccy">FCFA</span></div>
+            <div class="cash-hero-sub"><span data-icon="clock"></span>Across 4 active advances · TPC-wide</div>
+          </div>
+          <div class="cash-hero-cell danger">
+            <div class="cash-hero-label"><span data-icon="alert-triangle"></span>Overdue reconciliation</div>
+            <div class="cash-hero-amount"><span class="num" id="cash-overdue">0</span><span class="ccy">FCFA</span></div>
+            <div class="cash-hero-sub danger"><span data-icon="alert-triangle"></span>1 advance past 14-day deadline</div>
+          </div>
+          <div class="cash-hero-cell success">
+            <div class="cash-hero-label"><span data-icon="check-circle"></span>Reconciled rate</div>
+            <div class="cash-hero-amount"><span class="num"><span id="cash-recon-pct">0</span></span><span class="ccy">% · LAST 30D</span></div>
+            <div class="cash-hero-sub"><span data-icon="trending-up"></span>Target ≥ 80% · within compliance</div>
+          </div>
+        </div>
+
+        <!-- Reconciliation callout -->
+        <div class="recon-callout">
+          <div class="recon-callout-icon" data-icon="alert-triangle"></div>
+          <div class="recon-callout-text">
+            <strong>Action required — 1 advance is overdue for reconciliation</strong>
+            <span class="mono">#CA-2026-0138</span> · Oumar Cheikh · Emergency repair float FSO · 2 400 000 FCFA. Submit receipts to clear this advance before 18 May.
+          </div>
+          <button class="btn btn-primary" data-page="reconciliation"><span data-icon="check-square"></span>Reconcile now</button>
+        </div>
+
+        <!-- KPI row -->
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Disbursed · 30d</span>
+              <span class="kpi-delta up">+22%</span>
+            </div>
+            <div class="kpi-value"><span id="cash-month">0</span><span style="font-size:14px;color:var(--text-3);font-weight:500"> FCFA</span></div>
+            <div data-sparkline="2.1,2.4,2.0,2.8,3.1,3.6,3.8" data-spark-cls="spark-accent"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Avg cycle (request → disbursement)</span>
+              <span class="kpi-delta up">-1.2d</span>
+            </div>
+            <div class="kpi-value">2.4<span style="font-size:14px;color:var(--text-3);font-weight:500"> days</span></div>
+            <div data-sparkline="4.0,3.6,3.4,3.0,2.8,2.5,2.4" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Mobile money share</span>
+              <span class="kpi-delta up">+8pt</span>
+            </div>
+            <div class="kpi-value">63<span style="font-size:14px;color:var(--text-3);font-weight:500">%</span></div>
+            <div data-sparkline="42,48,52,55,58,60,63" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Compliance score</span>
+              <span class="kpi-delta flat">±0</span>
+            </div>
+            <div class="kpi-value">A−</div>
+            <div data-sparkline="80,82,85,87,86,87,87" data-spark-cls="spark-flat"></div>
+          </div>
+        </div>
+
+        <!-- Active advances -->
+        <div style="margin-bottom:var(--s-7)">
+          <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+            <span>Active advances · Across TPC</span>
+            <button class="btn btn-sm btn-ghost" data-page="my-advances">View all<span data-icon="arrow-right"></span></button>
+          </div>
+          <div class="advances-grid" id="cash-advances-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ NEW CASH ADVANCE FORM ============ -->
+      <section class="page" id="page-new-cash" data-screen-label="05 New Cash Advance">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">New cash advance</h1>
+            <p class="page-subtitle">Submit a cash advance request for approval and disbursement</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="cash"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+
+            <!-- Section 1: Amount + Purpose -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Amount &amp; purpose</div>
+                <div class="form-section-sub">Currency: XAF (Franc CFA)</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Amount requested <span class="req">*</span></label>
+                    <div class="amount-input-row">
+                      <input type="text" id="cash-amount" placeholder="0" value="1 850 000">
+                      <span class="ccy-tag">FCFA</span>
+                    </div>
+                    <div class="amount-presets">
+                      <button class="amount-preset" data-amt="200000">200 000</button>
+                      <button class="amount-preset" data-amt="500000">500 000</button>
+                      <button class="amount-preset" data-amt="1000000">1 000 000</button>
+                      <button class="amount-preset" data-amt="2000000">2 000 000</button>
+                      <button class="amount-preset" data-amt="5000000">5 000 000</button>
+                    </div>
+                  </div>
+
+                  <div class="form-group full">
+                    <label>Purpose <span class="req">*</span></label>
+                    <div class="purpose-grid">
+                      <button type="button" class="purpose-opt selected"><span data-icon="map-pin"></span><span>Mission</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="calendar"></span><span>Per diem</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="alert-triangle"></span><span>Emergency</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="receipt"></span><span>Procurement</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="flask"></span><span>Fuel</span></button>
+                      <button type="button" class="purpose-opt"><span data-icon="more"></span><span>Other</span></button>
+                    </div>
+                  </div>
+
+                  <div class="form-group full">
+                    <label>Justification <span class="req">*</span></label>
+                    <textarea class="textarea" placeholder="Describe the mission, project context and how the funds will be used…">5-day inspection mission to PS3-Belabo for quarterly pump maintenance and HSE walkthrough. Covers per diem for 2 technicians, fuel for round trip, on-site lodging, and minor procurement of spare seals/gaskets.</textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Mission / Project -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Mission &amp; project</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid cols-3">
+                  <div class="form-group">
+                    <label>Site <span class="req">*</span></label>
+                    <select class="select">
+                      <option>PS3-Belabo</option>
+                      <option>Douala HQ</option>
+                      <option>PS2-Dompta</option>
+                      <option>PRS-Kribi</option>
+                      <option>FSO</option>
+                      <option>Warehouse</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Project code <span class="req">*</span></label>
+                    <select class="select">
+                      <option>PRJ-INF-22 — Infrastructure Q2</option>
+                      <option>PRJ-HSE-04 — HSE Quarterly Audit</option>
+                      <option>PRJ-OPS-11 — Operations FSO 2026</option>
+                      <option>PRJ-INS-Q2 — Inspections Q2</option>
+                      <option>PRJ-PRC-09 — Procurement Kribi</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Duration (days) <span class="req">*</span></label>
+                    <input class="input" id="cash-days" type="number" value="9" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Start date</label>
+                    <input class="input" type="date" value="2026-05-18">
+                  </div>
+                  <div class="form-group">
+                    <label>End date</label>
+                    <input class="input" type="date" value="2026-05-26">
+                  </div>
+                  <div class="form-group">
+                    <label>Travel mode</label>
+                    <select class="select"><option>Land — TPC vehicle</option><option>Land — Hired</option><option>Air — Domestic</option><option>Air — International</option></select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 3: Disbursement method -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Disbursement method</div>
+                <div class="form-section-sub">How you want to receive the funds</div>
+              </div>
+              <div class="form-section-body">
+                <div class="method-grid">
+                  <button type="button" class="method-opt selected">
+                    <span class="method-opt-icon" data-icon="send"></span>
+                    <div>
+                      <div class="method-opt-name">Airtel Money</div>
+                      <div class="method-opt-sub">+235 6X XX XX XX · Instant</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="send"></span>
+                    <div>
+                      <div class="method-opt-name">Orange Money</div>
+                      <div class="method-opt-sub">+235 6X XX XX XX · Instant</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="database"></span>
+                    <div>
+                      <div class="method-opt-name">Bank transfer</div>
+                      <div class="method-opt-sub">BCC · Ecobank · 1-2d</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="wallet"></span>
+                    <div>
+                      <div class="method-opt-name">Cash counter</div>
+                      <div class="method-opt-sub">Treasury · Douala HQ only</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                  <button type="button" class="method-opt">
+                    <span class="method-opt-icon" data-icon="globe"></span>
+                    <div>
+                      <div class="method-opt-name">Other</div>
+                      <div class="method-opt-sub">Specify in notes</div>
+                    </div>
+                    <span class="method-opt-check" data-icon="check"></span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: Approvers -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">4</div>
+                <div class="form-section-title">Approval chain</div>
+                <div class="form-section-sub">Auto-suggested based on project + amount</div>
+              </div>
+              <div class="form-section-body">
+                <table class="rev-table">
+                  <thead><tr><th>Stage</th><th>Primary approver</th><th>Backup</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="rev-stage">Line manager</div><span class="rev-stage-sub">Operational sign-off</span></td>
+                      <td><select class="rev-select-inline"><option>Cherif Hassan — Operations Lead</option></select></td>
+                      <td><select class="rev-select-inline"><option>Mariam Deby — HSE Manager</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Budget controller</div><span class="rev-stage-sub">PRJ-INF-22 fund check</span></td>
+                      <td><select class="rev-select-inline"><option>Aisha Koné — Budget Controller</option></select></td>
+                      <td><select class="rev-select-inline"><option>Brahim Youssouf — Deputy Controller</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Finance head</div><span class="rev-stage-sub">Final approval over 1M FCFA</span></td>
+                      <td><select class="rev-select-inline"><option>Hassan Ibrahim — CFO</option></select></td>
+                      <td><select class="rev-select-inline"><option>Nadia Al-Farsi — Deputy CFO</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Treasury disbursement</div><span class="rev-stage-sub">Releases funds via chosen method</span></td>
+                      <td><select class="rev-select-inline"><option>Treasury Team · Douala</option></select></td>
+                      <td><select class="rev-select-inline"><option>Treasury Team · Backup</option></select></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <div class="form-progress" style="display:flex;align-items:center;gap:var(--s-3);font-size:12px;color:var(--text-3);flex:1">
+                  <span>SLA target</span>
+                  <span class="mono" style="color:var(--text)">2.4 days</span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span>Estimated disbursement</span>
+                  <span class="mono" style="color:var(--text)">17 May 2026</span>
+                </div>
+                <button class="btn" data-page="cash"><span data-t="btn.back">Back</span></button>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="cash-form-submit">Submit request<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active">
+                  <div class="wf-node">1</div>
+                  <div class="wf-content"><div class="wf-title">Submission</div><div class="wf-sub">You are here</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">2</div>
+                  <div class="wf-content"><div class="wf-title">Line manager</div><div class="wf-sub">Operational sign-off</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">3</div>
+                  <div class="wf-content"><div class="wf-title">Budget controller</div><div class="wf-sub">Fund availability</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">4</div>
+                  <div class="wf-content"><div class="wf-title">Finance head</div><div class="wf-sub">Required &gt; 1M FCFA</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">5</div>
+                  <div class="wf-content"><div class="wf-title">Disbursement</div><div class="wf-sub">Funds released</div></div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">6</div>
+                  <div class="wf-content"><div class="wf-title">Reconciliation</div><div class="wf-sub">Submit receipts ≤ 14d</div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Breakdown</div>
+              <div class="summary-body">
+                <div class="breakdown">
+                  <div class="breakdown-row"><span class="lbl">Total advance</span><span class="val" id="bk-total">—</span></div>
+                  <div class="breakdown-row"><span class="lbl">Duration</span><span class="val" id="bk-days">—</span> days</div>
+                  <div class="breakdown-row total"><span class="lbl">Per day</span><span class="val" id="bk-daily">—</span></div>
+                </div>
+                <div style="font-size:11px;color:var(--text-4);margin-top:8px;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:0.5px">
+                  PRJ-INF-22 · Budget rem. <strong style="color:var(--text-2)">8.4M FCFA</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Compliance reminder</div>
+              <div class="summary-body" style="gap:8px">
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  All receipts must be submitted within <strong>14 days</strong> of disbursement. Surplus funds returned to TPC Treasury within 7 days of mission end.
+                </div>
+                <div style="font-size:11px;color:var(--accent);font-family:var(--font-mono);display:flex;align-items:center;gap:4px;cursor:pointer">
+                  <span data-icon="book" style="width:14px;display:inline-flex"></span>
+                  <span>TPC-FIN-08 · Cash advance policy</span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MY ADVANCES ============ -->
+      <section class="page" id="page-my-advances" data-screen-label="06 My Advances">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">My advances</h1>
+            <p class="page-subtitle">Track all cash advances you have submitted across TPC</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-cash"><span data-icon="plus"></span>New advance</button>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom:var(--s-5)">
+          <div class="ms-toolbar">
+            <div class="ms-search">
+              <span data-icon="search"></span>
+              <input type="text" placeholder="Search by ID, requester, project…">
+            </div>
+            <button class="ms-chip-filter active" data-adv-filter="all">All</button>
+            <button class="ms-chip-filter" data-adv-filter="active">Active</button>
+            <button class="ms-chip-filter" data-adv-filter="overdue">Overdue</button>
+            <button class="ms-chip-filter" data-adv-filter="reconciling">Reconciling</button>
+            <button class="ms-chip-filter" data-adv-filter="reconciled">Reconciled</button>
+          </div>
+        </div>
+
+        <div class="advances-grid" id="my-advances-list"></div>
+      </section>
+
+      <!-- ============ RECONCILIATION ============ -->
+      <section class="page" id="page-reconciliation" data-screen-label="07 Reconciliation">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Reconcile advance <span class="mono" style="font-size:14px;color:var(--text-3);font-weight:500">#CA-2026-0142</span></h1>
+            <p class="page-subtitle">Submit receipts to clear your cash advance · Mission PS3-Belabo · Pump maintenance</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="my-advances"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Receipts &amp; expenses</div>
+                <div class="form-section-sub">Itemize each receipt — attach a photo or PDF below</div>
+              </div>
+              <div class="form-section-body">
+                <div id="receipt-list"></div>
+                <button class="btn btn-sm" id="receipt-add" style="margin-top:8px"><span data-icon="plus"></span>Add receipt line</button>
+
+                <div class="recon-totals" style="margin-top:var(--s-5)">
+                  <div class="cell">
+                    <div class="l">Advance disbursed</div>
+                    <div class="v"><span id="rec-advance">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                  <div class="cell">
+                    <div class="l">Receipts total</div>
+                    <div class="v"><span id="rec-receipts">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                  <div class="cell" id="rec-delta-cell">
+                    <div class="l">Settled</div>
+                    <div class="v"><span id="rec-delta">0</span><span style="font-size:11px;color:var(--text-3);margin-left:4px">FCFA</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Reconciliation deadline: <strong class="mono" style="color:var(--warning)">28 May 2026 · 13 days remaining</strong></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary">Submit reconciliation<span data-icon="send"></span></button>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Supporting documents</div>
+                <div class="form-section-sub">Optional · scanned receipts, mission report</div>
+              </div>
+              <div class="form-section-body">
+                <div class="file-drop">
+                  <div data-icon="paperclip"></div>
+                  <div class="file-drop-title">Drag &amp; drop scans, or click to browse</div>
+                  <div class="file-drop-hint">PDF · JPG · PNG · MAX 10MB EACH</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Advance details</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Advance ID</span><span class="summary-val mono">#CA-2026-0142</span></div>
+                <div class="summary-row"><span class="summary-label">Amount</span><span class="summary-val mono">1 850 000 FCFA</span></div>
+                <div class="summary-row"><span class="summary-label">Disbursed</span><span class="summary-val">14 May 2026</span></div>
+                <div class="summary-row"><span class="summary-label">Method</span><span class="summary-val">Airtel Money</span></div>
+                <div class="summary-row"><span class="summary-label">Project</span><span class="summary-val mono">PRJ-INF-22</span></div>
+                <div class="summary-row"><span class="summary-label">Site</span><span class="summary-val">PS3-Belabo</span></div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Recon policy</div>
+              <div class="summary-body" style="gap:8px">
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  <strong>Deficit:</strong> any unspent funds must be returned to TPC Treasury within 7 days of mission end.
+                </div>
+                <div style="font-size:12px;color:var(--text-2);line-height:1.5">
+                  <strong>Surplus:</strong> documented overspend ≤ 10% may be reimbursed by TPC with line-manager approval.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ DAILY EXPENSE HUB ============ -->
+      <section class="page" id="page-expense" data-screen-label="08 Daily Expense">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Daily Expense</h1>
+            <p class="page-subtitle">Capture, categorize and submit daily expenses for reimbursement</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export · May 2026</button>
+            <button class="btn btn-primary" data-page="new-expense"><span data-icon="plus"></span>New expense</button>
+          </div>
+        </div>
+
+        <!-- Reimburse strip -->
+        <div class="reimb-strip">
+          <div class="reimb-cell">
+            <span class="l">Submitted</span>
+            <span class="v"><span id="ex-submitted">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Awaiting manager review</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Approved</span>
+            <span class="v"><span id="ex-approved">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Approved, pending reimbursement</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Reimbursed · 30d</span>
+            <span class="v"><span id="ex-reimbursed">0</span><span class="ccy">FCFA</span></span>
+            <span class="s">Paid out to your account</span>
+          </div>
+          <div class="reimb-cell">
+            <span class="l">Total · May</span>
+            <span class="v"><span id="ex-total">0</span><span class="ccy">FCFA</span></span>
+            <span class="s"><span id="ex-count">0</span> expenses captured</span>
+          </div>
+        </div>
+
+        <!-- Month chart -->
+        <div class="month-chart-card" id="month-chart">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="activity"></span>Last 14 days · By category</div>
+            <div class="card-actions">
+              <button class="ms-chip-filter active">14d</button>
+              <button class="ms-chip-filter">30d</button>
+              <button class="ms-chip-filter">90d</button>
+            </div>
+          </div>
+          <div class="month-chart-body">
+            <div class="month-bars"></div>
+            <div class="month-axis"></div>
+            <div class="month-legend"></div>
+          </div>
+        </div>
+
+        <!-- Recent expenses -->
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Recent expenses</span>
+          <div class="card-actions" style="display:flex;gap:4px">
+            <button class="ms-chip-filter active" data-exp-filter="all">All</button>
+            <button class="ms-chip-filter" data-exp-filter="draft">Draft</button>
+            <button class="ms-chip-filter" data-exp-filter="submitted">Submitted</button>
+            <button class="ms-chip-filter" data-exp-filter="approved">Approved</button>
+            <button class="ms-chip-filter" data-exp-filter="reimbursed">Reimbursed</button>
+            <button class="ms-chip-filter" data-exp-filter="rejected">Rejected</button>
+          </div>
+        </div>
+        <div class="expense-list">
+          <div class="expense-list-head">
+            <span></span>
+            <span>Expense</span>
+            <span>Category</span>
+            <span>Date</span>
+            <span style="text-align:right">Amount</span>
+            <span>Status</span>
+          </div>
+          <div id="my-expenses-list"></div>
+        </div>
+      </section>
+
+      <!-- ============ NEW EXPENSE FORM ============ -->
+      <section class="page" id="page-new-expense" data-screen-label="09 New Expense">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">New expense</h1>
+            <p class="page-subtitle">Capture a single expense · attach receipt · route to your manager</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="expense"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Category &amp; details</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Category <span class="req">*</span></label>
+                    <div class="cat-tile-grid">
+                      <button type="button" class="cat-tile selected">
+                        <span class="tile-bubble meals" data-icon="receipt"></span>
+                        <span class="tile-name">Meals</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble transport" data-icon="send"></span>
+                        <span class="tile-name">Transport</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble fuel" data-icon="flask"></span>
+                        <span class="tile-name">Fuel</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble lodging" data-icon="building"></span>
+                        <span class="tile-name">Lodging</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble comms" data-icon="send"></span>
+                        <span class="tile-name">Comms</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble supplies" data-icon="archive"></span>
+                        <span class="tile-name">Supplies</span>
+                      </button>
+                      <button type="button" class="cat-tile">
+                        <span class="tile-bubble other" data-icon="more"></span>
+                        <span class="tile-name">Other</span>
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label>Amount <span class="req">*</span></label>
+                    <div class="amount-input-row">
+                      <input type="text" id="exp-amount" placeholder="0">
+                      <span class="ccy-tag">FCFA</span>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label>Date <span class="req">*</span></label>
+                    <input class="input" type="date" value="2026-05-15">
+                  </div>
+                  <div class="form-group">
+                    <label>Site</label>
+                    <select class="select">
+                      <option>Douala</option>
+                      <option>PS2-Dompta</option>
+                      <option>PS3-Belabo</option>
+                      <option>PRS-Kribi</option>
+                      <option>FSO</option>
+                      <option>Warehouse</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Project code</label>
+                    <select class="select">
+                      <option>PRJ-INF-22</option>
+                      <option>PRJ-HSE-04</option>
+                      <option>PRJ-OPS-11</option>
+                      <option>PRJ-INS-Q2</option>
+                      <option>PRJ-PRC-09</option>
+                    </select>
+                  </div>
+                  <div class="form-group full">
+                    <label>Description <span class="req">*</span></label>
+                    <input class="input" placeholder="e.g. Taxi from airport to HQ for vendor meeting">
+                  </div>
+                  <div class="form-group full">
+                    <label>Receipt <span class="req">*</span></label>
+                    <div class="file-drop">
+                      <div data-icon="paperclip"></div>
+                      <div class="file-drop-title">Snap a photo or drop a PDF</div>
+                      <div class="file-drop-hint">JPG · PNG · PDF · MAX 5MB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Routes to <strong style="color:var(--text)">Cherif Hassan</strong> · Line manager · SLA <span class="mono">1 day</span></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="exp-submit">Submit expense<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Tips for fast approval</div>
+              <div class="summary-body" style="font-size:12px;color:var(--text-2);gap:8px;line-height:1.5">
+                <div>📷 Snap the receipt clearly — all 4 corners, total visible.</div>
+                <div>🏷️ Use the right category — it auto-routes for VAT recovery.</div>
+                <div>🗓️ Submit within 30 days. Older expenses need manager exception.</div>
+                <div>💼 Tie to the project code so it bills correctly.</div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Per-diem reference</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Douala</span><span class="summary-val mono">25 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">PS-sites</span><span class="summary-val mono">30 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">FSO</span><span class="summary-val mono">35 000 FCFA / day</span></div>
+                <div class="summary-row"><span class="summary-label">N'Djamena</span><span class="summary-val mono">40 000 FCFA / day</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ SECURITY ESCORT HUB ============ -->
+      <section class="page" id="page-escort" data-screen-label="10 Security Escort">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Security Escort <span class="mono" style="font-size:14px;color:var(--text-3);font-weight:500">· E85</span></h1>
+            <p class="page-subtitle">Plan and track armed-escort convoys between TPC sites · risk-classified routing</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="map-pin"></span>Routes</button>
+            <button class="btn btn-primary" data-page="new-escort"><span data-icon="plus"></span>Request escort</button>
+          </div>
+        </div>
+
+        <!-- Live transit banner (#88 is in transit) -->
+        <div class="transit-banner">
+          <div class="live-marker"><span class="dot"></span>EN ROUTE</div>
+          <div class="info">
+            <div class="t1">Convoy #E85-2026-088 · Douala → FSO · ETA 17:15</div>
+            <div class="t2">2 vehicles · 4 escort · 6 personnel · Hazardous cargo (Cl. 3) · 65% of route complete</div>
+          </div>
+          <button class="btn btn-sm" data-escort="E85-2026-088"><span data-icon="eye"></span>Track</button>
+        </div>
+
+        <!-- Escort hero -->
+        <div class="escort-hero">
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="map-pin"></span>Active convoys</div>
+            <div class="v"><span id="escort-transit">0</span><span class="unit">in transit now</span></div>
+            <div style="font-family:var(--font-mono);font-size:11px;color:var(--text-3);margin-top:4px">
+              <span id="escort-planned">0</span> planned · <span id="escort-completed">0</span> completed (last 7d)
+            </div>
+          </div>
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="activity"></span>Distance · 30d</div>
+            <div class="v smol"><span id="escort-km">0</span><span class="unit">km</span></div>
+            <div style="font-size:11px;color:var(--text-3);margin-top:4px">Across 6 sites</div>
+          </div>
+          <div class="escort-hero-cell">
+            <div class="l"><span data-icon="shield-check"></span>Risk mix</div>
+            <div class="risk-dist" id="risk-dist"></div>
+            <div style="display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:9px;color:var(--text-3);margin-top:6px;letter-spacing:0.3px">
+              <span>LOW</span><span>STD</span><span>ELEV</span><span>HIGH</span><span>RESTR</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Escort list -->
+        <div class="section-title" style="display:flex;justify-content:space-between;align-items:center">
+          <span>Convoys &amp; escorts</span>
+          <div class="card-actions" style="display:flex;gap:4px">
+            <button class="ms-chip-filter active" data-escort-filter="all">All</button>
+            <button class="ms-chip-filter" data-escort-filter="active">Active</button>
+            <button class="ms-chip-filter" data-escort-filter="transit">In transit</button>
+            <button class="ms-chip-filter" data-escort-filter="planning">Planning</button>
+            <button class="ms-chip-filter" data-escort-filter="completed">Completed</button>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:var(--s-3)" id="my-escorts-list"></div>
+      </section>
+
+      <!-- ============ NEW ESCORT FORM ============ -->
+      <section class="page" id="page-new-escort" data-screen-label="11 New Escort Request">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Request escort</h1>
+            <p class="page-subtitle">Submit a security escort request for site-to-site convoy</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="escort"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <div class="form-main">
+            <!-- Route -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Route</div>
+                <div class="form-section-sub">Origin → intermediate → destination</div>
+              </div>
+              <div class="form-section-body">
+                <div class="escort-route-builder">
+                  <div class="route-leg start">
+                    <div class="leg-pin">A</div>
+                    <select class="select"><option>Douala</option><option>PS2-Dompta</option><option>PS3-Belabo</option><option>PRS-Kribi</option><option>FSO</option><option>Warehouse</option><option>N'Djamena</option></select>
+                    <input class="input" type="time" value="14:30">
+                  </div>
+                  <div class="route-leg">
+                    <div class="leg-pin">+</div>
+                    <button class="btn btn-sm" style="justify-self:start"><span data-icon="plus"></span>Add intermediate stop</button>
+                    <span style="font-family:var(--font-mono);font-size:11px;color:var(--text-3)">optional</span>
+                  </div>
+                  <div class="route-leg end">
+                    <div class="leg-pin">B</div>
+                    <select class="select"><option>FSO</option><option>Douala</option><option>PS2-Dompta</option><option>PS3-Belabo</option><option>PRS-Kribi</option><option>Warehouse</option><option>N'Djamena</option></select>
+                    <input class="input" type="time" value="17:15">
+                  </div>
+                </div>
+                <div style="margin-top:var(--s-4);display:flex;gap:var(--s-3);font-family:var(--font-mono);font-size:11px;color:var(--text-3);align-items:center">
+                  <span><span data-icon="activity" style="display:inline-flex;width:13px"></span> Est. distance <strong style="color:var(--text)">78 km</strong></span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span><span data-icon="clock" style="display:inline-flex;width:13px"></span> Est. duration <strong style="color:var(--text)">2h 45min</strong></span>
+                  <span style="color:var(--text-4)">·</span>
+                  <span><span data-icon="calendar" style="display:inline-flex;width:13px"></span> Departure date
+                    <input class="input" type="date" value="2026-05-15" style="padding:4px 8px;font-size:12px;display:inline-block;width:auto;margin-left:4px">
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Risk -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Risk classification</div>
+                <div class="form-section-sub">Security Coordinator may upgrade</div>
+              </div>
+              <div class="form-section-body">
+                <div class="risk-picker">
+                  <button type="button" class="risk-tile r1">
+                    <span class="swatch"></span>
+                    <span class="label">Low</span>
+                  </button>
+                  <button type="button" class="risk-tile r2">
+                    <span class="swatch"></span>
+                    <span class="label">Standard</span>
+                  </button>
+                  <button type="button" class="risk-tile r3">
+                    <span class="swatch"></span>
+                    <span class="label">Elevated</span>
+                  </button>
+                  <button type="button" class="risk-tile r4 selected">
+                    <span class="swatch"></span>
+                    <span class="label">High</span>
+                  </button>
+                  <button type="button" class="risk-tile r5">
+                    <span class="swatch"></span>
+                    <span class="label">Restricted</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Cargo + Team -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Cargo &amp; personnel</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Cargo description <span class="req">*</span></label>
+                    <input class="input" placeholder="What's being transported?" value="Spare pump parts (mechanical) + 2 technicians">
+                  </div>
+                  <div class="form-group">
+                    <label>Cargo class</label>
+                    <select class="select">
+                      <option>Standard equipment</option>
+                      <option>Hazardous (Chemical Cl. 3 — Flammable)</option>
+                      <option>Hazardous (Chemical Cl. 8 — Corrosive)</option>
+                      <option>Cash / Valuables</option>
+                      <option>Documents</option>
+                      <option>Personnel only</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Vehicles required</label>
+                    <input class="input" type="number" value="2" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Escort team size</label>
+                    <input class="input" type="number" value="4" min="1">
+                  </div>
+                  <div class="form-group">
+                    <label>Total personnel</label>
+                    <input class="input" type="number" value="6" min="1">
+                  </div>
+                  <div class="form-group full">
+                    <label>Justification</label>
+                    <textarea class="textarea" placeholder="Why is the escort needed? Mission context, route conditions, time constraints…">Urgent spare parts delivery to FSO offshore platform. Route crosses populated areas. Cargo includes flammable chemicals (Class 3) requiring HSE-compliant escort per TPC-SEC-04.</textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Routes to <strong style="color:var(--text)">Security Coordinator · Oumar Cheikh</strong> · SLA <span class="mono">4 hours</span></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="escort-submit">Submit request<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Route preview</div>
+              <div style="padding:var(--s-3)">
+                <div class="escort-mini-map" style="background:transparent;border:none;padding:0">
+                  <div class="map-canvas" style="height:160px">
+                    <svg viewBox="0 0 100 90" preserveAspectRatio="xMidYMid meet">
+                      <path class="country" d="M 30 8 L 55 4 L 76 10 L 86 22 L 88 36 L 80 50 L 70 58 L 65 70 L 50 78 L 42 84 L 30 80 L 20 70 L 22 56 L 18 42 L 26 24 Z" fill="var(--surface)" stroke="var(--border-strong)" stroke-width="0.8"/>
+                      <path d="M 12 78 L 4 72" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 2" fill="none"/>
+                      <circle cx="12" cy="78" r="3" fill="var(--accent)" stroke="var(--surface)" stroke-width="1.5"/>
+                      <circle cx="4" cy="72" r="3.5" fill="var(--text)" stroke="var(--surface)" stroke-width="1.5"/>
+                    </svg>
+                  </div>
+                  <div class="map-stats" style="margin-top:var(--s-2)">
+                    <span>Douala → FSO</span>
+                    <span><strong>78</strong> km</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Risk advisory</div>
+              <div class="summary-body" style="font-size:12px;color:var(--text-2);line-height:1.5;gap:8px">
+                <div><strong style="color:var(--danger)">High risk</strong> requires armed escort team, mandatory comms check-ins every 30 min, and pre-approval from Security Coordinator.</div>
+                <div>Live tracking via GPS will be enabled. Status posted to Live Activity stream.</div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Approval chain</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">1. Security Coordinator</span><span class="summary-val">Oumar Cheikh</span></div>
+                <div class="summary-row"><span class="summary-label">2. Site Manager (origin)</span><span class="summary-val">Cherif Hassan</span></div>
+                <div class="summary-row"><span class="summary-label">3. Site Manager (dest.)</span><span class="summary-val">FSO Lead</span></div>
+                <div class="summary-row"><span class="summary-label">4. Route planner</span><span class="summary-val">Auto-assigned</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MASTER SHEET ============ -->
+      <section class="page" id="page-master-sheet" data-screen-label="03 Master Sheet">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Master Sheet</h1>
+            <p class="page-subtitle">Complete TPC chemical inventory · 145 entries · GHS hazard classification</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export CSV</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New chemical</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ms-toolbar">
+            <div class="ms-search">
+              <span data-icon="search"></span>
+              <input type="text" placeholder="Search by name, CAS, manufacturer…">
+            </div>
+            <button class="ms-chip-filter active">All sites</button>
+            <button class="ms-chip-filter">Douala</button>
+            <button class="ms-chip-filter">PS2-Dompta</button>
+            <button class="ms-chip-filter">PS3-Belabo</button>
+            <button class="ms-chip-filter">PRS-Kribi</button>
+            <button class="ms-chip-filter">FSO</button>
+            <span style="width:1px;height:20px;background:var(--border);margin:0 4px"></span>
+            <button class="ms-chip-filter">All hazards</button>
+            <button class="ms-chip-filter">Flammable</button>
+            <button class="ms-chip-filter">Toxic</button>
+            <button class="ms-chip-filter">Corrosive</button>
+          </div>
+          <div class="card-body flush table-wrap" id="ms-inventory">
+            <table class="ms-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Chemical</th>
+                  <th>GHS</th>
+                  <th>Class</th>
+                  <th>Manufacturer</th>
+                  <th>Site</th>
+                  <th>Stock</th>
+                  <th>PPE</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NEW CHEMICAL FORM ============ -->
+      <section class="page" id="page-new-chemical" data-screen-label="03 New Chemical">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.newchem.title">New chemical request</h1>
+            <p class="page-subtitle" data-t="page.newchem.sub">Submit a new chemical for HSE review and approval</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="chemical"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <!-- MAIN FORM -->
+          <div class="form-main">
+
+            <!-- Section 1: Chemical Info -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Chemical information</div>
+                <div class="form-section-sub">Required for submission</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Chemical name <span class="req">*</span></label>
+                    <input class="input" id="chem-name" data-summary data-required placeholder="e.g. Acetone, Hydraulic Fluid ISO 46…">
+                  </div>
+                  <div class="form-group">
+                    <label>Intended use <span class="req">*</span></label>
+                    <select class="select" id="chem-use" data-summary data-required>
+                      <option value="">Select Intended Use</option>
+                      <option value="Permanently Use">Permanently Use</option>
+                      <option value="First Use">First Use</option>
+                      <option value="Trial Basis &lt; 60">Trial Basis &lt; 60</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Handling method <span class="req">*</span></label>
+                    <select class="select" id="handling-method" data-summary data-required>
+                      <option value="">Select Handling Method</option>
+                      <option value="Enclosed System">Enclosed System</option>
+                      <option value="Open System">Open System</option>
+                      <option value="Manual Handling">Manual Handling</option>
+                      <option value="Spraying">Spraying</option>
+                      <option value="Other">Other</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Hazards & PPE -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Hazard classification &amp; PPE</div>
+                <div class="form-section-sub">Select GHS pictograms — PPE auto-suggested</div>
+              </div>
+              <div class="form-section-body">
+                <div class="hazard-picker" id="hazard-picker"></div>
+                <div class="ppe-strip" id="ppe-strip" style="display:none"></div>
+              </div>
+            </div>
+
+            <!-- Section 3: Manufacturer -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Manufacturer</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Manufacturer name <span class="req">*</span></label>
+                    <select class="select" id="mfr-select" data-summary data-required>
+                      <option value="">Select manufacturer…</option>
+                      <option value="__new">+ Add new manufacturer…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Email</label>
+                    <input class="input" id="mfr-email" type="email" placeholder="From manufacturer database" readonly>
+                  </div>
+                  <div class="form-group">
+                    <label>Phone</label>
+                    <input class="input" id="mfr-phone" placeholder="From manufacturer database" readonly>
+                  </div>
+                  <div class="form-group full">
+                    <label>Address</label>
+                    <input class="input" id="mfr-addr" placeholder="From manufacturer database" readonly>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: SDS & Storage -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">4</div>
+                <div class="form-section-title">SDS &amp; storage location</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Area of use (site) <span class="req">*</span></label>
+                    <select class="select" id="aou-select" data-summary data-required>
+                      <option value="">Select site…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Storage location <span class="req">*</span></label>
+                    <select class="select" id="storage-select">
+                      <option value="">Select area of use first…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>eSDS last revision date</label>
+                    <input class="input" type="date" id="esds-date">
+                  </div>
+                  <div class="form-group">
+                    <label>Area of use — if other</label>
+                    <input class="input" placeholder="Specify if 'Other' selected">
+                  </div>
+                  <div class="form-group full">
+                    <label>eSDS attachment <span class="req">*</span></label>
+                    <div class="file-drop">
+                      <div data-icon="paperclip"></div>
+                      <div class="file-drop-title">Drag &amp; drop your eSDS, or click to browse</div>
+                      <div class="file-drop-hint">PDF · DOC · DOCX · MAX 10MB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5: Reviewers -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">5</div>
+                <div class="form-section-title">Approval reviewers</div>
+                <div class="form-section-sub">Primary &amp; backup per stage</div>
+              </div>
+              <div class="form-section-body">
+                <table class="rev-table">
+                  <thead><tr><th>Stage</th><th>Primary reviewer</th><th>Backup</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="rev-stage">Safety Review</div><span class="rev-stage-sub">Initial safety assessment</span></td>
+                      <td><select class="rev-select-inline"><option>Oumar Cheikh</option><option>Aisha Koné</option></select></td>
+                      <td><select class="rev-select-inline"><option>Aisha Koné</option><option>Oumar Cheikh</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">EMP Review</div><span class="rev-stage-sub">Environmental assessment</span></td>
+                      <td><select class="rev-select-inline"><option>Nadia Al-Farsi</option><option>Brahim Youssouf</option></select></td>
+                      <td><select class="rev-select-inline"><option>Brahim Youssouf</option><option>Nadia Al-Farsi</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">IH Review</div><span class="rev-stage-sub">Hazard classification &amp; sign-off</span></td>
+                      <td><select class="rev-select-inline"><option>Mariam Deby</option><option>Hassan Ibrahim</option></select></td>
+                      <td><select class="rev-select-inline"><option>Hassan Ibrahim</option><option>Mariam Deby</option></select></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <div class="form-progress" style="display:flex;align-items:center;gap:var(--s-3);font-size:12px;color:var(--text-3);flex:1">
+                  <span>Completion</span>
+                  <span class="progress-track" style="width:140px;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden">
+                    <span class="progress-fill" style="display:block;height:100%;background:var(--accent);border-radius:2px;width:0;transition:width 0.3s"></span>
+                  </span>
+                  <span class="progress-val mono" style="font-weight:600;color:var(--text)">0%</span>
+                </div>
+                <button class="btn" data-page="chemical"><span data-icon="arrow-right" style="transform:rotate(180deg)"></span><span data-t="btn.back">Back</span></button>
+                <button class="btn" id="form-draft"><span data-t="btn.savedraft">Save draft</span></button>
+                <button class="btn btn-primary" id="form-submit"><span data-t="btn.submit">Submit request</span><span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active">
+                  <div class="wf-node">1</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Submission</div>
+                    <div class="wf-sub">You are here</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">2</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Safety Review</div>
+                    <div class="wf-sub">Initial assessment</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">3</div>
+                  <div class="wf-content">
+                    <div class="wf-title">EMP Review</div>
+                    <div class="wf-sub">Environmental</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">4</div>
+                  <div class="wf-content">
+                    <div class="wf-title">IH Review</div>
+                    <div class="wf-sub">Hazard sign-off</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">5</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Review Complete</div>
+                    <div class="wf-sub">Chemical registered</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Request summary</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Chemical</span><span class="summary-val empty" id="sum-name">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Intended use</span><span class="summary-val empty" id="sum-use">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Manufacturer</span><span class="summary-val empty" id="sum-mfr">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Site</span><span class="summary-val empty" id="sum-site">Not set</span></div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Need help?</div>
+              <div class="summary-body" style="gap:6px">
+                <div class="summary-row" style="cursor:pointer;color:var(--accent)"><span data-icon="book" style="display:inline-flex;width:14px"></span><span>Open user guide</span></div>
+                <div class="summary-row" style="cursor:pointer;color:var(--text-2)"><span data-icon="help" style="display:inline-flex;width:14px"></span><span>Contact HSE coordinator</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MY REQUESTS ============ -->
+      <section class="page" id="page-requests" data-screen-label="04 My Requests">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.requests.title">My requests</h1>
+            <p class="page-subtitle" data-t="page.requests.sub">Track all requests you have submitted</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New request</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Type</th><th>Title</th><th>Submitted</th><th>Current stage</th><th>Status</th><th></th></tr></thead>
+              <tbody id="req-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ APPROVALS (UNIFIED INBOX) ============ -->
+      <section class="page" id="page-approvals" data-screen-label="12 Approvals">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.approvals.title">Approvals inbox</h1>
+            <p class="page-subtitle">Items across all TPC modules awaiting your review</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+            <button class="btn" id="inbox-select-all"><span data-icon="check-square"></span>Select all</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Submitted by</th><th>Site</th><th>Stage</th><th>Waiting</th><th style="text-align:right">Action</th></tr></thead>
+              <tbody id="approvals-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ USERS ============ -->
+      <section class="page" id="page-users" data-screen-label="06 Users">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.users.title">Users &amp; Roles</h1>
+            <p class="page-subtitle" data-t="page.users.sub">Roles, permissions and team members</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" id="user-add-btn"><span data-icon="plus"></span>Invite user</button>
+          </div>
+        </div>
+
+        <!-- KPI strip -->
+        <div style="display:flex;gap:var(--s-3);margin-bottom:var(--s-5);flex-wrap:wrap">
+          <div class="stat-chip"><span class="stat-chip-label">Active</span><span class="stat-chip-val" id="user-kpi-active">—</span></div>
+          <div class="stat-chip"><span class="stat-chip-label">Inactive</span><span class="stat-chip-val" id="user-kpi-inactive">—</span></div>
+          <div class="stat-chip"><span class="stat-chip-label">Reviewers</span><span class="stat-chip-val" id="user-kpi-reviewers">—</span></div>
+        </div>
+
+        <!-- Filter bar -->
+        <div style="display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5);flex-wrap:wrap">
+          <input class="input" id="user-search" placeholder="Search name or email…" style="max-width:240px">
+          <select class="select" id="user-filter-role" style="max-width:180px">
+            <option value="">All roles</option>
+            <option value="ga">Global Admin</option>
+            <option value="admin">Safety Admin</option>
+            <option value="she">HSE Reviewer</option>
+            <option value="sm">Store Manager</option>
+            <option value="user">Field User</option>
+          </select>
+          <div style="display:flex;gap:var(--s-2)">
+            <button class="ms-chip-filter active" data-user-status-filter="active">Active</button>
+            <button class="ms-chip-filter" data-user-status-filter="inactive">Inactive</button>
+            <button class="ms-chip-filter" data-user-status-filter="all">All</button>
+          </div>
+        </div>
+
+        <!-- Invite / Edit user form panel — hidden by default -->
+        <div id="user-form-panel" style="display:none;margin-bottom:var(--s-5)">
+          <div class="card">
+            <div class="card-head">
+              <div><div class="card-title" id="user-form-title">Invite user</div></div>
+              <button class="btn btn-sm btn-ghost" id="uf-cancel">Cancel</button>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Full name <span class="req">*</span></label>
+                  <input class="input" id="uf-name" placeholder="e.g. Mariam Deby" maxlength="80">
+                </div>
+                <div class="form-group">
+                  <label>Email address <span class="req">*</span></label>
+                  <input class="input" id="uf-email" type="email" placeholder="name@tpc-tchad.td" maxlength="120">
+                  <div style="font-size:11px;color:var(--text-4);margin-top:4px">Login identifier — cannot be changed after creation.</div>
+                </div>
+                <div class="form-group">
+                  <label>Job title <span style="color:var(--text-4);font-weight:400">(optional)</span></label>
+                  <input class="input" id="uf-jobtitle" placeholder="e.g. HSE Officer" maxlength="80">
+                </div>
+                <div class="form-group">
+                  <label>Site <span class="req">*</span></label>
+                  <select class="select" id="uf-site"><option value="">— Select site —</option></select>
+                </div>
+                <div class="form-group">
+                  <label>Avatar initials</label>
+                  <input class="input" id="uf-initials" placeholder="e.g. MD" maxlength="2" style="text-transform:uppercase;width:72px">
+                </div>
+              </div>
+              <div style="height:1px;background:var(--border);margin:var(--s-4) 0"></div>
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Platform role <span class="req">*</span></label>
+                  <select class="select" id="uf-role" style="max-width:280px">
+                    <option value="ga">Global Admin</option>
+                    <option value="admin">Safety Admin</option>
+                    <option value="she">HSE Reviewer</option>
+                    <option value="sm">Store Manager</option>
+                    <option value="user" selected>Field User</option>
+                  </select>
+                </div>
+                <div class="form-group full" id="uf-stages-wrap" style="display:none">
+                  <label>Approval stages <span class="req">*</span></label>
+                  <div id="uf-stages" style="display:flex;flex-direction:column;gap:8px;margin-top:4px"></div>
+                  <div id="uf-stages-err" class="field-error" style="display:none"></div>
+                </div>
+                <div class="form-group full" id="uf-module-wrap">
+                  <label>Module access <span class="req">*</span></label>
+                  <div id="uf-module-access" style="display:flex;flex-direction:column;gap:8px;margin-top:4px"></div>
+                  <div id="uf-module-err" class="field-error" style="display:none"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="uf-save"><span data-icon="check"></span>Save user</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dynamic user grid — rendered by tpc-v6.js -->
+        <div class="users-grid" id="user-grid"></div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="page" id="page-settings" data-screen-label="07 Settings">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.settings.title">System settings</h1>
+            <p class="page-subtitle" data-t="page.settings.sub">Azure integration, SSO, data sources</p>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <div class="form-section-num"><span data-icon="cloud" style="width:14px;height:14px"></span></div>
+            <div class="form-section-title">Azure configuration</div>
+            <span class="badge badge-success badge-dot" style="margin-left:auto">Connected</span>
+          </div>
+          <div class="form-section-body">
+            <div class="form-grid">
+              <div class="form-group"><label>Azure tenant ID</label><input class="input" value="9b8f7c-1a2d-4e5f-8a9b-c3d4e5f6a7b8" readonly></div>
+              <div class="form-group"><label>Azure SQL server</label><input class="input" value="tpc-sqlserver.database.windows.net" readonly></div>
+              <div class="form-group"><label>Organization domain</label><input class="input" value="tpc-tchad.td"></div>
+              <div class="form-group"><label>SSO provider</label><select class="select"><option>Microsoft Entra ID (Azure AD)</option></select></div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn">Test connection</button>
+            <button class="btn btn-primary">Save configuration</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ SAFETY DATA HOME ============ -->
+      <section class="page" id="page-safety-home" data-screen-label="Safety Data Home">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Safety Data Management</h1>
+            <p class="page-subtitle">Chemical inventory, SDS, PPE and HSE approvals · 8 modules</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <!-- Safety Data Dashboard — rendered by renderSafetyDashboard() in tpc-v2.js -->
+        <div id="safety-dashboard" style="margin-bottom:var(--s-6)"></div>
+
+        <div class="section-title">Modules</div>
+        <div class="mod-list">
+
+          <div class="mod-list-card" data-page="new-chemical">
+            <div class="sol-icon-box red"><span data-icon="flask"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">New Chemical</div>
+              <div class="mod-list-desc">Submit a new chemical for HSE review and multi-stage approval.</div>
+              <div class="mod-list-meta">145 chemicals</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="add-to-site">
+            <div class="sol-icon-box blue"><span data-icon="map-pin"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">Add To My Site</div>
+              <div class="mod-list-desc">Request an approved chemical for your specific TPC site.</div>
+              <div class="mod-list-meta">Site-level request</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="master-sheet">
+            <div class="sol-icon-box slate"><span data-icon="database"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">Master Sheet</div>
+              <div class="mod-list-desc">Browse and manage the complete TPC chemical inventory with GHS classifications.</div>
+              <div class="mod-list-meta" id="hub-meta-ms">145 chemicals · full inventory</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="manufacturers">
+            <div class="sol-icon-box green"><span data-icon="building"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">Manufacturers</div>
+              <div class="mod-list-desc">Manage chemical supplier records, contacts and address information.</div>
+              <div class="mod-list-meta" id="hub-meta-mfr">5 manufacturers</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="storage">
+            <div class="sol-icon-box purple"><span data-icon="archive"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">Storage</div>
+              <div class="mod-list-desc">Manage chemical storage locations by site across all TPC operations.</div>
+              <div class="mod-list-meta" id="hub-meta-storage">14 locations · 6 sites</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="ppe">
+            <div class="sol-icon-box yellow"><span data-icon="hard-hat"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">PPE</div>
+              <div class="mod-list-desc">View personal protective equipment requirements by GHS hazard class.</div>
+              <div class="mod-list-meta" id="hub-meta-ppe">GHS reference · 9 hazard classes</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="users">
+            <div class="sol-icon-box indigo"><span data-icon="users"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">Users</div>
+              <div class="mod-list-desc">Manage user accounts, roles and permissions across TPC sites.</div>
+              <div class="mod-list-meta">Role-based access control</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+          <div class="mod-list-card" data-page="user-guide">
+            <div class="sol-icon-box teal"><span data-icon="book"></span></div>
+            <div class="mod-list-body">
+              <div class="mod-list-title">User Guide</div>
+              <div class="mod-list-desc">Access system documentation and the Chemical Management guide.</div>
+              <div class="mod-list-meta">Documentation · PDF embed</div>
+            </div>
+            <span class="mod-list-chevron" data-icon="chevron-right"></span>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ USER GUIDE ============ -->
+      <section class="page" id="page-user-guide" data-screen-label="User Guide">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">User Guide</h1>
+            <p class="page-subtitle">Safety Data Management — system documentation</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="safety-home"><span data-icon="arrow-right" style="transform:rotate(180deg)"></span>Back</button>
+          </div>
+        </div>
+
+        <div class="split-row" style="grid-template-columns:1fr 1fr;margin-bottom:var(--s-7)">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="book"></span>Chemical Management Guide</div>
+            </div>
+            <div class="card-body">
+              <div class="file-drop" id="guide-pdf-drop" style="cursor:pointer">
+                <div data-icon="file-text"></div>
+                <div class="file-drop-title">Chemical Management Guide · PDF</div>
+                <div class="file-drop-hint">Drop a PDF here to embed, or click to upload</div>
+              </div>
+              <div id="guide-pdf-viewer" style="display:none;width:100%;height:600px;margin-top:var(--s-4)"></div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="help-circle"></span>Quick Reference</div>
+            </div>
+            <div class="card-body flush">
+              <div class="news-list">
+                <article class="news-item" data-page="new-chemical" style="cursor:pointer">
+                  <div class="news-date"><span data-icon="flask" style="display:inline-flex;width:18px"></span></div>
+                  <div>
+                    <div class="news-title">New Chemical Request</div>
+                    <div class="news-excerpt">How to submit a new chemical for HSE review and approval.</div>
+                  </div>
+                  <div class="news-cat">Guide</div>
+                </article>
+                <article class="news-item" data-page="add-to-site" style="cursor:pointer">
+                  <div class="news-date"><span data-icon="map-pin" style="display:inline-flex;width:18px"></span></div>
+                  <div>
+                    <div class="news-title">Add to My Site</div>
+                    <div class="news-excerpt">Requesting an existing approved chemical for your specific site.</div>
+                  </div>
+                  <div class="news-cat">Guide</div>
+                </article>
+                <article class="news-item" data-page="approvals" style="cursor:pointer">
+                  <div class="news-date"><span data-icon="check-square" style="display:inline-flex;width:18px"></span></div>
+                  <div>
+                    <div class="news-title">Approval Workflow</div>
+                    <div class="news-excerpt">Understanding the multi-stage HSE approval process.</div>
+                  </div>
+                  <div class="news-cat">Guide</div>
+                </article>
+                <article class="news-item" data-page="ppe" style="cursor:pointer">
+                  <div class="news-date"><span data-icon="hard-hat" style="display:inline-flex;width:18px"></span></div>
+                  <div>
+                    <div class="news-title">PPE Requirements</div>
+                    <div class="news-excerpt">GHS hazard classification and required protective equipment.</div>
+                  </div>
+                  <div class="news-cat">Guide</div>
+                </article>
+                <article class="news-item" data-page="master-sheet" style="cursor:pointer">
+                  <div class="news-date"><span data-icon="database" style="display:inline-flex;width:18px"></span></div>
+                  <div>
+                    <div class="news-title">Master Sheet</div>
+                    <div class="news-excerpt">Browsing the chemical inventory and filtering by site or hazard.</div>
+                  </div>
+                  <div class="news-cat">Guide</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PPE ============ -->
+      <section class="page" id="page-ppe" data-screen-label="Safety PPE">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">PPE Reference</h1>
+            <p class="page-subtitle">Personal protective equipment requirements by GHS hazard class</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+          </div>
+        </div>
+
+        <!-- Search + filter toolbar -->
+        <div style="display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5);flex-wrap:wrap">
+          <input class="input" id="ppe-search" placeholder="Search hazard classes…" style="max-width:260px">
+          <div style="display:flex;gap:var(--s-2)">
+            <button class="ms-chip-filter active" id="ppe-filter-active">Active</button>
+            <button class="ms-chip-filter" id="ppe-filter-all">All</button>
+          </div>
+        </div>
+
+        <!-- Edit form panel — hidden by default. No Add: PPE-01 (hazard keys are immutable) -->
+        <div id="ppe-form-panel" style="display:none;margin-bottom:var(--s-5)">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="card-title" id="ppe-form-title">Edit hazard class</div>
+                <div id="ppe-form-subtitle" style="font-size:12px;color:var(--text-3);margin-top:2px;display:none"></div>
+              </div>
+              <button class="btn btn-sm btn-ghost" id="ppe-form-cancel">Cancel</button>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group">
+                  <label>Hazard class key — PPE-01: immutable</label>
+                  <div class="input" id="ppe-f-key-display" style="background:var(--surface-2);color:var(--text-3);cursor:default;display:flex;align-items:center;gap:var(--s-2)"></div>
+                </div>
+                <div class="form-group">
+                  <label>Label <span class="req">*</span></label>
+                  <input class="input" id="ppe-f-label" placeholder="e.g. Flammable" maxlength="60">
+                </div>
+                <div class="form-group full">
+                  <label>PPE items <span class="req">*</span></label>
+                  <textarea class="input" id="ppe-f-items" placeholder="One item per line&#10;e.g. Safety glasses&#10;Nitrile gloves" rows="5" style="resize:vertical"></textarea>
+                  <div style="font-size:11px;color:var(--text-4);margin-top:4px">One item per line. Blank lines are ignored.</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="ppe-form-save"><span data-icon="check"></span>Save changes</button>
+            </div>
+          </div>
+        </div>
+
+        <div id="ppe-reference"></div>
+      </section>
+
+      <!-- ============ ADD TO MY SITE ============ -->
+      <section class="page" id="page-add-to-site" data-screen-label="Add Chemical to Site">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Add to my site</h1>
+            <p class="page-subtitle">Request an approved chemical for your specific TPC site</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="chemical"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+        <div class="form-layout">
+          <div class="form-main">
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Select chemical</div>
+                <div class="form-section-sub">Choose from the approved TPC inventory</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Chemical <span class="req">*</span></label>
+                    <select class="select" id="ats-chemical">
+                      <option value="">Select an approved chemical…</option>
+                      <option>Acetone</option>
+                      <option>Diesel</option>
+                      <option>Hydraulic Fluid ISO 46</option>
+                      <option>Methanol</option>
+                      <option>Sodium Hypochlorite</option>
+                    </select>
+                  </div>
+                  <div class="form-group full">
+                    <label>Justification <span class="req">*</span></label>
+                    <textarea class="textarea" placeholder="Why is this chemical needed at your site? Include process and usage context…"></textarea>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Destination site &amp; storage</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Site <span class="req">*</span></label>
+                    <select class="select" id="ats-site">
+                      <option value="">Select site…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Storage location <span class="req">*</span></label>
+                    <select class="select" id="ats-location">
+                      <option value="">Select site first…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Estimated quantity</label>
+                    <input class="input" placeholder="e.g. 20L, 5kg">
+                  </div>
+                </div>
+              </div>
+              <div class="form-actions">
+                <div style="flex:1;font-size:12px;color:var(--text-3)">Routes to <strong style="color:var(--text)">HSE Reviewer</strong> · SLA <span class="mono">3 days</span></div>
+                <button class="btn">Save draft</button>
+                <button class="btn btn-primary" id="ats-submit">Submit request<span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active"><div class="wf-node">1</div><div class="wf-content"><div class="wf-title">Submission</div><div class="wf-sub">You are here</div></div></div>
+                <div class="wf-step"><div class="wf-node">2</div><div class="wf-content"><div class="wf-title">HSE Review</div><div class="wf-sub">Site suitability check</div></div></div>
+                <div class="wf-step"><div class="wf-node">3</div><div class="wf-content"><div class="wf-title">Store Manager</div><div class="wf-sub">Storage confirmation</div></div></div>
+                <div class="wf-step"><div class="wf-node">4</div><div class="wf-content"><div class="wf-title">Approved</div><div class="wf-sub">Chemical added to site</div></div></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ STORAGE ============ -->
+      <section class="page" id="page-storage" data-screen-label="Safety Storage">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Storage Locations</h1>
+            <p class="page-subtitle">Chemical storage areas by site · 2 sites · 17 locations</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" id="loc-add-btn"><span data-icon="plus"></span>Add location</button>
+          </div>
+        </div>
+
+        <!-- Add / Edit form panel — shared, hidden by default -->
+        <div id="loc-form-panel" style="display:none;margin-bottom:var(--s-5)">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="card-title" id="loc-form-title">Add location</div>
+                <div id="loc-form-subtitle" style="font-size:12px;color:var(--text-3);margin-top:2px;display:none"></div>
+              </div>
+              <span id="loc-form-status" style="display:none;margin-left:auto;margin-right:var(--s-3)"></span>
+              <button class="btn btn-sm btn-ghost" id="loc-form-cancel">Cancel</button>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Location name <span class="req">*</span></label>
+                  <input class="input" id="loc-f-label" placeholder="e.g. Chemical Shelter A" maxlength="60">
+                </div>
+                <div class="form-group" id="loc-f-site-group">
+                  <label>Site <span class="req">*</span></label>
+                  <select class="select" id="loc-f-site"></select>
+                </div>
+                <div class="form-group" id="loc-f-site-ro-group" style="display:none">
+                  <label>Site</label>
+                  <div class="input" id="loc-f-site-ro" style="background:var(--surface-2);color:var(--text-3);cursor:default;display:flex;align-items:center"></div>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="loc-form-save"><span data-icon="check"></span>Save location</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Search + filter toolbar -->
+        <div style="display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5);flex-wrap:wrap">
+          <input class="input" id="loc-search" placeholder="Search locations…" style="max-width:260px">
+          <div style="display:flex;gap:var(--s-2)">
+            <button class="ms-chip-filter active" id="loc-filter-active">Active</button>
+            <button class="ms-chip-filter" id="loc-filter-all">All</button>
+          </div>
+        </div>
+
+        <div id="storage-list"></div>
+      </section>
+
+      <!-- ============ MANUFACTURERS ============ -->
+      <section class="page" id="page-manufacturers" data-screen-label="Safety Manufacturers">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Manufacturers</h1>
+            <p class="page-subtitle">Chemical suppliers and manufacturer contacts · Safety Data</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" id="mfr-add-btn"><span data-icon="plus"></span>Add manufacturer</button>
+          </div>
+        </div>
+
+        <!-- Search + filter toolbar -->
+        <div style="display:flex;align-items:center;gap:var(--s-3);margin-bottom:var(--s-5);flex-wrap:wrap">
+          <input class="input" id="mfr-search" placeholder="Search manufacturers…" style="max-width:260px">
+          <div style="display:flex;gap:var(--s-2)">
+            <button class="ms-chip-filter active" id="mfr-filter-active">Active</button>
+            <button class="ms-chip-filter" id="mfr-filter-all">All</button>
+          </div>
+        </div>
+
+        <!-- Add / Edit form panel — hidden by default -->
+        <div id="mfr-form-panel" style="display:none;margin-bottom:var(--s-5)">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="card-title" id="mfr-form-title">Add manufacturer</div>
+                <div id="mfr-form-subtitle" style="font-size:12px;color:var(--text-3);margin-top:2px;display:none"></div>
+              </div>
+              <span id="mfr-form-status" style="display:none;margin-left:auto;margin-right:var(--s-3)"></span>
+              <button class="btn btn-sm btn-ghost" id="mfr-form-cancel">Cancel</button>
+            </div>
+            <div class="card-body">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Manufacturer name <span class="req">*</span></label>
+                  <input class="input" id="mfr-f-name" placeholder="e.g. Sigma-Aldrich">
+                </div>
+                <div class="form-group">
+                  <label>Email</label>
+                  <input class="input" id="mfr-f-email" type="email" placeholder="contact@supplier.com">
+                </div>
+                <div class="form-group">
+                  <label>Phone</label>
+                  <input class="input" id="mfr-f-phone" placeholder="International format">
+                </div>
+                <div class="form-group full">
+                  <label>Address</label>
+                  <textarea class="input" id="mfr-f-addr" placeholder="Full address" rows="3" style="resize:vertical"></textarea>
+                </div>
+                <div class="form-group full">
+                  <label>Notes</label>
+                  <textarea class="input" id="mfr-f-notes" placeholder="Internal notes, SAP reference…" rows="2" style="resize:vertical"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary" id="mfr-form-save"><span data-icon="check"></span>Save manufacturer</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="users-grid" id="mfr-grid"></div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- TWEAKS PANEL -->
+<div class="tweaks-panel" id="tweaks-panel">
+  <div class="tweaks-head">
+    <h3>Tweaks</h3>
+    <button class="icon-btn" onclick="document.getElementById('tweaks-panel').classList.remove('open')" data-icon="x" style="width:24px;height:24px"></button>
+  </div>
+  <div class="tweaks-body">
+    <div class="tweak-row">
+      <span class="tweak-label">Theme</span>
+      <div class="tweak-seg">
+        <button data-tweak="theme" data-val="light" class="active">Light</button>
+        <button data-tweak="theme" data-val="dark">Dark</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Density</span>
+      <div class="tweak-seg">
+        <button data-tweak="density" data-val="comfortable" class="active">Comfortable</button>
+        <button data-tweak="density" data-val="compact">Compact</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Accent</span>
+      <div class="tweak-swatches">
+        <button class="tweak-swatch active" data-tweak="accent" data-val="red" style="background:#C8102E" title="TPC Red"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="yellow" style="background:#E5A50A" title="TPC Yellow"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="neutral" style="background:#344054" title="Neutral"></button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Sidebar</span>
+      <div class="tweak-seg">
+        <button data-tweak="nav" data-val="expanded" class="active">Expanded</button>
+        <button data-tweak="nav" data-val="collapsed">Collapsed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NOTIFICATIONS PANEL -->
+<div class="notif-panel" id="notif-panel">
+  <div class="notif-head">
+    <h3>Notifications</h3>
+    <span class="badge badge-neutral mono">9 total</span>
+  </div>
+  <div class="notif-tabs">
+    <div class="notif-tab active" data-tab="all">All <span class="count">0</span></div>
+    <div class="notif-tab" data-tab="approval">To approve <span class="count">0</span></div>
+    <div class="notif-tab" data-tab="mention">Mentions <span class="count">0</span></div>
+    <div class="notif-tab" data-tab="sla">SLA <span class="count">0</span></div>
+    <div class="notif-tab" data-tab="system">System <span class="count">0</span></div>
+  </div>
+  <div class="notif-list"></div>
+  <div class="notif-foot">
+    <span class="link" id="notif-viewall">Open approvals inbox<span data-icon="arrow-right"></span></span>
+    <span class="markread" id="notif-markread">Mark all read</span>
+  </div>
+</div>
+
+<!-- COMMAND PALETTE -->
+<div class="cmdk-backdrop" id="cmdk-backdrop">
+  <div class="cmdk" role="dialog" aria-label="Command palette">
+    <div class="cmdk-input-row">
+      <span data-icon="search"></span>
+      <input type="text" id="cmdk-input" placeholder="Jump to anything — pages, requests, people, actions…">
+      <span class="kbd-esc">ESC</span>
+    </div>
+    <div class="cmdk-results"></div>
+    <div class="cmdk-foot">
+      <span class="cmdk-foot-item"><span class="kbd">↑</span><span class="kbd">↓</span>&nbsp;navigate</span>
+      <span class="cmdk-foot-item"><span class="kbd">↵</span>&nbsp;select</span>
+      <span class="cmdk-foot-item"><span class="kbd">⌘</span><span class="kbd">K</span>&nbsp;close</span>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-id">#CHM-000</div>
+      <h2 class="drawer-title">Request title</h2>
+    </div>
+    <button class="drawer-close" data-icon="x" aria-label="Close"></button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <div id="dw-hazards" class="drawer-hazard"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Details</h3>
+      <div class="drawer-kv">
+        <div><div class="k">Submitted by</div><div class="v" id="dw-by">—</div></div>
+        <div><div class="k">Site</div><div class="v" id="dw-site">—</div></div>
+        <div><div class="k">Submitted</div><div class="v" id="dw-date">—</div></div>
+        <div><div class="k">Manufacturer</div><div class="v" id="dw-mfr">—</div></div>
+        <div><div class="k">Intended use</div><div class="v" id="dw-use">—</div></div>
+        <div><div class="k">Current stage</div><div class="v" id="dw-stage">—</div></div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Required PPE</h3>
+      <div id="dw-ppe" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Approval timeline</h3>
+      <div class="timeline" id="dw-timeline"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Add comment</h3>
+      <div class="comment-input">
+        <textarea placeholder="Note for the next reviewer…"></textarea>
+        <button class="btn btn-primary btn-sm"><span data-icon="send"></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <button class="btn"><span data-icon="paperclip"></span>View eSDS</button>
+    <div id="dw-action-zone" style="display:none;gap:var(--s-2)">
+      <button class="btn btn-ghost" id="dw-return-btn"><span data-icon="refresh-cw"></span>Return</button>
+      <button class="btn btn-danger" id="dw-reject-btn"><span data-icon="x"></span>Reject</button>
+      <button class="btn btn-primary" id="dw-approve-btn"><span data-icon="check"></span>Approve</button>
+    </div>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span data-icon="check-circle"></span>
+  <span class="toast-msg"></span>
+</div>
+
+<!-- REASON MODAL — shared by C2 (Reject Reason) and C3 (Return for Revision) -->
+<div class="drawer-backdrop" id="reason-backdrop"></div>
+<div class="reason-modal" id="reason-modal" role="dialog" aria-modal="true">
+  <div class="reason-modal-head">
+    <div class="reason-modal-title" id="reason-modal-title">Reject request</div>
+    <button class="btn btn-sm btn-ghost" id="reason-modal-close" aria-label="Close"><span data-icon="x"></span></button>
+  </div>
+  <div class="reason-modal-body">
+    <div class="form-group">
+      <label id="reason-modal-label">Reason <span style="color:var(--danger)">*</span></label>
+      <textarea class="input" id="reason-modal-text" rows="4"
+        placeholder="Describe the reason…" style="resize:vertical"></textarea>
+    </div>
+  </div>
+  <div class="reason-modal-foot">
+    <button class="btn" id="reason-modal-cancel">Cancel</button>
+    <button class="btn btn-danger" id="reason-modal-confirm" disabled>
+      <span data-icon="x"></span>Confirm reject
+    </button>
+  </div>
+</div>
+
+<script src="tpc-icons.js"></script>
+<script src="tpc-ghs.js"></script>
+<script src="tpc-app.js"></script>
+<script src="tpc-v2.js"></script>
+<script src="tpc-v3.js"></script>
+<script src="tpc-cash.js"></script>
+<script src="tpc-expense.js"></script>
+<script src="tpc-escort.js"></script>
+<script src="tpc-v4.js"></script>
+<script src="tpc-v5.js"></script>
+<script src="tpc-v6.js"></script>
+</body>
+</html>

@@ -1,0 +1,1119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPC SolutionHub — Tchad Petroleum Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tpc.css">
+<link rel="stylesheet" href="tpc-v2.css">
+</head>
+<body>
+
+<div class="app" data-nav="expanded">
+
+  <!-- ================== SIDEBAR ================== -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <div class="brand-mark"><span>TPC</span></div>
+      <div class="brand-text">
+        <div class="brand-name">SolutionHub</div>
+        <div class="brand-sub">TCHAD PETROLEUM</div>
+      </div>
+    </div>
+
+    <nav class="nav-area">
+      <div class="nav-label" data-t="nav.platform">Platform</div>
+      <div class="nav-item active" data-page="dashboard" id="nav-dashboard">
+        <span class="nav-icon" data-icon="layout-grid"></span>
+        <span data-t="nav.dashboard">Dashboard</span>
+      </div>
+      <div class="nav-item" data-page="requests" id="nav-requests">
+        <span class="nav-icon" data-icon="inbox"></span>
+        <span data-t="nav.requests">My Requests</span>
+        <span class="nav-badge">3</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.solutions">Solutions</div>
+      <div class="nav-item" data-page="chemical" id="nav-chemical">
+        <span class="nav-icon" data-icon="flask"></span>
+        <span data-t="nav.chemical">Safety Data</span>
+      </div>
+      <div class="nav-item" data-page="master-sheet" id="nav-master">
+        <span class="nav-icon" data-icon="database"></span>
+        <span>Master Sheet</span>
+      </div>
+      <div class="nav-item disabled">
+        <span class="nav-icon" data-icon="wallet"></span>
+        <span data-t="nav.cash">Cash Advance</span>
+      </div>
+      <div class="nav-item disabled">
+        <span class="nav-icon" data-icon="receipt"></span>
+        <span data-t="nav.expense">Daily Expense</span>
+      </div>
+      <div class="nav-item disabled">
+        <span class="nav-icon" data-icon="shield-check"></span>
+        <span data-t="nav.security">Security Escort</span>
+      </div>
+
+      <div class="nav-label" data-t="nav.admin">Administration</div>
+      <div class="nav-item" data-page="approvals" id="nav-approvals">
+        <span class="nav-icon" data-icon="check-square"></span>
+        <span data-t="nav.approvals">Approvals</span>
+        <span class="nav-badge">2</span>
+      </div>
+      <div class="nav-item" data-page="users" id="nav-users">
+        <span class="nav-icon" data-icon="users"></span>
+        <span data-t="nav.users">Users</span>
+      </div>
+      <div class="nav-item" data-page="settings" id="nav-settings">
+        <span class="nav-icon" data-icon="settings"></span>
+        <span data-t="nav.settings">Settings</span>
+      </div>
+    </nav>
+
+    <div class="role-switcher">
+      <div class="role-switcher-label" data-t="role.label">Demo role</div>
+      <select id="role-select" class="role-select">
+        <option value="ga">Global Admin · Cherif Hassan</option>
+        <option value="admin">Admin · Cherif Hassan</option>
+        <option value="she">HSE Reviewer · Mariam Deby</option>
+        <option value="sm">Store Manager · Fatima Moussa</option>
+        <option value="user">Field User · Ahmed Mahamat</option>
+      </select>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="live-dot"></span>
+      <span data-t="live">Live · Synced</span>
+    </div>
+  </aside>
+
+  <!-- ================== MAIN ================== -->
+  <main class="main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation" data-icon="menu"></button>
+        <div class="breadcrumb" id="breadcrumb"></div>
+      </div>
+
+      <div class="topbar-search">
+        <span data-icon="search"></span>
+        <input type="text" data-tph="topbar.search" placeholder="Search…">
+        <span class="kbd">⌘K</span>
+      </div>
+
+      <div class="topbar-right">
+        <button class="lang-btn" id="lang-btn">EN</button>
+        <button class="icon-btn" id="theme-btn" data-icon="moon" aria-label="Toggle theme"></button>
+        <button class="icon-btn" id="tweaks-btn" data-icon="sliders" aria-label="Tweaks"></button>
+        <button class="icon-btn" aria-label="Notifications" data-icon="bell"><span class="dot"></span></button>
+        <button class="user-chip">
+          <span class="avatar" id="user-avatar">CH</span>
+          <span>
+            <span class="user-chip-name" id="user-name">Cherif Hassan</span><br>
+            <span class="user-chip-role" id="user-role">Global Admin</span>
+          </span>
+        </button>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <div class="content">
+
+      <!-- access banner (role-gated) -->
+      <div class="access-banner" id="access-banner" style="display:none">
+        <span data-icon="alert-triangle"></span>
+        Your current role has limited access. Contact your administrator.
+      </div>
+
+      <!-- ============ DASHBOARD ============ -->
+      <section class="page active" id="page-dashboard" data-screen-label="01 Dashboard">
+
+        <!-- HERO -->
+        <div class="hero">
+          <div class="hero-content">
+            <div class="hero-greeting">Friday · 15 May 2026 · Douala</div>
+            <h1 class="hero-title">Good afternoon, Cherif.<br><span style="color:var(--text-3);font-weight:500">You have <span class="accent">3 chemical requests</span> awaiting your decision today.</span></h1>
+            <div class="hero-meta">
+              <span class="meta-chip"><span data-icon="check-circle"></span><strong>92%</strong>&nbsp;on-time SLA this month</span>
+              <span class="meta-chip"><span data-icon="clock"></span>Avg cycle <strong>3.2 days</strong></span>
+              <span class="meta-chip"><span data-icon="users"></span><strong>23</strong>&nbsp;active reviewers</span>
+            </div>
+          </div>
+          <div class="hero-aside">
+            <div class="sla-ring">
+              <div data-ring='[{"value":34,"color":"#079455"},{"value":6,"color":"#DC6803"},{"value":2,"color":"#D92D20"}]' data-ring-center="42"></div>
+              <div class="sla-legend">
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#079455"></span>On time<span class="count">34</span></div>
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#DC6803"></span>At risk<span class="count">6</span></div>
+                <div class="sla-legend-row"><span class="sla-legend-dot" style="background:#D92D20"></span>Breached<span class="count">2</span></div>
+              </div>
+            </div>
+            <div class="hero-stat">
+              <div class="hero-stat-val">42</div>
+              <div class="hero-stat-lbl">Active requests</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <div></div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <!-- YOUR QUEUE -->
+        <div class="queue-card">
+          <div class="queue-head">
+            <div class="queue-head-left">
+              <h2 data-t="queue.title">Your queue</h2>
+              <p data-t="queue.sub">Items waiting on you today</p>
+            </div>
+            <button class="btn btn-sm" data-page="approvals"><span data-t="queue.viewall">View all</span><span data-icon="arrow-right"></span></button>
+          </div>
+          <div class="queue-list">
+            <div class="queue-row" data-req="CHM-154">
+              <div class="queue-pill"><span data-icon="alert-triangle"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Methanol — IH hazard classification needed</div>
+                <div class="queue-sub"><span class="mono">#CHM-154</span> · PS3-Belabo · Ibrahim Saleh</div>
+              </div>
+              <div class="badge badge-danger"><span data-icon="clock"></span>4 days overdue</div>
+              <div class="queue-age urgent">SLA breached</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-156">
+              <div class="queue-pill warning"><span data-icon="clock"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Acetone — SHE review pending</div>
+                <div class="queue-sub"><span class="mono">#CHM-156</span> · Douala · Ahmed Mahamat</div>
+              </div>
+              <div class="badge badge-warning"><span data-icon="clock"></span>Due tomorrow</div>
+              <div class="queue-age due">2d 4h left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-page="approvals">
+              <div class="queue-pill info"><span data-icon="leaf"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Hydraulic Fluid ISO 46 — EMP environmental review</div>
+                <div class="queue-sub"><span class="mono">#CHM-152</span> · PS2-Dompta · Cherif Hassan</div>
+              </div>
+              <div class="badge badge-info"><span data-icon="leaf"></span>Environmental</div>
+              <div class="queue-age">5d left</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+            <div class="queue-row" data-req="CHM-155">
+              <div class="queue-pill success"><span data-icon="check"></span></div>
+              <div class="queue-main">
+                <div class="queue-title">Diesel — Final sign-off ready</div>
+                <div class="queue-sub"><span class="mono">#CHM-155</span> · PS2-Dompta · Fatima Moussa</div>
+              </div>
+              <div class="badge badge-success"><span data-icon="check"></span>Ready to approve</div>
+              <div class="queue-age">Today</div>
+              <span data-icon="chevron-right" style="color:var(--text-4)"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- KPIs with sparklines -->
+        <div class="kpi-row">
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label" data-t="stats.pending">Pending requests</span>
+              <span class="kpi-delta down">+3</span>
+            </div>
+            <div class="kpi-value">12</div>
+            <div data-sparkline="8,10,7,9,11,13,12" data-spark-cls="spark-accent"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label" data-t="stats.approved">Approved this month</span>
+              <span class="kpi-delta up">+18%</span>
+            </div>
+            <div class="kpi-value">47</div>
+            <div data-sparkline="32,38,35,40,42,45,47" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">Avg cycle time</span>
+              <span class="kpi-delta up">-12%</span>
+            </div>
+            <div class="kpi-value">3.2<span style="font-size:14px;color:var(--text-3);font-weight:500"> days</span></div>
+            <div data-sparkline="4.1,3.8,4.0,3.6,3.4,3.3,3.2" data-spark-cls="spark-up"></div>
+          </div>
+          <div class="kpi">
+            <div class="kpi-top">
+              <span class="kpi-label">SLA performance</span>
+              <span class="kpi-delta up">+4pt</span>
+            </div>
+            <div class="kpi-value">92<span style="font-size:14px;color:var(--text-3);font-weight:500">%</span></div>
+            <div data-sparkline="84,86,88,87,90,91,92" data-spark-cls="spark-up"></div>
+          </div>
+        </div>
+
+        <!-- SITE ACTIVITY + NEWS -->
+        <div class="split-row">
+          <div class="site-map-card" id="site-map">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="map-pin"></span>Site activity</div>
+              <div class="card-actions">
+                <span class="badge badge-neutral mono">6 sites</span>
+                <button class="btn btn-sm btn-ghost"><span data-icon="filter"></span></button>
+              </div>
+            </div>
+            <div class="site-map-body">
+              <div class="site-map-canvas"></div>
+              <div class="site-list"></div>
+            </div>
+          </div>
+
+          <!-- News -->
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="megaphone"></span><span data-t="news.title">News & announcements</span></div>
+              <button class="btn btn-sm btn-ghost"><span data-t="news.viewall">Archive</span></button>
+            </div>
+            <div class="card-body flush">
+              <div class="news-list">
+                <article class="news-item">
+                  <div class="news-date"><span class="day">15</span>MAY</div>
+                  <div>
+                    <div class="news-title">HSE quarterly audit — preparation kicks off Monday</div>
+                    <div class="news-excerpt">All site supervisors must complete chemical reconciliation by 22 May. Master Sheet exports now include audit columns.</div>
+                  </div>
+                  <div class="news-cat">HSE</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">12</span>MAY</div>
+                  <div>
+                    <div class="news-title">New manufacturer added: Brenntag Chad</div>
+                    <div class="news-excerpt">Local supplier now available in the Manufacturer database for all PS2 / PS3 / Kribi requests.</div>
+                  </div>
+                  <div class="news-cat">PROCUREMENT</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">09</span>MAY</div>
+                  <div>
+                    <div class="news-title">Cash Advance module — closed beta starts in July</div>
+                    <div class="news-excerpt">Field managers in Douala and PS2 will be onboarded first. Sign up via the Settings page if interested.</div>
+                  </div>
+                  <div class="news-cat">PRODUCT</div>
+                </article>
+                <article class="news-item">
+                  <div class="news-date"><span class="day">06</span>MAY</div>
+                  <div>
+                    <div class="news-title">Scheduled maintenance — Azure SQL · Sunday 22:00 UTC</div>
+                    <div class="news-excerpt">Expect ~20 min of read-only access. Submissions queued during the window will sync automatically.</div>
+                  </div>
+                  <div class="news-cat">SYSTEM</div>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- SOLUTIONS -->
+        <div class="section-title">Solutions</div>
+        <div class="solutions-grid" style="margin-bottom:var(--s-7)">
+          <div class="sol-card" data-page="chemical">
+            <div class="sol-head">
+              <div class="sol-icon-box red"><span data-icon="flask"></span></div>
+              <div class="badge badge-success badge-dot">Live</div>
+            </div>
+            <div>
+              <div class="sol-name">Safety Data Management</div>
+              <div class="sol-desc">Chemical inventory, SDS, PPE and multi-level HSE approval workflows.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">145 chemicals · 12 pending</span>
+              <span data-icon="arrow-right" style="color:var(--accent)"></span>
+            </div>
+          </div>
+
+          <div class="sol-card locked">
+            <div class="sol-head">
+              <div class="sol-icon-box yellow"><span data-icon="wallet"></span></div>
+              <div class="badge badge-warning">In development</div>
+            </div>
+            <div>
+              <div class="sol-name">Cash Advance</div>
+              <div class="sol-desc">Request and track cash advances with full approval chain and reconciliation.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Coming Q3 2026</span>
+            </div>
+          </div>
+
+          <div class="sol-card locked">
+            <div class="sol-head">
+              <div class="sol-icon-box blue"><span data-icon="receipt"></span></div>
+              <div class="badge badge-warning">In development</div>
+            </div>
+            <div>
+              <div class="sol-name">Daily Expense</div>
+              <div class="sol-desc">Submit daily expense claims with receipt attachment and category tracking.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Coming Q4 2026</span>
+            </div>
+          </div>
+
+          <div class="sol-card locked">
+            <div class="sol-head">
+              <div class="sol-icon-box green"><span data-icon="shield-check"></span></div>
+              <div class="badge badge-warning">In development</div>
+            </div>
+            <div>
+              <div class="sol-name">Security Escort (E85)</div>
+              <div class="sol-desc">Request and track security escort assignments and E85 routes across TPC sites.</div>
+            </div>
+            <div class="sol-foot">
+              <span class="sol-meta">Coming Q4 2026</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- QUICK ACTIONS + RECENT -->
+        <div class="split-row">
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="activity"></span>Recent activity</div>
+              <button class="btn btn-sm btn-ghost" data-page="requests"><span data-t="btn.viewall">View all</span></button>
+            </div>
+            <div class="card-body flush table-wrap">
+              <table>
+                <thead><tr><th>ID</th><th>Title</th><th>By</th><th>Stage</th><th>Status</th></tr></thead>
+                <tbody>
+                  <tr data-req="CHM-156"><td class="id-cell">#CHM-156</td><td>Acetone — new chemical</td><td>Ahmed Mahamat</td><td>SHE Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td></tr>
+                  <tr data-req="CHM-155"><td class="id-cell">#CHM-155</td><td>Diesel — add to PS2-Dompta</td><td>Fatima Moussa</td><td>Final Approval</td><td><span class="badge badge-success badge-dot">Approved</span></td></tr>
+                  <tr data-req="CHM-154"><td class="id-cell">#CHM-154</td><td>Methanol — new chemical</td><td>Ibrahim Saleh</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td></tr>
+                  <tr><td class="id-cell">#CHM-153</td><td>Hydraulic Fluid ISO 46</td><td>Cherif Hassan</td><td>—</td><td><span class="badge badge-danger badge-dot">Rejected</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div class="card-title"><span data-icon="sparkles"></span><span data-t="quick.title">Quick actions</span></div>
+            </div>
+            <div class="card-body flush quick-actions">
+              <button class="quick-action" data-page="new-chemical">
+                <span data-icon="flask"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">New chemical</span>
+                  <span class="quick-action-sub">Submit for HSE approval</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="chemical">
+                <span data-icon="map-pin"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Add to my site</span>
+                  <span class="quick-action-sub">Existing chemical, new location</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="master-sheet">
+                <span data-icon="database"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Master Sheet</span>
+                  <span class="quick-action-sub">Full TPC chemical inventory</span>
+                </span>
+              </button>
+              <button class="quick-action" data-page="approvals">
+                <span data-icon="check-square"></span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Review queue</span>
+                  <span class="quick-action-sub">2 items waiting on you</span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ============ CHEMICAL HUB ============ -->
+      <section class="page" id="page-chemical" data-screen-label="02 Safety Data Management">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.chemical.title">Safety Data Management</h1>
+            <p class="page-subtitle" data-t="page.chemical.sub">Chemical inventory, SDS, PPE and HSE approvals · 7 modules</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span><span data-t="btn.filter">Filter</span></button>
+            <button class="btn"><span data-icon="download"></span><span data-t="btn.export">Export</span></button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span><span data-t="btn.newrequest">New request</span></button>
+          </div>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.chemicals">Active chemicals</div><div class="stat-icon" data-icon="flask"></div></div>
+            <div class="stat-value">145</div>
+            <div class="stat-meta up"><span data-icon="trending-up"></span>+6 this month</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.pending">Pending</div><div class="stat-icon" data-icon="clock"></div></div>
+            <div class="stat-value">12</div>
+            <div class="stat-meta warn"><span data-icon="alert-triangle"></span>3 urgent</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.manufacturers">Manufacturers</div><div class="stat-icon" data-icon="building"></div></div>
+            <div class="stat-value">8</div>
+            <div class="stat-meta">Active suppliers</div>
+          </div>
+          <div class="stat">
+            <div class="stat-top"><div class="stat-label" data-t="stats.storage">Storage locations</div><div class="stat-icon" data-icon="map-pin"></div></div>
+            <div class="stat-value">24</div>
+            <div class="stat-meta">Across 6 sites</div>
+          </div>
+        </div>
+
+        <div class="section-title">Modules</div>
+        <div class="modules-grid">
+          <button class="mod-card" data-page="new-chemical">
+            <div class="sol-icon-box red"><span data-icon="plus"></span></div>
+            <div class="mod-name">New chemical</div>
+            <div class="mod-desc">Submit a new chemical with full HSE approval workflow.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="add-to-site">
+            <div class="sol-icon-box blue"><span data-icon="map-pin"></span></div>
+            <div class="mod-name">Add to my site</div>
+            <div class="mod-desc">Request an approved chemical for your specific TPC site.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="master-sheet">
+            <div class="sol-icon-box"><span data-icon="database"></span></div>
+            <div class="mod-name">Master Sheet</div>
+            <div class="mod-desc">Browse and manage the complete TPC chemical inventory.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="storage">
+            <div class="sol-icon-box"><span data-icon="archive"></span></div>
+            <div class="mod-name">Storage</div>
+            <div class="mod-desc">Manage storage locations by area of use across all sites.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="manufacturers">
+            <div class="sol-icon-box"><span data-icon="building"></span></div>
+            <div class="mod-name">Manufacturers</div>
+            <div class="mod-desc">Add, edit, or remove chemical manufacturers and contacts.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card" data-page="ppe">
+            <div class="sol-icon-box yellow"><span data-icon="hard-hat"></span></div>
+            <div class="mod-name">PPE</div>
+            <div class="mod-desc">Manage personal protective equipment lists by chemical.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+          <button class="mod-card">
+            <div class="sol-icon-box"><span data-icon="book"></span></div>
+            <div class="mod-name">User guide</div>
+            <div class="mod-desc">Step-by-step documentation for every module.</div>
+            <span class="mod-link">Open<span data-icon="arrow-right"></span></span>
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title"><span data-icon="history"></span>Recent chemical requests</div>
+            <div class="card-actions">
+              <button class="btn btn-sm"><span data-icon="filter"></span>Filter</button>
+            </div>
+          </div>
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Manufacturer</th><th>Site</th><th>Stage</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr><td class="id-cell">#CHM-156</td><td>Acetone</td><td>Sigma-Aldrich</td><td>Douala</td><td>SHE Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-155</td><td>Diesel</td><td>TotalEnergies</td><td>PS2-Dompta</td><td>Final Approval</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-154</td><td>Methanol</td><td>Brenntag Chad</td><td>PS3-Belabo</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-152</td><td>Hydraulic Fluid ISO 46</td><td>Castrol Industrial</td><td>PS2-Dompta</td><td>EMP Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+                <tr><td class="id-cell">#CHM-150</td><td>Sodium Hypochlorite</td><td>Brenntag Chad</td><td>PRS-Kribi</td><td>OI Safety</td><td><span class="badge badge-info badge-dot">In review</span></td><td><span data-icon="chevron-right" style="color:var(--text-4)"></span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ MASTER SHEET ============ -->
+      <section class="page" id="page-master-sheet" data-screen-label="03 Master Sheet">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title">Master Sheet</h1>
+            <p class="page-subtitle">Complete TPC chemical inventory · 145 entries · GHS hazard classification</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export CSV</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New chemical</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="ms-toolbar">
+            <div class="ms-search">
+              <span data-icon="search"></span>
+              <input type="text" placeholder="Search by name, CAS, manufacturer…">
+            </div>
+            <button class="ms-chip-filter active">All sites</button>
+            <button class="ms-chip-filter">Douala</button>
+            <button class="ms-chip-filter">PS2-Dompta</button>
+            <button class="ms-chip-filter">PS3-Belabo</button>
+            <button class="ms-chip-filter">PRS-Kribi</button>
+            <button class="ms-chip-filter">FSO</button>
+            <span style="width:1px;height:20px;background:var(--border);margin:0 4px"></span>
+            <button class="ms-chip-filter">All hazards</button>
+            <button class="ms-chip-filter">Flammable</button>
+            <button class="ms-chip-filter">Toxic</button>
+            <button class="ms-chip-filter">Corrosive</button>
+          </div>
+          <div class="card-body flush table-wrap" id="ms-inventory">
+            <table class="ms-table">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Chemical</th>
+                  <th>GHS</th>
+                  <th>Class</th>
+                  <th>Manufacturer</th>
+                  <th>Site</th>
+                  <th>Stock</th>
+                  <th>PPE</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ NEW CHEMICAL FORM ============ -->
+      <section class="page" id="page-new-chemical" data-screen-label="03 New Chemical">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.newchem.title">New chemical request</h1>
+            <p class="page-subtitle" data-t="page.newchem.sub">Submit a new chemical for HSE review and approval</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn" data-page="chemical"><span data-icon="x"></span>Cancel</button>
+          </div>
+        </div>
+
+        <div class="form-layout">
+          <!-- MAIN FORM -->
+          <div class="form-main">
+
+            <!-- Section 1: Chemical Info -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">1</div>
+                <div class="form-section-title">Chemical information</div>
+                <div class="form-section-sub">Required for submission</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Chemical name <span class="req">*</span></label>
+                    <input class="input" id="chem-name" data-summary data-required placeholder="e.g. Acetone, Hydraulic Fluid ISO 46…">
+                  </div>
+                  <div class="form-group">
+                    <label>Bar code <span class="hint">— auto-assigned</span></label>
+                    <input class="input" placeholder="Generated after approval" disabled>
+                  </div>
+                  <div class="form-group">
+                    <label>Intended use <span class="req">*</span></label>
+                    <select class="select" id="chem-use" data-summary data-required>
+                      <option value="">Select intended use…</option>
+                      <option>Cleaning</option>
+                      <option>Lubrication</option>
+                      <option>Fuel</option>
+                      <option>Laboratory Analysis</option>
+                      <option>Maintenance</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Handling method <span class="req">*</span></label>
+                    <select class="select" data-summary>
+                      <option value="">Select method…</option>
+                      <option>Standard PPE</option>
+                      <option>Chemical Resistant Gloves</option>
+                      <option>Full Face Shield Required</option>
+                      <option>SCBA Required</option>
+                      <option>Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Where used <span class="req">*</span></label>
+                    <select class="select">
+                      <option value="">Select…</option>
+                      <option>Indoor</option>
+                      <option>Outdoor</option>
+                      <option>Both Indoor &amp; Outdoor</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Expected quantity per task</label>
+                    <input class="input" placeholder="e.g. 5L per task, 20kg/week…">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 2: Hazards & PPE -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">2</div>
+                <div class="form-section-title">Hazard classification &amp; PPE</div>
+                <div class="form-section-sub">Select GHS pictograms — PPE auto-suggested</div>
+              </div>
+              <div class="form-section-body">
+                <div class="hazard-picker" id="hazard-picker"></div>
+                <div class="ppe-strip" id="ppe-strip" style="display:none"></div>
+              </div>
+            </div>
+
+            <!-- Section 3: Manufacturer -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">3</div>
+                <div class="form-section-title">Manufacturer</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group full">
+                    <label>Manufacturer name <span class="req">*</span></label>
+                    <select class="select" id="mfr-select" data-summary data-required>
+                      <option value="">Select manufacturer…</option>
+                      <option value="sigma">Sigma-Aldrich</option>
+                      <option value="total">TotalEnergies</option>
+                      <option value="brenntag">Brenntag Chad</option>
+                      <option value="shell">Shell Chemicals</option>
+                      <option value="castrol">Castrol Industrial</option>
+                      <option value="new">+ Add new manufacturer…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Email <span class="hint">— auto-filled</span></label>
+                    <input class="input" id="mfr-email" type="email" placeholder="From manufacturer database">
+                  </div>
+                  <div class="form-group">
+                    <label>Phone <span class="hint">— auto-filled</span></label>
+                    <input class="input" id="mfr-phone" placeholder="From manufacturer database">
+                  </div>
+                  <div class="form-group full">
+                    <label>Address <span class="hint">— auto-filled</span></label>
+                    <input class="input" id="mfr-addr" placeholder="From manufacturer database">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 4: SDS & Storage -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">4</div>
+                <div class="form-section-title">SDS &amp; storage location</div>
+              </div>
+              <div class="form-section-body">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label>Area of use (site) <span class="req">*</span></label>
+                    <select class="select" id="aou-select" data-summary data-required>
+                      <option value="">Select site…</option>
+                      <option value="douala">Douala</option>
+                      <option value="ps2">PS2-Dompta</option>
+                      <option value="ps3">PS3-Belabo</option>
+                      <option value="prs">PRS-Kribi</option>
+                      <option value="fso">FSO</option>
+                      <option value="warehouse">Warehouse</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>Storage location <span class="req">*</span></label>
+                    <select class="select" id="storage-select">
+                      <option value="">Select area of use first…</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label>eSDS last revision date</label>
+                    <input class="input" type="date">
+                  </div>
+                  <div class="form-group">
+                    <label>Area of use — if other</label>
+                    <input class="input" placeholder="Specify if 'Other' selected">
+                  </div>
+                  <div class="form-group full">
+                    <label>eSDS attachment <span class="req">*</span></label>
+                    <div class="file-drop">
+                      <div data-icon="paperclip"></div>
+                      <div class="file-drop-title">Drag &amp; drop your eSDS, or click to browse</div>
+                      <div class="file-drop-hint">PDF · DOC · DOCX · MAX 10MB</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Section 5: Reviewers -->
+            <div class="form-section">
+              <div class="form-section-head">
+                <div class="form-section-num">5</div>
+                <div class="form-section-title">Approval reviewers</div>
+                <div class="form-section-sub">Primary &amp; backup per stage</div>
+              </div>
+              <div class="form-section-body">
+                <table class="rev-table">
+                  <thead><tr><th>Stage</th><th>Primary reviewer</th><th>Backup</th></tr></thead>
+                  <tbody>
+                    <tr>
+                      <td><div class="rev-stage">IH Review</div><span class="rev-stage-sub">Hazard classification</span></td>
+                      <td><select class="rev-select-inline"><option>Hassan Ibrahim</option><option>Mariam Deby</option></select></td>
+                      <td><select class="rev-select-inline"><option>Mariam Deby</option><option>Hassan Ibrahim</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">OI Safety</div><span class="rev-stage-sub">Assigns required PPE</span></td>
+                      <td><select class="rev-select-inline"><option>Oumar Cheikh</option><option>Aisha Koné</option></select></td>
+                      <td><select class="rev-select-inline"><option>Aisha Koné</option><option>Oumar Cheikh</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">EMP Review</div><span class="rev-stage-sub">Environmental assessment</span></td>
+                      <td><select class="rev-select-inline"><option>Nadia Al-Farsi</option><option>Brahim Youssouf</option></select></td>
+                      <td><select class="rev-select-inline"><option>Brahim Youssouf</option><option>Nadia Al-Farsi</option></select></td>
+                    </tr>
+                    <tr>
+                      <td><div class="rev-stage">Final Approval</div><span class="rev-stage-sub">Site supervisor sign-off</span></td>
+                      <td><select class="rev-select-inline"><option>Site Supervisor — Douala</option><option>Site Supervisor — PS2</option></select></td>
+                      <td><select class="rev-select-inline"><option>Deputy Supervisor</option></select></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div class="form-actions">
+                <div class="form-progress" style="display:flex;align-items:center;gap:var(--s-3);font-size:12px;color:var(--text-3);flex:1">
+                  <span>Completion</span>
+                  <span class="progress-track" style="width:140px;height:4px;background:var(--surface-3);border-radius:2px;overflow:hidden">
+                    <span class="progress-fill" style="display:block;height:100%;background:var(--accent);border-radius:2px;width:0;transition:width 0.3s"></span>
+                  </span>
+                  <span class="progress-val mono" style="font-weight:600;color:var(--text)">0%</span>
+                </div>
+                <button class="btn" data-page="chemical"><span data-icon="arrow-right" style="transform:rotate(180deg)"></span><span data-t="btn.back">Back</span></button>
+                <button class="btn" id="form-draft"><span data-t="btn.savedraft">Save draft</span></button>
+                <button class="btn btn-primary" id="form-submit"><span data-t="btn.submit">Submit request</span><span data-icon="send"></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- ASIDE -->
+          <aside class="form-aside">
+            <div class="summary-card">
+              <div class="summary-head">Approval workflow</div>
+              <div class="workflow-stepper">
+                <div class="wf-step active">
+                  <div class="wf-node">1</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Submission</div>
+                    <div class="wf-sub">You are here</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">2</div>
+                  <div class="wf-content">
+                    <div class="wf-title">IH Review</div>
+                    <div class="wf-sub">Hazard classification</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">3</div>
+                  <div class="wf-content">
+                    <div class="wf-title">OI Safety</div>
+                    <div class="wf-sub">Assigns PPE</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">4</div>
+                  <div class="wf-content">
+                    <div class="wf-title">EMP Review</div>
+                    <div class="wf-sub">Environmental</div>
+                  </div>
+                </div>
+                <div class="wf-step">
+                  <div class="wf-node">5</div>
+                  <div class="wf-content">
+                    <div class="wf-title">Final Approval</div>
+                    <div class="wf-sub">Site supervisor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Request summary</div>
+              <div class="summary-body">
+                <div class="summary-row"><span class="summary-label">Chemical</span><span class="summary-val empty" id="sum-name">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Intended use</span><span class="summary-val empty" id="sum-use">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Manufacturer</span><span class="summary-val empty" id="sum-mfr">Not set</span></div>
+                <div class="summary-row"><span class="summary-label">Site</span><span class="summary-val empty" id="sum-site">Not set</span></div>
+              </div>
+            </div>
+
+            <div class="summary-card">
+              <div class="summary-head">Need help?</div>
+              <div class="summary-body" style="gap:6px">
+                <div class="summary-row" style="cursor:pointer;color:var(--accent)"><span data-icon="book" style="display:inline-flex;width:14px"></span><span>Open user guide</span></div>
+                <div class="summary-row" style="cursor:pointer;color:var(--text-2)"><span data-icon="help" style="display:inline-flex;width:14px"></span><span>Contact HSE coordinator</span></div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ============ MY REQUESTS ============ -->
+      <section class="page" id="page-requests" data-screen-label="04 My Requests">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.requests.title">My requests</h1>
+            <p class="page-subtitle" data-t="page.requests.sub">Track all requests you have submitted</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary" data-page="new-chemical"><span data-icon="plus"></span>New request</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Type</th><th>Title</th><th>Submitted</th><th>Current stage</th><th>Status</th><th></th></tr></thead>
+              <tbody>
+                <tr data-req="CHM-155"><td class="id-cell">#TPC-2026-156</td><td>New chemical</td><td>Acetone</td><td class="mono">14 May 2026</td><td>SHE Review</td><td><span class="badge badge-warning badge-dot">Pending</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-153</td><td>New chemical</td><td>Hydraulic Fluid ISO 46</td><td class="mono">11 May 2026</td><td>—</td><td><span class="badge badge-danger badge-dot">Rejected</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-148</td><td>Add to site</td><td>Diesel — PS2-Dompta</td><td class="mono">05 May 2026</td><td>—</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-142</td><td>New chemical</td><td>Sodium Hypochlorite</td><td class="mono">28 Apr 2026</td><td>—</td><td><span class="badge badge-success badge-dot">Approved</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+                <tr><td class="id-cell">#TPC-2026-138</td><td>Add to site</td><td>Methanol — PS3-Belabo</td><td class="mono">22 Apr 2026</td><td>IH Review</td><td><span class="badge badge-info badge-dot">In review</span></td><td><button class="btn btn-sm btn-ghost"><span data-icon="eye"></span></button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ APPROVALS ============ -->
+      <section class="page" id="page-approvals" data-screen-label="05 Approvals">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.approvals.title">Pending approvals</h1>
+            <p class="page-subtitle" data-t="page.approvals.sub">Items awaiting your review and decision</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="filter"></span>Filter</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body flush table-wrap">
+            <table>
+              <thead><tr><th>ID</th><th>Chemical</th><th>Submitted by</th><th>Site</th><th>Stage</th><th>Waiting</th><th style="text-align:right">Action</th></tr></thead>
+              <tbody>
+                <tr data-req="CHM-156">
+                  <td class="id-cell">#CHM-156</td>
+                  <td>Acetone</td>
+                  <td>Ahmed Mahamat</td>
+                  <td>Douala</td>
+                  <td>SHE Review</td>
+                  <td><span class="badge badge-warning"><span data-icon="clock"></span>2 days</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-156"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-156"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+                <tr data-req="CHM-154">
+                  <td class="id-cell">#CHM-154</td>
+                  <td>Methanol</td>
+                  <td>Ibrahim Saleh</td>
+                  <td>PS3-Belabo</td>
+                  <td>IH Review</td>
+                  <td><span class="badge badge-danger"><span data-icon="alert-triangle"></span>4 days · SLA breached</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-154"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-154"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+                <tr>
+                  <td class="id-cell">#CHM-152</td>
+                  <td>Hydraulic Fluid ISO 46</td>
+                  <td>Cherif Hassan</td>
+                  <td>PS2-Dompta</td>
+                  <td>EMP Review</td>
+                  <td><span class="badge badge-neutral"><span data-icon="clock"></span>5h ago</span></td>
+                  <td><div class="actions"><button class="btn btn-sm btn-danger" data-reject="#CHM-152"><span data-icon="x"></span>Reject</button><button class="btn btn-sm btn-primary" data-approve="#CHM-152"><span data-icon="check"></span>Approve</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ USERS ============ -->
+      <section class="page" id="page-users" data-screen-label="06 Users">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.users.title">User management</h1>
+            <p class="page-subtitle" data-t="page.users.sub">Roles, permissions and team members</p>
+          </div>
+          <div class="page-actions">
+            <button class="btn"><span data-icon="download"></span>Export</button>
+            <button class="btn btn-primary"><span data-icon="plus"></span>Invite user</button>
+          </div>
+        </div>
+
+        <div class="users-grid">
+          <div class="user-card"><div class="user-av">CH</div><div class="user-info"><div class="u-name">Cherif Hassan</div><div class="u-role">Global Admin</div><div class="u-email">cherif.hassan@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">AM</div><div class="user-info"><div class="u-name">Ahmed Mahamat</div><div class="u-role">Field User · Douala</div><div class="u-email">ahmed.mahamat@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">FM</div><div class="user-info"><div class="u-name">Fatima Moussa</div><div class="u-role">Store Manager · PS2-Dompta</div><div class="u-email">fatima.moussa@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">IS</div><div class="user-info"><div class="u-name">Ibrahim Saleh</div><div class="u-role">IT Technician · PS3-Belabo</div><div class="u-email">ibrahim.saleh@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">MD</div><div class="user-info"><div class="u-name">Mariam Deby</div><div class="u-role">HSE Reviewer · Douala</div><div class="u-email">mariam.deby@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+          <div class="user-card"><div class="user-av">OC</div><div class="user-info"><div class="u-name">Oumar Cheikh</div><div class="u-role">OI Safety · PS2-Dompta</div><div class="u-email">oumar.cheikh@tpc-tchad.td</div></div><button class="btn btn-sm btn-ghost"><span data-icon="more"></span></button></div>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS ============ -->
+      <section class="page" id="page-settings" data-screen-label="07 Settings">
+        <div class="page-header">
+          <div>
+            <h1 class="page-title" data-t="page.settings.title">System settings</h1>
+            <p class="page-subtitle" data-t="page.settings.sub">Azure integration, SSO, data sources</p>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-head">
+            <div class="form-section-num"><span data-icon="cloud" style="width:14px;height:14px"></span></div>
+            <div class="form-section-title">Azure configuration</div>
+            <span class="badge badge-success badge-dot" style="margin-left:auto">Connected</span>
+          </div>
+          <div class="form-section-body">
+            <div class="form-grid">
+              <div class="form-group"><label>Azure tenant ID</label><input class="input" value="9b8f7c-1a2d-4e5f-8a9b-c3d4e5f6a7b8" readonly></div>
+              <div class="form-group"><label>Azure SQL server</label><input class="input" value="tpc-sqlserver.database.windows.net" readonly></div>
+              <div class="form-group"><label>Organization domain</label><input class="input" value="tpc-tchad.td"></div>
+              <div class="form-group"><label>SSO provider</label><select class="select"><option>Microsoft Entra ID (Azure AD)</option></select></div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="btn">Test connection</button>
+            <button class="btn btn-primary">Save configuration</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- TWEAKS PANEL -->
+<div class="tweaks-panel" id="tweaks-panel">
+  <div class="tweaks-head">
+    <h3>Tweaks</h3>
+    <button class="icon-btn" onclick="document.getElementById('tweaks-panel').classList.remove('open')" data-icon="x" style="width:24px;height:24px"></button>
+  </div>
+  <div class="tweaks-body">
+    <div class="tweak-row">
+      <span class="tweak-label">Theme</span>
+      <div class="tweak-seg">
+        <button data-tweak="theme" data-val="light" class="active">Light</button>
+        <button data-tweak="theme" data-val="dark">Dark</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Density</span>
+      <div class="tweak-seg">
+        <button data-tweak="density" data-val="comfortable" class="active">Comfortable</button>
+        <button data-tweak="density" data-val="compact">Compact</button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Accent</span>
+      <div class="tweak-swatches">
+        <button class="tweak-swatch active" data-tweak="accent" data-val="red" style="background:#C8102E" title="TPC Red"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="yellow" style="background:#E5A50A" title="TPC Yellow"></button>
+        <button class="tweak-swatch" data-tweak="accent" data-val="neutral" style="background:#344054" title="Neutral"></button>
+      </div>
+    </div>
+    <div class="tweak-row">
+      <span class="tweak-label">Sidebar</span>
+      <div class="tweak-seg">
+        <button data-tweak="nav" data-val="expanded" class="active">Expanded</button>
+        <button data-tweak="nav" data-val="collapsed">Collapsed</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- DRAWER -->
+<div class="drawer-backdrop" id="drawer-backdrop"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <div class="drawer-id">#CHM-000</div>
+      <h2 class="drawer-title">Request title</h2>
+    </div>
+    <button class="drawer-close" data-icon="x" aria-label="Close"></button>
+  </div>
+  <div class="drawer-body">
+    <div class="drawer-section">
+      <div id="dw-hazards" class="drawer-hazard"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Details</h3>
+      <div class="drawer-kv">
+        <div><div class="k">Submitted by</div><div class="v" id="dw-by">—</div></div>
+        <div><div class="k">Site</div><div class="v" id="dw-site">—</div></div>
+        <div><div class="k">Submitted</div><div class="v" id="dw-date">—</div></div>
+        <div><div class="k">Manufacturer</div><div class="v" id="dw-mfr">—</div></div>
+        <div><div class="k">Intended use</div><div class="v" id="dw-use">—</div></div>
+        <div><div class="k">Current stage</div><div class="v" id="dw-stage">—</div></div>
+      </div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Required PPE</h3>
+      <div id="dw-ppe" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Approval timeline</h3>
+      <div class="timeline" id="dw-timeline"></div>
+    </div>
+
+    <div class="drawer-section">
+      <h3>Add comment</h3>
+      <div class="comment-input">
+        <textarea placeholder="Note for the next reviewer…"></textarea>
+        <button class="btn btn-primary btn-sm"><span data-icon="send"></span></button>
+      </div>
+    </div>
+  </div>
+  <div class="drawer-foot">
+    <button class="btn"><span data-icon="paperclip"></span>View eSDS</button>
+    <button class="btn btn-danger"><span data-icon="x"></span>Reject</button>
+    <button class="btn btn-primary"><span data-icon="check"></span>Approve</button>
+  </div>
+</aside>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <span data-icon="check-circle"></span>
+  <span class="toast-msg"></span>
+</div>
+
+<script src="tpc-icons.js"></script>
+<script src="tpc-ghs.js"></script>
+<script src="tpc-app.js"></script>
+<script src="tpc-v2.js"></script>
+</body>
+</html>

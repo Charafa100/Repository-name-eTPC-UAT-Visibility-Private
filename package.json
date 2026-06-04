@@ -1,0 +1,21 @@
+{
+  "name": "etpc",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --open \"/project/TPC E-Solution.html\"",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.77.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.4",
+    "vite": "^6.0.0"
+  }
+}

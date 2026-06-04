@@ -1,0 +1,107 @@
+/* tpc-v6.css — reserved for direct-edit overrides */
+/* This file is loaded last so direct-manipulation edits made in the editor
+   land here as !important rules without conflicting with the design files. */
+
+.tpc-v6-loaded { display: none; }
+
+/* ── Reason Modal — C2 Reject Reason / C3 Return for Revision ── */
+.reason-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(460px, 92vw);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  z-index: 260;
+  display: none;
+}
+.reason-modal.open { display: block; }
+.reason-modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--s-4) var(--s-5);
+  border-bottom: 1px solid var(--border);
+}
+.reason-modal-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+.reason-modal-body { padding: var(--s-4) var(--s-5); }
+.reason-modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--s-2);
+  padding: var(--s-3) var(--s-5) var(--s-4);
+  border-top: 1px solid var(--border);
+}
+
+/* ── Users page enhancements ──────────────────────────────────── */
+.user-card-inactive {
+  opacity: 0.7;
+}
+.user-av-inactive {
+  background: var(--surface-3) !important;
+  color: var(--text-4) !important;
+}
+.u-jobtitle {
+  font-size: 11px;
+  color: var(--text-4);
+  margin-top: 1px;
+}
+.u-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 6px;
+}
+.u-site-chip {
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+}
+.u-stages {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+.u-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-1);
+  flex-shrink: 0;
+  margin-left: var(--s-2);
+}
+
+/* ── Form validation ─────────────────────────────────────────── */
+.field-error {
+  font-size: 12px;
+  color: var(--danger);
+  margin-top: 4px;
+}
+
+/* ── User KPI chips ──────────────────────────────────────────── */
+.stat-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: 6px var(--s-4);
+  font-size: 13px;
+}
+.stat-chip-label {
+  color: var(--text-3);
+}
+.stat-chip-val {
+  font-weight: 600;
+  color: var(--text);
+  font-family: var(--font-mono);
+}

@@ -1,0 +1,287 @@
+/* TPC eSolutions — Production UI Polish
+ * Additive-only. No layout changes. No business logic.
+ * Loaded last to safely override visual inconsistencies.
+ * ─────────────────────────────────────────────────────── */
+
+/* ═══ 1. FOCUS-VISIBLE — Accessibility ═══════════════════
+ * Adds a visible keyboard-navigation ring to every
+ * interactive element. Does not affect mouse interaction.
+ * ──────────────────────────────────────────────────────── */
+:focus { outline: none; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: var(--r-sm);
+}
+
+/* Inset ring for contained controls */
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible,
+.role-select:focus-visible,
+.rev-select-inline:focus-visible {
+  outline: none;
+  border-color: var(--accent) !important;
+  box-shadow: 0 0 0 3px rgba(200, 16, 46, 0.12);
+}
+
+/* Nav items: inset so it stays inside the rounded pill */
+.nav-item:focus-visible {
+  outline-offset: -3px;
+  border-radius: var(--r-lg);
+}
+
+/* Cards: ring appears just outside the border */
+.sol-card:focus-visible,
+.mod-list-card:focus-visible,
+.user-card:focus-visible,
+.stat:focus-visible,
+.kpi:focus-visible {
+  outline-offset: 3px;
+}
+
+/* Buttons */
+.btn:focus-visible,
+.icon-btn:focus-visible,
+.lang-btn:focus-visible,
+.user-chip:focus-visible {
+  outline-offset: 2px;
+  border-radius: var(--r-md);
+}
+
+
+/* ═══ 2. HOVER STATES — Missing elements ══════════════════
+ * user-card has no hover. stat[data-page] cards are
+ * clickable but give zero visual feedback.
+ * ──────────────────────────────────────────────────────── */
+
+.user-card {
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.user-card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Stat cards that navigate (Manufacturers, Storage) */
+.stat[data-page] {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.stat[data-page]:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-sm);
+}
+
+/* News items feel clickable */
+.news-item {
+  transition: background 0.12s;
+  border-radius: var(--r-md);
+}
+.news-item:hover { background: var(--surface-2); }
+
+/* Inbox rows */
+.inbox-row { transition: background 0.12s; }
+
+
+/* ═══ 3. TRANSITION NORMALISATION ════════════════════════
+ * Standardise all card/row hover transitions to 0.15s.
+ * ──────────────────────────────────────────────────────── */
+.sol-card,
+.mod-list-card,
+.queue-row,
+.user-card,
+.news-item {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.input,
+.select,
+.textarea,
+.rev-select-inline {
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.btn {
+  transition: background 0.12s, border-color 0.12s,
+              color 0.12s, box-shadow 0.12s;
+}
+
+
+/* ═══ 4. SHADOW NORMALISATION ════════════════════════════
+ * Replace hardcoded hover shadows with system variables.
+ * ──────────────────────────────────────────────────────── */
+.sol-card:hover       { box-shadow: var(--shadow-md) !important; }
+.mod-list-card:hover  { box-shadow: var(--shadow-md) !important; }
+.user-card:hover      { box-shadow: var(--shadow-sm); }
+.queue-card           { box-shadow: var(--shadow-sm); }
+
+
+/* ═══ 5. BORDER-RADIUS NORMALISATION ════════════════════
+ * mod-list-card used hardcoded 14px. var(--r-xl) = 14px
+ * in the v5 override — using the variable is correct.
+ * ──────────────────────────────────────────────────────── */
+.mod-list-card { border-radius: var(--r-xl); }
+
+/* Ensure user-card and sol-card use the same radius */
+.user-card    { border-radius: var(--r-lg); }
+.sol-card     { border-radius: var(--r-lg); }
+
+
+/* ═══ 6. ICON SIZE CONSISTENCY ═══════════════════════════
+ * Nav icons fixed at 18×18; icon-btn SVGs at 18×18.
+ * ──────────────────────────────────────────────────────── */
+.nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+.icon-btn svg,
+.icon-btn [data-icon] {
+  width: 18px;
+  height: 18px;
+}
+
+/* mod-list-card icon box — slightly smaller than sol-card */
+.mod-list-card .sol-icon-box {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+
+/* ═══ 7. BADGE CONSISTENCY ═══════════════════════════════ */
+.nav-badge {
+  min-width: 20px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* ═══ 8. FORM ELEMENT POLISH ════════════════════════════ */
+
+/* Placeholder colour consistent across all inputs */
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-4);
+  opacity: 1;
+}
+
+/* Select arrow consistent with theme */
+.select {
+  appearance: auto;
+}
+
+/* Amount input focus */
+.amount-input-row input:focus-visible {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(200,16,46,0.10);
+}
+
+
+/* ═══ 9. CARD SHADOW DEPTH SYSTEM ═══════════════════════
+ * Base state: no shadow (flat).
+ * Hover state: var(--shadow-md) — clear elevation cue.
+ * ──────────────────────────────────────────────────────── */
+.card { transition: box-shadow 0.15s; }
+
+
+/* ═══ 10. SCROLLBAR POLISH ═══════════════════════════════
+ * Thin system-coloured scrollbar. Falls back to OS
+ * default on browsers that don't support ::-webkit-scrollbar.
+ * ──────────────────────────────────────────────────────── */
+.nav-area {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.nav-area::-webkit-scrollbar         { width: 4px; }
+.nav-area::-webkit-scrollbar-track   { background: transparent; }
+.nav-area::-webkit-scrollbar-thumb   {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.content {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong, var(--border)) transparent;
+}
+.content::-webkit-scrollbar          { width: 5px; }
+.content::-webkit-scrollbar-track    { background: transparent; }
+.content::-webkit-scrollbar-thumb    {
+  background: var(--border);
+  border-radius: 4px;
+}
+.content::-webkit-scrollbar-thumb:hover {
+  background: var(--text-4);
+}
+
+.table-wrap {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+.table-wrap::-webkit-scrollbar        { height: 5px; }
+.table-wrap::-webkit-scrollbar-track  { background: transparent; }
+.table-wrap::-webkit-scrollbar-thumb  {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+
+/* ═══ 11. TABLE POLISH ═══════════════════════════════════ */
+table tbody tr {
+  transition: background 0.1s;
+}
+table tbody tr:hover { background: var(--surface-2); }
+
+
+/* ═══ 12. RESPONSIVE MICRO-FIXES ════════════════════════ */
+
+/* Prevent page-header from overflowing on small viewports */
+.page-header {
+  flex-wrap: wrap;
+  gap: var(--s-3);
+}
+.page-actions {
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/* Hero title: clamp prevents overflow on narrower sidebars */
+.hero-title {
+  font-size: clamp(18px, 2.2vw, 26px);
+}
+
+/* Stats row: allow wrapping below ~800px */
+.stats-row {
+  flex-wrap: wrap;
+}
+.stat {
+  min-width: 140px;
+  flex: 1 1 140px;
+}
+
+/* KPI row: wrap on narrow screens */
+.kpi-row {
+  flex-wrap: wrap;
+}
+.kpi {
+  min-width: 160px;
+  flex: 1 1 160px;
+}
+
+/* Solutions grid: ensure cards never go below 240px */
+.solutions-grid {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+/* mod-list on very narrow content area */
+@media (max-width: 640px) {
+  .mod-list-card {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: var(--s-3);
+    padding: var(--s-3) var(--s-4);
+  }
+  .mod-list-body { min-width: 0; }
+  .mod-list-desc { display: none; }
+  .page-header { flex-direction: column; align-items: flex-start; }
+}

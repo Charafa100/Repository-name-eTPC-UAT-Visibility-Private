@@ -1,0 +1,312 @@
+/* TPC SolutionHub — Daily Expense module */
+
+/* ============== EXPENSE CATEGORIES ============== */
+.cat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid;
+}
+.cat-chip svg { width: 12px; height: 12px; }
+
+.cat-meals      { background: #FFF4E5; color: #B45309; border-color: #FED7AA; }
+.cat-transport  { background: #EFF8FF; color: #175CD3; border-color: #B2DDFF; }
+.cat-fuel       { background: #FEF3F2; color: #B42318; border-color: #FECDCA; }
+.cat-lodging    { background: #F4F3FF; color: #5925DC; border-color: #D9D6FE; }
+.cat-comms      { background: #ECFDF3; color: #027A48; border-color: #ABEFC6; }
+.cat-supplies   { background: #FEF7E0; color: #92400E; border-color: #FCEDB8; }
+.cat-other      { background: var(--surface-3); color: var(--text-2); border-color: var(--border); }
+
+[data-theme="dark"] .cat-meals      { background: #2A1B0A; color: #FDBA74; border-color: #3D2916; }
+[data-theme="dark"] .cat-transport  { background: #0E1F38; color: #93C5FD; border-color: #1E3A5F; }
+[data-theme="dark"] .cat-fuel       { background: #2B1414; color: #FCA5A5; border-color: #3D1A1F; }
+[data-theme="dark"] .cat-lodging    { background: #1F1B2E; color: #C4B5FD; border-color: #2E2745; }
+[data-theme="dark"] .cat-comms      { background: #0E2419; color: #6EE7B7; border-color: #133324; }
+[data-theme="dark"] .cat-supplies   { background: #2B2412; color: #FCD34D; border-color: #3D3217; }
+
+/* Color dot swatches for category */
+.cat-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+.cat-dot.meals     { background: #F97316; }
+.cat-dot.transport { background: #2563EB; }
+.cat-dot.fuel      { background: #DC2626; }
+.cat-dot.lodging   { background: #7C3AED; }
+.cat-dot.comms     { background: #059669; }
+.cat-dot.supplies  { background: #D97706; }
+.cat-dot.other     { background: #6B7280; }
+
+/* ============== MONTH SUMMARY CHART ============== */
+.month-chart-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: var(--s-7);
+}
+.month-chart-body {
+  padding: var(--s-5) var(--s-6);
+}
+.month-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 120px;
+  margin-bottom: var(--s-3);
+}
+.month-bar {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: stretch;
+  gap: 1px;
+  position: relative;
+}
+.month-bar .stack {
+  width: 100%;
+  border-radius: 1px;
+  transition: opacity 0.15s;
+  min-height: 1px;
+}
+.month-bar:hover .stack { opacity: 0.7; }
+.month-bar .stack.meals     { background: #F97316; }
+.month-bar .stack.transport { background: #2563EB; }
+.month-bar .stack.fuel      { background: #DC2626; }
+.month-bar .stack.lodging   { background: #7C3AED; }
+.month-bar .stack.comms     { background: #059669; }
+.month-bar .stack.supplies  { background: #D97706; }
+.month-bar .stack.other     { background: #6B7280; }
+.month-axis {
+  display: flex;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-4);
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+.month-axis span { flex: 1; text-align: center; }
+.month-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  margin-top: var(--s-4);
+  padding-top: var(--s-4);
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+}
+.month-legend-item { display: inline-flex; align-items: center; gap: 6px; color: var(--text-2); }
+.month-legend-item .amt {
+  font-family: var(--font-mono);
+  color: var(--text);
+  font-weight: 600;
+  margin-left: 4px;
+}
+
+/* ============== EXPENSE ROW ============== */
+.expense-list {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.expense-row {
+  display: grid;
+  grid-template-columns: 40px 1fr 160px 140px 110px auto;
+  gap: var(--s-4);
+  padding: 12px var(--s-5);
+  border-bottom: 1px solid var(--border);
+  align-items: center;
+  cursor: pointer;
+}
+.expense-row:hover { background: var(--surface-2); }
+.expense-row:last-child { border-bottom: none; }
+.expense-row .ex-icon {
+  width: 40px; height: 40px;
+  border-radius: var(--r-md);
+  display: grid;
+  place-items: center;
+  background: var(--surface-3);
+  color: var(--text-2);
+}
+.expense-row .ex-icon.meals     { background: #FFF4E5; color: #B45309; }
+.expense-row .ex-icon.transport { background: #EFF8FF; color: #175CD3; }
+.expense-row .ex-icon.fuel      { background: #FEF3F2; color: #B42318; }
+.expense-row .ex-icon.lodging   { background: #F4F3FF; color: #5925DC; }
+.expense-row .ex-icon.comms     { background: #ECFDF3; color: #027A48; }
+.expense-row .ex-icon.supplies  { background: #FEF7E0; color: #92400E; }
+[data-theme="dark"] .expense-row .ex-icon.meals     { background: #2A1B0A; color: #FDBA74; }
+[data-theme="dark"] .expense-row .ex-icon.transport { background: #0E1F38; color: #93C5FD; }
+[data-theme="dark"] .expense-row .ex-icon.fuel      { background: #2B1414; color: #FCA5A5; }
+[data-theme="dark"] .expense-row .ex-icon.lodging   { background: #1F1B2E; color: #C4B5FD; }
+[data-theme="dark"] .expense-row .ex-icon.comms     { background: #0E2419; color: #6EE7B7; }
+[data-theme="dark"] .expense-row .ex-icon.supplies  { background: #2B2412; color: #FCD34D; }
+.expense-row .ex-icon svg { width: 18px; height: 18px; }
+
+.expense-row .ex-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.expense-row .ex-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.expense-row .ex-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+}
+.expense-row .ex-cat { font-size: 12px; }
+.expense-row .ex-date {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-2);
+}
+.expense-row .ex-amt {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  text-align: right;
+  letter-spacing: -0.2px;
+}
+.expense-row .ex-amt .ccy { font-size: 10px; color: var(--text-3); margin-left: 3px; font-weight: 500; }
+
+.expense-list-head {
+  padding: var(--s-3) var(--s-5);
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 40px 1fr 160px 140px 110px auto;
+  gap: var(--s-4);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 500;
+}
+
+/* ============== EXPENSE CATEGORY TILES (form) ============== */
+.cat-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: var(--s-2);
+}
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: var(--s-4) var(--s-3);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.12s, background 0.12s;
+}
+.cat-tile:hover { border-color: var(--border-strong); }
+.cat-tile.selected { border-color: var(--accent); background: var(--accent-soft); }
+.cat-tile .tile-bubble {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.cat-tile .tile-bubble svg { width: 18px; height: 18px; }
+.cat-tile .tile-bubble.meals     { background: #FFF4E5; color: #B45309; }
+.cat-tile .tile-bubble.transport { background: #EFF8FF; color: #175CD3; }
+.cat-tile .tile-bubble.fuel      { background: #FEF3F2; color: #B42318; }
+.cat-tile .tile-bubble.lodging   { background: #F4F3FF; color: #5925DC; }
+.cat-tile .tile-bubble.comms     { background: #ECFDF3; color: #027A48; }
+.cat-tile .tile-bubble.supplies  { background: #FEF7E0; color: #92400E; }
+.cat-tile .tile-bubble.other     { background: var(--surface-3); color: var(--text-2); }
+[data-theme="dark"] .cat-tile .tile-bubble.meals     { background: #2A1B0A; color: #FDBA74; }
+[data-theme="dark"] .cat-tile .tile-bubble.transport { background: #0E1F38; color: #93C5FD; }
+[data-theme="dark"] .cat-tile .tile-bubble.fuel      { background: #2B1414; color: #FCA5A5; }
+[data-theme="dark"] .cat-tile .tile-bubble.lodging   { background: #1F1B2E; color: #C4B5FD; }
+[data-theme="dark"] .cat-tile .tile-bubble.comms     { background: #0E2419; color: #6EE7B7; }
+[data-theme="dark"] .cat-tile .tile-bubble.supplies  { background: #2B2412; color: #FCD34D; }
+.cat-tile .tile-name {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ============== STATUS PILLS (expense) ============== */
+.ex-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+}
+.ex-status.draft       { background: var(--surface-3); color: var(--text-3); }
+.ex-status.submitted   { background: var(--info-soft); color: var(--info); }
+.ex-status.approved    { background: var(--accent-soft); color: var(--accent); }
+.ex-status.reimbursed  { background: var(--success-soft); color: var(--success); }
+.ex-status.rejected    { background: var(--danger-soft); color: var(--danger); }
+
+/* ============== REIMBURSE STRIP ============== */
+.reimb-strip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: var(--s-5);
+}
+.reimb-cell {
+  background: var(--surface);
+  padding: var(--s-4) var(--s-5);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+.reimb-cell .l {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 500;
+}
+.reimb-cell .v {
+  font-family: var(--font-mono);
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.4px;
+  line-height: 1;
+}
+.reimb-cell .v .ccy { font-size: 10px; color: var(--text-3); margin-left: 3px; font-weight: 500; }
+.reimb-cell .s {
+  font-size: 11px;
+  color: var(--text-3);
+}

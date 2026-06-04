@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TPC Design Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    background: #0B0E12;
+    color: #E4E7EC;
+    min-height: 100vh;
+    padding: 48px 32px;
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  .logo {
+    width: 44px;
+    height: 44px;
+    background: #0B0E12;
+    border: 1px solid #333;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .logo-stripe { height: 33%; }
+  .logo-stripe:nth-child(1) { background: #FFB81C; }
+  .logo-stripe:nth-child(2) { background: #C8102E; }
+  .logo-stripe:nth-child(3) { background: #0B0E12; }
+  .header-text h1 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .header-text p {
+    font-size: 12px;
+    color: #667085;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: 2px;
+  }
+  .section-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #667085;
+    margin-bottom: 16px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+  a.card {
+    display: block;
+    background: #13171F;
+    border: 1px solid #1E2430;
+    border-radius: 10px;
+    padding: 20px 24px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, background 0.15s;
+  }
+  a.card:hover {
+    border-color: #FFB81C;
+    background: #171C26;
+  }
+  a.card .card-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F9FAFB;
+    margin-bottom: 6px;
+  }
+  a.card .card-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+  .badge-main   { background: #1C2A1A; color: #4CAF50; }
+  .badge-dash   { background: #1A2333; color: #60A5FA; }
+  .badge-flow   { background: #2A1A1A; color: #F87171; }
+  .badge-nav    { background: #1A2226; color: #38BDF8; }
+  .badge-safety { background: #2A1A1A; color: #F87171; }
+  .badge-standalone { background: #262019; color: #FBBF24; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="logo">
+    <div class="logo-stripe"></div>
+    <div class="logo-stripe"></div>
+    <div class="logo-stripe"></div>
+  </div>
+  <div class="header-text">
+    <h1>TPC Design Hub</h1>
+    <p>Tchad Petroleum Company · Design Prototypes</p>
+  </div>
+</div>
+
+<p class="section-title">Main Application</p>
+<div class="grid">
+  <a class="card" href="TPC E-Solution.html">
+    <div class="card-title">TPC E-Solution</div>
+    <span class="card-badge badge-main">Main App</span>
+  </a>
+  <a class="card" href="TPC E-Solution (standalone).html">
+    <div class="card-title">TPC E-Solution (Standalone)</div>
+    <span class="card-badge badge-standalone">Standalone</span>
+  </a>
+  <a class="card" href="TPC SolutionHub v1.html">
+    <div class="card-title">TPC SolutionHub v1</div>
+    <span class="card-badge badge-main">Hub</span>
+  </a>
+  <a class="card" href="TPC SolutionHub v2.html">
+    <div class="card-title">TPC SolutionHub v2</div>
+    <span class="card-badge badge-main">Hub</span>
+  </a>
+  <a class="card" href="TPC SolutionHub (standalone).html">
+    <div class="card-title">TPC SolutionHub (Standalone)</div>
+    <span class="card-badge badge-standalone">Standalone</span>
+  </a>
+</div>
+
+<p class="section-title">Dashboards</p>
+<div class="grid">
+  <a class="card" href="Dashboard Modern.html">
+    <div class="card-title">Dashboard Modern</div>
+    <span class="card-badge badge-dash">Dashboard</span>
+  </a>
+  <a class="card" href="Dashboard Variations.html">
+    <div class="card-title">Dashboard Variations</div>
+    <span class="card-badge badge-dash">Dashboard</span>
+  </a>
+  <a class="card" href="Safety Data Dashboard.html">
+    <div class="card-title">Safety Data Dashboard</div>
+    <span class="card-badge badge-safety">Safety</span>
+  </a>
+</div>
+
+<p class="section-title">Flows &amp; Components</p>
+<div class="grid">
+  <a class="card" href="Approval Flow Variations.html">
+    <div class="card-title">Approval Flow Variations</div>
+    <span class="card-badge badge-flow">Flow</span>
+  </a>
+  <a class="card" href="Safety Data Auth Flow.html">
+    <div class="card-title">Safety Data Auth Flow</div>
+    <span class="card-badge badge-flow">Auth</span>
+  </a>
+  <a class="card" href="Navbar Variations.html">
+    <div class="card-title">Navbar Variations</div>
+    <span class="card-badge badge-nav">Nav</span>
+  </a>
+</div>
+
+</body>
+</html>

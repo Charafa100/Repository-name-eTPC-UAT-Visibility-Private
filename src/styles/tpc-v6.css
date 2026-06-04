@@ -1,0 +1,6 @@
+/* tpc-v6.css — reserved for direct-edit overrides */
+/* This file is loaded last so direct-manipulation edits made in the editor
+   land here as !important rules without conflicting with the design files. */
+
+/* (empty by default) */
+.tpc-v6-loaded { display: none; }

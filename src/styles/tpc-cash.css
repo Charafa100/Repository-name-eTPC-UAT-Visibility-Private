@@ -1,0 +1,529 @@
+/* =====================================================
+   TPC SolutionHub — Cash Advance module
+   ===================================================== */
+
+/* ============== AMOUNT DISPLAY ============== */
+.amt {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum', 'lnum';
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+.amt .ccy {
+  font-size: 0.7em;
+  font-weight: 500;
+  color: var(--text-3);
+  margin-left: 4px;
+  letter-spacing: 0.5px;
+}
+.amt.lg { font-size: 22px; letter-spacing: -0.4px; }
+.amt.xl {
+  font-size: 36px;
+  letter-spacing: -1px;
+  font-weight: 600;
+}
+.amt.xxl {
+  font-size: 48px;
+  letter-spacing: -1.5px;
+  font-weight: 600;
+}
+.amt.neg { color: var(--danger); }
+.amt.pos { color: var(--success); }
+
+/* ============== ADVANCE LIFECYCLE PILL ============== */
+.cycle-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+.cycle-pill::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+}
+.cycle-pill.requested { background: var(--info-soft);    color: var(--info);    border-color: var(--info-tint); }
+.cycle-pill.approved  { background: var(--accent-soft);  color: var(--accent);  border-color: var(--accent-tint); }
+.cycle-pill.disbursed { background: var(--warning-soft); color: var(--warning); border-color: var(--warning-tint); }
+.cycle-pill.reconciling { background: var(--surface-3); color: var(--text-2); border-color: var(--border); }
+.cycle-pill.reconciled { background: var(--success-soft); color: var(--success); border-color: var(--success-tint); }
+.cycle-pill.overdue   { background: var(--danger-soft);  color: var(--danger);  border-color: var(--danger-tint); }
+.cycle-pill.rejected  { background: var(--danger-soft);  color: var(--danger);  border-color: var(--danger-tint); opacity: 0.85; }
+
+/* ============== ADVANCE LIFECYCLE BAR ============== */
+.cycle-bar {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+  width: 100%;
+}
+.cycle-bar .step {
+  height: 4px;
+  background: var(--surface-3);
+}
+.cycle-bar .step.on { background: var(--success); }
+.cycle-bar .step.warn { background: var(--warning); }
+.cycle-bar .step.danger { background: var(--danger); }
+
+.cycle-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-3);
+  letter-spacing: 0.3px;
+}
+.cycle-row .step-label.active { color: var(--text); font-weight: 600; }
+
+/* ============== CASH HERO ============== */
+.cash-hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 0;
+  margin-bottom: var(--s-7);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+}
+.cash-hero-cell {
+  padding: var(--s-5) var(--s-6);
+  border-right: 1px solid var(--border);
+  position: relative;
+}
+.cash-hero-cell:last-child { border-right: none; }
+.cash-hero-cell::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 28px; height: 2px;
+  background: var(--accent);
+}
+.cash-hero-cell.warn::before { background: var(--warning); }
+.cash-hero-cell.danger::before { background: var(--danger); }
+.cash-hero-cell.success::before { background: var(--success); }
+
+.cash-hero-label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 500;
+  margin-bottom: var(--s-3);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.cash-hero-label svg { width: 12px; height: 12px; }
+
+.cash-hero-amount {
+  font-family: var(--font-mono);
+  font-feature-settings: 'tnum';
+  letter-spacing: -1.5px;
+  line-height: 1;
+  color: var(--text);
+  font-weight: 600;
+}
+.cash-hero-amount .num { font-size: 38px; }
+.cash-hero-amount .ccy { font-size: 14px; color: var(--text-3); margin-left: 6px; font-weight: 500; letter-spacing: 0; }
+
+.cash-hero-sub {
+  margin-top: var(--s-3);
+  font-size: 12px;
+  color: var(--text-3);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cash-hero-sub svg { width: 13px; height: 13px; }
+.cash-hero-sub.warn { color: var(--warning); }
+.cash-hero-sub.danger { color: var(--danger); }
+.cash-hero-sub .delta { font-family: var(--font-mono); font-weight: 600; }
+
+/* ============== ADVANCE CARD (My Advances) ============== */
+.adv-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: var(--s-5);
+  cursor: pointer;
+  transition: border-color 0.12s, box-shadow 0.12s;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.adv-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-sm); }
+.adv-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+.adv-card-id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+}
+.adv-card-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  margin-top: 2px;
+}
+.adv-card-amt {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.4px;
+  line-height: 1;
+  text-align: right;
+}
+.adv-card-amt .ccy { font-size: 10px; color: var(--text-3); font-weight: 500; display: block; margin-top: 2px; letter-spacing: 0.5px; }
+
+.adv-card-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--s-4);
+  font-size: 12px;
+  color: var(--text-3);
+  flex-wrap: wrap;
+}
+.adv-card-meta .item { display: inline-flex; align-items: center; gap: 4px; }
+.adv-card-meta svg { width: 13px; height: 13px; }
+
+.adv-card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+  padding-top: var(--s-3);
+  border-top: 1px solid var(--border);
+}
+
+.advances-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s-4);
+}
+
+/* ============== RECONCILIATION CALLOUT ============== */
+.recon-callout {
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  gap: var(--s-4);
+  padding: var(--s-4) var(--s-5);
+  background: var(--warning-soft);
+  border: 1px solid var(--warning-tint);
+  border-left: 3px solid var(--warning);
+  border-radius: var(--r-md);
+  align-items: center;
+  margin-bottom: var(--s-5);
+}
+[data-theme="dark"] .recon-callout { color: var(--text); }
+.recon-callout-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--r-md);
+  background: var(--warning);
+  color: #fff;
+  display: grid;
+  place-items: center;
+}
+.recon-callout-icon svg { width: 22px; height: 22px; }
+.recon-callout-text strong {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  display: block;
+  margin-bottom: 2px;
+}
+[data-theme="dark"] .recon-callout-text strong { color: var(--text); }
+.recon-callout-text {
+  font-size: 12px;
+  color: var(--text-2);
+  line-height: 1.5;
+}
+.recon-callout-text .mono { font-family: var(--font-mono); color: var(--warning); font-weight: 600; }
+
+/* ============== DISBURSEMENT METHOD PICKER ============== */
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--s-3);
+}
+.method-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  padding: var(--s-4);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.12s, background 0.12s;
+  position: relative;
+}
+.method-opt:hover { border-color: var(--border-strong); }
+.method-opt.selected { border-color: var(--accent); background: var(--accent-soft); }
+.method-opt-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--r-md);
+  background: var(--surface-3);
+  color: var(--text);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+}
+.method-opt-icon svg { width: 18px; height: 18px; }
+.method-opt.selected .method-opt-icon { background: var(--accent); color: #fff; }
+.method-opt-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+}
+.method-opt-sub {
+  font-size: 11px;
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+.method-opt-check {
+  position: absolute;
+  top: 12px; right: 12px;
+  width: 18px; height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+}
+.method-opt-check svg { width: 12px; height: 12px; }
+.method-opt.selected .method-opt-check { display: flex; }
+
+/* ============== PURPOSE PICKER ============== */
+.purpose-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--s-2);
+}
+.purpose-opt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: var(--s-3);
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.12s, background 0.12s;
+}
+.purpose-opt:hover { border-color: var(--border-strong); }
+.purpose-opt.selected { border-color: var(--accent); background: var(--accent-soft); }
+.purpose-opt svg { width: 20px; height: 20px; color: var(--text-3); }
+.purpose-opt.selected svg { color: var(--accent); }
+.purpose-opt span { font-size: 12px; font-weight: 500; color: var(--text); }
+
+/* ============== AMOUNT INPUT ============== */
+.amount-input-row {
+  display: flex;
+  align-items: stretch;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--surface);
+}
+.amount-input-row:focus-within { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+.amount-input-row input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 10px var(--s-4);
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  color: var(--text);
+  background: transparent;
+  font-feature-settings: 'tnum';
+}
+.amount-input-row .ccy-tag {
+  padding: 0 var(--s-4);
+  background: var(--surface-2);
+  border-left: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-3);
+  letter-spacing: 0.5px;
+}
+
+.amount-presets {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.amount-preset {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  padding: 3px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-2);
+  cursor: pointer;
+}
+.amount-preset:hover { border-color: var(--border-strong); color: var(--text); }
+
+/* ============== DAILY BREAKDOWN ============== */
+.breakdown {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--s-3) var(--s-4);
+}
+.breakdown-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+  font-size: 12px;
+}
+.breakdown-row.total {
+  border-top: 1px dashed var(--border-strong);
+  margin-top: 4px;
+  padding-top: 8px;
+}
+.breakdown-row .lbl { color: var(--text-3); }
+.breakdown-row .val { font-family: var(--font-mono); color: var(--text); font-weight: 500; }
+.breakdown-row.total .lbl { color: var(--text); font-weight: 600; }
+.breakdown-row.total .val { color: var(--accent); font-weight: 600; font-size: 14px; }
+
+/* ============== RECEIPT UPLOADER (Reconciliation) ============== */
+.receipt-row {
+  display: grid;
+  grid-template-columns: 32px 1fr 130px 100px 32px;
+  gap: var(--s-3);
+  padding: 10px var(--s-3);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  align-items: center;
+  margin-bottom: 6px;
+}
+.receipt-row .icon {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  background: var(--surface-3);
+  color: var(--text-3);
+  display: grid;
+  place-items: center;
+}
+.receipt-row .icon svg { width: 14px; height: 14px; }
+.receipt-row input.desc {
+  border: none;
+  background: transparent;
+  font-size: 13px;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+}
+.receipt-row input.desc::placeholder { color: var(--text-4); }
+.receipt-row select.cat {
+  border: none;
+  background: transparent;
+  font-size: 12px;
+  color: var(--text-2);
+  outline: none;
+  width: 100%;
+  font-family: inherit;
+}
+.receipt-row .amt-cell {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+.receipt-row .amt-cell input {
+  border: none;
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text);
+  outline: none;
+  width: 100%;
+  text-align: right;
+  font-weight: 600;
+}
+.receipt-row .amt-cell .tag { font-family: var(--font-mono); font-size: 9px; color: var(--text-4); font-weight: 500; }
+.receipt-row .rm {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--r-sm);
+  display: grid;
+  place-items: center;
+  color: var(--text-4);
+}
+.receipt-row .rm:hover { background: var(--danger-soft); color: var(--danger); }
+
+.recon-totals {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  margin-top: var(--s-3);
+}
+.recon-totals .cell {
+  background: var(--surface);
+  padding: var(--s-3) var(--s-4);
+  text-align: center;
+}
+.recon-totals .cell .l {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-3);
+  margin-bottom: 2px;
+}
+.recon-totals .cell .v {
+  font-family: var(--font-mono);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.3px;
+}
+.recon-totals .cell.surplus .v { color: var(--success); }
+.recon-totals .cell.deficit .v { color: var(--danger); }
